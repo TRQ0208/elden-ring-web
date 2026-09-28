@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>半神角色 - 艾尔登法环交界地档案</title>
+    <script>
+        if (!localStorage.getItem("token")) {
+            location.href = "login.html";
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #1a1817;
+            color: #e2dfd8;
+            line-height: 1.6;
+        }
+        .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+
+        /* 头部 */
+        header {
+            background: linear-gradient(135deg, #4b1414, #2e1c1c);
+            color: #fff; padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+            position: relative; z-index: 100;
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: nowrap; }
+        .logo-area { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: radial-gradient(circle, #d4af37 0%, #8b6f1c 80%);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(212,175,55,0.5), inset 0 0 8px rgba(0,0,0,0.6);
+            font-size: 26px; font-weight: bold;
+            color: #1a1817; text-shadow: 0 0 6px #ffe28a;
+            border: 2px solid #b49438; transition: all 0.3s ease; flex-shrink: 0;
+        }
+        .logo-icon:hover { box-shadow: 0 0 25px #d4af37, inset 0 0 8px #000; transform: scale(1.03); }
+        h1 { font-size: 2rem; font-weight: bold; text-shadow: 2px 2px 6px #000; color: #d4af37; font-family: 'SimSun', serif; line-height: 1.2; white-space: nowrap; }
+        .header-right { display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; flex-shrink: 0; }
+        .search-box {
+            display: flex; align-items: center; background: #1e1b1a;
+            border: 2px solid #5c3a2b; border-radius: 30px;
+            padding: 4px 4px 4px 16px; transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); height: 44px;
+        }
+        .search-box:focus-within { border-color: #d4af37; box-shadow: 0 0 12px rgba(212,175,55,0.4), inset 0 2px 5px #000; }
+        .search-box input { background: transparent; border: none; outline: none; color: #e2dfd8; font-size: 0.95rem; padding: 0; width: 140px; font-family: 'Microsoft YaHei', serif; }
+        .search-box input::placeholder { color: #a39e97; font-style: italic; font-size: 0.9rem; }
+        .search-box button {
+            background: #4b1414; border: none; color: #e2dfd8;
+            padding: 7px 16px; border-radius: 30px; cursor: pointer;
+            font-size: 0.9rem; font-weight: bold; letter-spacing: 1px;
+            transition: all 0.3s ease; border: 1px solid #773333;
+            display: flex; align-items: center; gap: 4px; white-space: nowrap;
+        }
+        .search-box button:hover { background: #681e1e; color: #d4af37; border-color: #d4af37; }
+        .reserve-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #4b1414, #6b1e1e);
+            border: 2px solid #d4af37; border-radius: 40px;
+            padding: 8px 18px; color: #f3d98b; text-decoration: none;
+            font-size: 0.9rem; font-weight: bold; font-family: inherit;
+            cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 0 12px rgba(212,175,55,0.3);
+            white-space: nowrap; height: 44px;
+        }
+        .reserve-btn:hover { background: linear-gradient(135deg, #6b1e1e, #8b2a2a); color: #fff; box-shadow: 0 0 22px rgba(212,175,55,0.7); transform: translateY(-2px); }
+        .user-avatar-btn {
+            display: flex; align-items: center; gap: 8px; background: #2a2422;
+            border: 2px solid #5c3a2b; border-radius: 40px;
+            padding: 3px 12px 3px 3px; cursor: pointer; transition: all 0.3s ease;
+            color: #e2dfd8; font-size: 0.9rem; font-weight: bold;
+            font-family: inherit; white-space: nowrap; height: 44px;
+        }
+        .user-avatar-btn:hover { border-color: #d4af37; box-shadow: 0 0 12px rgba(212,175,55,0.4); }
+        .user-avatar-btn .avatar-img {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #8b6f1c);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: #1a1817; border: 2px solid #b49438; flex-shrink: 0;
+        }
+        .user-avatar-btn .avatar-name { max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .user-avatar-btn .arrow { font-size: 0.65rem; color: #d4af37; transition: transform 0.3s ease; }
+        .user-avatar-btn.open .arrow { transform: rotate(180deg); }
+
+        .user-dropdown {
+            position: fixed; width: 260px; background: #262220;
+            border: 2px solid #5c3a2b; border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.2);
+            padding: 8px; display: none; z-index: 999999;
+        }
+        .user-dropdown.open { display: block; }
+        .dropdown-header { background: linear-gradient(135deg, #3a2a24, #2a1e1a); border-radius: 10px; padding: 18px 16px; text-align: center; margin-bottom: 8px; border: 1px solid #5c3a2b; }
+        .dropdown-header .big-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #8b6f1c); display: flex; align-items: center; justify-content: center; font-size: 34px; color: #1a1817; border: 2px solid #b49438; margin: 0 auto 10px; box-shadow: 0 0 20px rgba(212,175,55,0.4); }
+        .dropdown-header .user-name { color: #f3d98b; font-size: 1rem; font-weight: bold; }
+        .dropdown-item { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 8px; color: #e2dfd8; text-decoration: none; font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; background: transparent; border: none; width: 100%; font-family: inherit; text-align: left; }
+        .dropdown-item:hover { background: #3a2a24; color: #d4af37; }
+        .dropdown-item .item-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+        .dropdown-item.logout { color: #e08a8a; }
+        .dropdown-item.logout:hover { background: #4b1414; color: #ffb3b3; }
+
+        nav { background-color: #12100f; padding: 15px 0; position: relative; z-index: 99; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .nav-menu li a { color: #e2dfd8; text-decoration: none; font-size: 1.1rem; padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease; }
+        .nav-menu li a:hover, .nav-menu li a.active { background-color: #5c1a1a; color: #d4af37; }
+
+        /* Hero */
+        .hero { position: relative; width: 100%; height: 100vh; min-height: 600px; overflow: hidden; background: #0a0a0c; display: flex; align-items: center; justify-content: center; }
+        .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.85) 75%); z-index: 2; pointer-events: none; }
+        .hero::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 40%; background: linear-gradient(to bottom, transparent, #1a1817); z-index: 6; pointer-events: none; }
+        .hero-glow { position: absolute; top: 50%; left: 50%; width: 700px; height: 700px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255, 220, 130, 0.32) 0%, rgba(212, 175, 55, 0.16) 30%, rgba(212, 175, 55, 0.05) 55%, transparent 75%); filter: blur(8px); z-index: 3; pointer-events: none; animation: glowBreath 6s ease-in-out infinite; }
+        @keyframes glowBreath { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.75; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } }
+        .hero-particles { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+        .particle { position: absolute; bottom: -10px; width: 4px; height: 4px; border-radius: 50%; background: radial-gradient(circle, #ffe9a8 0%, #d4af37 60%, transparent 100%); box-shadow: 0 0 8px 2px rgba(212,175,55,0.7); opacity: 0; animation: floatUp linear infinite; }
+        @keyframes floatUp { 0% { transform: translateY(0) translateX(0) scale(0.6); opacity: 0; } 10% { opacity: 0.9; } 50% { transform: translateY(-45vh) translateX(20px) scale(1); opacity: 0.8; } 90% { opacity: 0.4; } 100% { transform: translateY(-95vh) translateX(-15px) scale(0.4); opacity: 0; } }
+        .hero-divider { position: absolute; top: 0; left: 50%; width: 3px; height: 100%; transform: translateX(-50%) skewX(-6deg); background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.15) 15%, rgba(255, 215, 100, 0.85) 50%, rgba(212, 175, 55, 0.15) 85%, transparent 100%); box-shadow: 0 0 30px 6px rgba(212, 175, 55, 0.55), 0 0 80px 20px rgba(212, 175, 55, 0.25); z-index: 3; animation: dividerPulse 3.5s ease-in-out infinite; }
+        @keyframes dividerPulse { 0%, 100% { opacity: 0.8; box-shadow: 0 0 30px 6px rgba(212,175,55,0.55), 0 0 80px 20px rgba(212,175,55,0.25); } 50% { opacity: 1; box-shadow: 0 0 45px 10px rgba(255,220,120,0.9), 0 0 120px 30px rgba(212,175,55,0.4); } }
+        .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 24px; max-width: 900px; }
+        .hero-eyebrow { font-size: 1.05rem; color: #e8e2d3; letter-spacing: 4px; margin-bottom: 22px; text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); animation: titleFadeIn 1.4s ease-out both; }
+        .hero-title { font-size: 4.6rem; font-weight: bold; font-family: 'SimSun', serif; line-height: 1.15; letter-spacing: 8px; color: #f3d98b; text-shadow: 0 0 16px rgba(255, 215, 100, 0.8), 0 0 40px rgba(212, 175, 55, 0.6), 2px 4px 12px rgba(0, 0, 0, 0.9); margin-bottom: 40px; animation: titleFadeIn 1.6s ease-out 0.2s both; }
+        .hero-title .accent { display: block; font-size: 0.75em; color: #fff; letter-spacing: 14px; margin-top: 14px; text-shadow: 0 0 14px rgba(255, 215, 100, 0.6), 0 0 30px rgba(212, 175, 55, 0.4), 2px 4px 10px rgba(0, 0, 0, 0.9); }
+        .hero-btn { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 36px; background: linear-gradient(135deg, #4b1414, #6b1e1e); color: #f3d98b; text-decoration: none; border: 2px solid #d4af37; border-radius: 30px; font-size: 1rem; font-weight: bold; letter-spacing: 2px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(212, 175, 55, 0.35); animation: titleFadeIn 1.6s ease-out 0.5s both; cursor: pointer; }
+        .hero-btn:hover { background: linear-gradient(135deg, #6b1e1e, #8b2a2a); color: #fff; box-shadow: 0 0 32px rgba(212, 175, 55, 0.75); transform: translateY(-2px); }
+        .hero-btn .arrow { display: inline-block; transition: transform 0.3s ease; }
+        .hero-btn:hover .arrow { transform: translateX(5px); }
+        @keyframes titleFadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 7; color: #f3d98b; font-size: 0.85rem; letter-spacing: 2px; opacity: 0.75; animation: scrollBounce 2s ease-in-out infinite; }
+        .scroll-hint::after { content: '⌄'; display: block; font-size: 1.4rem; margin-top: 2px; text-align: center; color: #d4af37; }
+        @keyframes scrollBounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+        /* 书本翻页区 */
+        .book-section { position: relative; width: 100%; height: 100vh; min-height: 600px; overflow: hidden; background: #0a0a0c; }
+        .book-bg-stack { position: absolute; inset: 0; z-index: 0; }
+        .book-bg { position: absolute; inset: 0; background-size: cover; background-position: center; background-color: #0a0a0c; opacity: 0; transition: opacity 1.1s ease; filter: blur(18px) brightness(0.35); transform: scale(1.15); }
+        .book-bg.active { opacity: 1; }
+
+        .book-heading { position: absolute; top: 32px; left: 40px; z-index: 20; pointer-events: none; }
+        .book-eyebrow { font-size: 0.85rem; color: #8b6f1c; letter-spacing: 8px; margin-bottom: 6px; font-family: 'SimSun', serif; }
+        .book-title { font-size: 2rem; font-weight: bold; font-family: 'SimSun', serif; letter-spacing: 6px; color: #d4af37; text-shadow: 0 0 18px rgba(212, 175, 55, 0.4), 2px 4px 12px rgba(0,0,0,0.9); }
+        .book-counter { position: absolute; top: 40px; right: 48px; z-index: 20; font-family: 'Georgia', serif; color: #f3d98b; font-size: 1rem; letter-spacing: 2px; text-shadow: 0 0 12px rgba(0, 0, 0, 0.9); pointer-events: none; }
+        .book-counter .cur { font-size: 2rem; font-weight: bold; color: #f3d98b; margin-right: 4px; }
+        .book-counter .total { color: #8b6f1c; font-size: 1rem; }
+
+        .book-viewport {
+            position: absolute; inset: 0; display: flex;
+            overflow-x: auto; overflow-y: hidden;
+            scroll-behavior: auto;
+            scrollbar-width: none; -ms-overflow-style: none;
+            cursor: grab; z-index: 5;
+        }
+        .book-viewport::-webkit-scrollbar { display: none; }
+        .book-viewport:active { cursor: grabbing; }
+
+        .book-page {
+            flex: 0 0 100%; width: 100%; height: 100%;
+            position: relative; display: flex; align-items: center; justify-content: center;
+            padding: 0 80px; gap: 60px; z-index: 6;
+        }
+        .page-content { flex: 0 0 460px; max-width: 480px; opacity: 0; transform: translateY(40px); transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+        .book-page.active .page-content { opacity: 1; transform: translateY(0); }
+        .page-num { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .page-num-mark { width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle, #d4af37 0%, #8b6f1c 80%); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold; color: #1a1817; border: 2px solid #b49438; box-shadow: 0 0 14px rgba(212, 175, 55, 0.6); font-family: 'Georgia', serif; }
+        .page-num-brand { font-size: 0.85rem; color: #8b6f1c; letter-spacing: 4px; font-family: 'SimSun', serif; }
+        .page-title { font-size: 3.6rem; font-weight: bold; font-family: 'SimSun', serif; line-height: 1.15; letter-spacing: 4px; color: #f3d98b; text-shadow: 0 0 20px rgba(255, 215, 100, 0.7), 0 0 50px rgba(212, 175, 55, 0.5), 2px 6px 16px rgba(0, 0, 0, 0.95); margin-bottom: 14px; }
+        .page-subtitle { font-size: 0.95rem; color: #d4af37; letter-spacing: 4px; margin-bottom: 28px; text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); }
+        .page-desc { font-size: 1rem; color: #d4cfc4; line-height: 1.95; letter-spacing: 0.3px; text-shadow: 0 0 12px rgba(0, 0, 0, 0.9); }
+        .page-figure { flex: 1; height: 78%; max-width: 720px; display: flex; align-items: center; justify-content: center; position: relative; opacity: 0; transform: translateX(50px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s; }
+        .book-page.active .page-figure { opacity: 1; transform: translateX(0); }
+        .page-figure img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.25); }
+        .page-figure::before { content: ''; position: absolute; inset: -30px; background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.22) 0%, transparent 65%); filter: blur(30px); z-index: -1; pointer-events: none; }
+
+        .page-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 54px; height: 54px; border-radius: 50%; background: rgba(39, 36, 34, 0.85); color: #d4af37; border: 2px solid #5c3a2b; cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 30; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-family: 'Georgia', serif; line-height: 1; padding-bottom: 4px; }
+        .page-arrow:hover { background: rgba(107, 30, 30, 0.95); color: #f3d98b; border-color: #d4af37; box-shadow: 0 0 24px rgba(212, 175, 55, 0.7); transform: translateY(-50%) scale(1.08); }
+        .page-arrow:disabled { opacity: 0.2; cursor: not-allowed; pointer-events: none; }
+        .page-arrow.prev { left: 16px; }
+        .page-arrow.next { right: 16px; }
+
+        .page-progress { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); z-index: 30; display: flex; align-items: center; gap: 14px; padding: 10px 24px; background: rgba(10, 10, 12, 0.55); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 40px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+        .page-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(212, 175, 55, 0.3); border: none; cursor: pointer; transition: all 0.35s ease; padding: 0; }
+        .page-dot:hover { background: #8b6f1c; transform: scale(1.3); }
+        .page-dot.active { width: 32px; border-radius: 4px; background: linear-gradient(to right, #d4af37, #f3d98b); box-shadow: 0 0 14px rgba(212, 175, 55, 0.8); }
+        .book-particles { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+        .book-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #0a0a0c; color: #8b6f1c; font-size: 0.9rem; letter-spacing: 4px; z-index: 40; font-family: 'SimSun', serif; }
+
+        /* ★★★★★ 滚动进入视口 · 揭示动画（每次进入都重播） ★★★★★ */
+        @keyframes revealDown {
+            from { opacity: 0; transform: translateY(-24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes revealUpBig {
+            from { opacity: 0; transform: translateY(50px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes revealRightBig {
+            from { opacity: 0; transform: translateX(100px) scale(0.9); }
+            to   { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes revealFade {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* 未触发 reveal-play 时，关键元素隐藏（防止初始化闪现） */
+        .book-section:not(.reveal-play) .book-heading,
+        .book-section:not(.reveal-play) .book-counter,
+        .book-section:not(.reveal-play) .page-num,
+        .book-section:not(.reveal-play) .page-title,
+        .book-section:not(.reveal-play) .page-subtitle,
+        .book-section:not(.reveal-play) .page-desc,
+        .book-section:not(.reveal-play) .page-figure,
+        .book-section:not(.reveal-play) .page-arrow,
+        .book-section:not(.reveal-play) .page-progress {
+            opacity: 0;
+        }
+
+        /* 触发 reveal-play 时播放动画 */
+        .book-section.reveal-play .book-heading {
+            animation: revealDown 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+        }
+        .book-section.reveal-play .book-counter {
+            animation: revealDown 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+        }
+        .book-section.reveal-play .page-num {
+            animation: revealUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+        }
+        .book-section.reveal-play .page-title {
+            animation: revealUpBig 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+        }
+        .book-section.reveal-play .page-subtitle {
+            animation: revealUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+        }
+        .book-section.reveal-play .page-desc {
+            animation: revealUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+        }
+        .book-section.reveal-play .page-figure {
+            animation: revealRightBig 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+        }
+        .book-section.reveal-play .page-arrow {
+            animation: revealFade 0.9s ease 1s both;
+        }
+        .book-section.reveal-play .page-progress {
+            animation: revealFade 0.9s ease 1.05s both;
+        }
+
+        /* 返回按钮 & 页脚 */
+        .back-wrap { text-align: center; padding: 60px 0 80px; background: #1a1817; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; height: 52px; padding: 0 36px; background: linear-gradient(135deg, #4b1414, #6b1e1e); color: #f3d98b; text-decoration: none; border: 2px solid #d4af37; border-radius: 30px; font-size: 1rem; font-weight: bold; letter-spacing: 2px; transition: all 0.3s ease; box-shadow: 0 0 18px rgba(212, 175, 55, 0.25); }
+        .back-link:hover { background: linear-gradient(135deg, #6b1e1e, #8b2a2a); color: #fff; box-shadow: 0 0 30px rgba(212, 175, 55, 0.65); transform: translateY(-2px); }
+        footer { background-color: #12100f; color: #e2dfd8; padding: 50px 0 24px; text-align: center; }
+        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; margin-bottom: 30px; }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #d4af37; margin-bottom: 20px; font-family: 'SimSun', serif; font-size: 1.2rem; }
+        .footer-section p { margin-bottom: 10px; line-height: 1.8; color: #b8b4ae; }
+        .footer-section a { color: #b8b4ae; text-decoration: none; display: block; margin-bottom: 10px; line-height: 1.8; transition: all 0.2s ease; }
+        .footer-section a:hover { color: #d4af37; padding-left: 5px; }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 20px; color: #888; }
+
+        /* 悬浮工具栏 */
+        .float-toolbar { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9998; transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+        .float-toolbar.collapsed, .float-toolbar.scroll-hidden { opacity: 0; pointer-events: none; transform: translateY(-50%) translateX(calc(100% + 30px)); }
+        .toolbar-btn { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; width: 56px; height: 60px; background: linear-gradient(135deg, #2a2422, #1a1615); border: 2px solid #5c3a2b; border-radius: 12px; color: #e2dfd8; text-decoration: none; font-family: inherit; font-size: 0.75rem; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.6); padding: 0; }
+        .toolbar-btn:hover { border-color: #d4af37; background: linear-gradient(135deg, #3a2a24, #2a1e1a); color: #d4af37; transform: translateX(-4px); box-shadow: 0 0 18px rgba(212,175,55,0.5), 0 4px 12px rgba(0,0,0,0.6); }
+        .toolbar-btn .toolbar-icon { font-size: 1.3rem; line-height: 1; color: #d4af37; transition: all 0.25s ease; }
+        .toolbar-btn .toolbar-label { font-size: 0.7rem; color: #c5c2bd; letter-spacing: 1px; transition: color 0.25s ease; }
+        .toolbar-btn:hover .toolbar-label { color: #d4af37; }
+        .toolbar-btn.logout .toolbar-icon { color: #e08a8a; }
+        .toolbar-btn.logout:hover { border-color: #e08a8a; box-shadow: 0 0 18px rgba(224,138,138,0.5), 0 4px 12px rgba(0,0,0,0.6); }
+        .toolbar-btn.logout:hover .toolbar-icon, .toolbar-btn.logout:hover .toolbar-label { color: #ffb3b3; }
+        .toolbar-btn.toggle { height: 40px; background: linear-gradient(135deg, #3a2a24, #2a1e1a); border-color: #d4af37; }
+        .toolbar-btn.toggle .toolbar-icon { font-size: 1rem; }
+        .toolbar-btn::before { content: attr(data-tip); position: absolute; right: calc(100% + 12px); top: 50%; transform: translateY(-50%) translateX(8px); background: #1a1615; color: #f3d98b; border: 1px solid #d4af37; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; white-space: nowrap; opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.7); }
+        .toolbar-btn::after { content: ''; position: absolute; right: calc(100% + 4px); top: 50%; transform: translateY(-50%) translateX(8px); border: 6px solid transparent; border-left-color: #d4af37; opacity: 0; visibility: hidden; transition: all 0.25s ease; }
+        .toolbar-btn:hover::before, .toolbar-btn:hover::after { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+        .toolbar-expand-btn { position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%); width: 36px; height: 70px; background: linear-gradient(135deg, #2a2422, #1a1615); border: 2px solid #d4af37; border-right: none; border-radius: 12px 0 0 12px; color: #d4af37; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; box-shadow: -4px 0 15px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.3); z-index: 9997; opacity: 0; visibility: hidden; transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1); padding: 0; }
+        .toolbar-expand-btn.show { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+        .toolbar-expand-btn:hover { background: linear-gradient(135deg, #3a2a24, #2a1e1a); box-shadow: -4px 0 20px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.6); }
+        .toolbar-expand-btn .expand-icon { font-size: 1.1rem; animation: arrowPulse 2s ease-in-out infinite; }
+        @keyframes arrowPulse { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-3px); } }
+
+        /* 响应式 */
+        @media (max-width: 1200px) {
+            .container { max-width: 100%; padding: 0 20px; }
+            h1 { font-size: 1.6rem; } .search-box input { width: 110px; }
+            .reserve-btn { padding: 8px 14px; font-size: 0.85rem; }
+            .user-avatar-btn .avatar-name { max-width: 60px; }
+            .book-page { padding: 0 60px; gap: 40px; } .page-content { flex: 0 0 380px; } .page-title { font-size: 3rem; }
+        }
+        @media (max-width: 992px) {
+            h1 { font-size: 1.4rem; } .search-box input { width: 90px; }
+            .search-box { padding: 4px 4px 4px 12px; }
+            .reserve-btn { padding: 7px 12px; font-size: 0.8rem; }
+            .reserve-btn span:not(.reserve-icon) { display: none; }
+            .user-avatar-btn .avatar-name { display: none; }
+            .user-avatar-btn { padding: 3px 8px 3px 3px; }
+            .hero-title { font-size: 3.4rem; letter-spacing: 5px; }
+            .book-page { padding: 0 40px; gap: 30px; } .page-content { flex: 0 0 340px; }
+            .page-title { font-size: 2.6rem; } .page-figure { max-width: 480px; }
+        }
+        @media (max-width: 768px) {
+            header { padding: 10px 0; } .container { padding: 0 12px; }
+            .logo-icon { width: 34px; height: 34px; font-size: 20px; } h1 { font-size: 1rem; }
+            .header-content { gap: 8px; } .header-right { gap: 6px; }
+            .search-box { padding: 3px 3px 3px 10px; height: 36px; }
+            .search-box input { width: 60px; font-size: 0.8rem; }
+            .search-box button { padding: 5px 10px; font-size: 0.75rem; }
+            .reserve-btn { padding: 6px 10px; height: 36px; }
+            .user-avatar-btn { height: 36px; padding: 3px; }
+            .user-avatar-btn .avatar-img { width: 28px; height: 28px; font-size: 16px; }
+            .user-avatar-btn .arrow { display: none; }
+            .nav-menu { flex-direction: column; align-items: center; gap: 15px; }
+            .hero { min-height: 520px; }
+            .hero-title { font-size: 2rem; letter-spacing: 3px; }
+            .hero-title .accent { letter-spacing: 8px; }
+            .hero-eyebrow { font-size: 0.85rem; letter-spacing: 2px; }
+            .hero-btn { height: 46px; padding: 0 26px; font-size: 0.9rem; }
+            .book-section { min-height: 700px; }
+            .book-heading { top: 20px; left: 16px; }
+            .book-title { font-size: 1.3rem; letter-spacing: 4px; }
+            .book-eyebrow { font-size: 0.7rem; letter-spacing: 4px; }
+            .book-counter { top: 24px; right: 16px; font-size: 0.8rem; }
+            .book-counter .cur { font-size: 1.4rem; }
+            .book-page { flex-direction: column; padding: 100px 24px 100px; gap: 24px; justify-content: flex-start; overflow-y: auto; }
+            .page-content { flex: 0 0 auto; max-width: 100%; }
+            .page-figure { flex: 0 0 auto; height: auto; max-width: 100%; margin: 0 auto; }
+            .page-figure img { max-height: 320px; }
+            .page-title { font-size: 2rem; letter-spacing: 2px; }
+            .page-subtitle { font-size: 0.85rem; letter-spacing: 2px; }
+            .page-desc { font-size: 0.9rem; line-height: 1.8; }
+            .page-arrow { width: 40px; height: 40px; font-size: 18px; }
+            .page-arrow.prev { left: 8px; } .page-arrow.next { right: 8px; }
+            .page-progress { bottom: 20px; padding: 8px 18px; gap: 10px; }
+            .float-toolbar { right: 8px; gap: 6px; }
+            .toolbar-btn { width: 48px; height: 52px; border-radius: 10px; }
+            .toolbar-btn .toolbar-icon { font-size: 1.1rem; }
+            .toolbar-btn .toolbar-label { font-size: 0.65rem; }
+            .toolbar-expand-btn { width: 30px; height: 60px; }
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 0.9rem; }
+            .logo-icon { width: 28px; height: 28px; font-size: 16px; }
+            .search-box input { display: none; } .search-box { padding: 3px; }
+            .search-box button { padding: 5px 8px; font-size: 0.7rem; }
+            .hero-title { font-size: 1.6rem; }
+            .page-title { font-size: 1.6rem; }
+            .page-desc { font-size: 0.85rem; }
+            .page-figure img { max-height: 240px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-area">
+                <div class="logo-icon" title="艾尔登法环">⭘</div>
+                <h1>艾尔登法环 · 半神卷宗</h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索..." aria-label="搜索档案内容">
+                    <button id="searchBtn" title="搜索"><i>🔍</i> 搜索</button>
+                </div>
+                <a class="reserve-btn" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
+                    <span class="reserve-icon">⚔️</span><span>立即预约</span>
+                </a>
+                <button class="user-avatar-btn" id="userAvatarBtn" aria-label="用户菜单">
+                    <span class="avatar-img">👤</span>
+                    <span class="avatar-name" id="userNameDisplay">褪色者</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="geography.html">交界地地理</a></li>
+                <li><a href="demigod.html">半神角色</a></li>
+                <li><a href="weapon.html">武器装备</a></li>
+                <li><a href="dungeon.html">遗迹地下城</a></li>
+                <li><a href="npc.html">NPC故事</a></li>
+                <li><a href="worldview.html">世界观设定</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <video class="hero-media" autoplay muted loop playsinline>
+            <source src="video/demigod_hero.mp4" type="video/mp4">
+            <source src="video/demigod_hero.mov" type="video/quicktime">
+            您的浏览器不支持视频背景。
+        </video>
+        <div class="hero-divider"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">玛莉卡血脉后裔 · 大卢恩持有者</div>
+            <h1 class="hero-title">破碎战争<span class="accent">诸王争锋</span></h1>
+            <a href="#bookGod" class="hero-btn">浏览半神卷宗<span class="arrow">→</span></a>
+        </div>
+        <div class="scroll-hint">向下滚动</div>
+    </section>
+
+    <section class="book-section" id="bookGod">
+        <div class="book-bg-stack" id="godBgStack"></div>
+        <div class="book-heading">
+            <div class="book-eyebrow">D E M I G O D S</div>
+            <h2 class="book-title">交界地 · 半神</h2>
+        </div>
+        <div class="book-counter">
+            <span class="cur" id="godCur">01</span>
+            <span class="total">/ <span id="godTotal">01</span></span>
+        </div>
+        <div class="book-loading" id="godLoading">加 载 中 …</div>
+        <div class="book-viewport" id="godViewport"></div>
+        <button class="page-arrow prev" id="godPrev" aria-label="上一页">‹</button>
+        <button class="page-arrow next" id="godNext" aria-label="下一页">›</button>
+        <div class="page-progress" id="godProgress"></div>
+        <div class="book-particles" id="godParticles"></div>
+    </section>
+
+    <section class="book-section" id="bookClass">
+        <div class="book-bg-stack" id="classBgStack"></div>
+        <div class="book-heading">
+            <div class="book-eyebrow">C L A S S E S</div>
+            <h2 class="book-title">褪色者 · 初始出身</h2>
+        </div>
+        <div class="book-counter">
+            <span class="cur" id="classCur">01</span>
+            <span class="total">/ <span id="classTotal">01</span></span>
+        </div>
+        <div class="book-loading" id="classLoading">加 载 中 …</div>
+        <div class="book-viewport" id="classViewport"></div>
+        <button class="page-arrow prev" id="classPrev" aria-label="上一页">‹</button>
+        <button class="page-arrow next" id="classNext" aria-label="下一页">›</button>
+        <div class="page-progress" id="classProgress"></div>
+        <div class="book-particles" id="classParticles"></div>
+    </section>
+
+    <div class="back-wrap">
+        <a href="index.html" class="back-link">← 返回网站首页</a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于本站</h3>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">艾尔登法环交界地档案，玩家向资料网站，整理交界地人物、地理、装备与剧情设定。</a>
+                </div>
+                <div class="footer-section">
+                    <h3>资料来源</h3>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">游戏文本、物品说明、NPC对话</a>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">玩家剧情考据整理</a>
+                </div>
+                <div class="footer-section">
+                    <h3>导航</h3>
+                    <p>地图大全</p>
+                    <p>支线任务汇总</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 艾尔登法环交界地档案 · 仅供学习演示</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="user-dropdown" id="userDropdown">
+        <div class="dropdown-header">
+            <div class="big-avatar">👤</div>
+            <div class="user-name" id="dropdownUserName">褪色者</div>
+        </div>
+        <button class="dropdown-item logout" id="logoutBtn">
+            <span class="item-icon">🚪</span><span>退出登录</span>
+        </button>
+    </div>
+
+    <div class="float-toolbar" id="floatToolbar">
+        <button class="toolbar-btn" data-tip="回到顶部" id="ftTop"><span class="toolbar-icon">⬆</span><span class="toolbar-label">顶部</span></button>
+        <a class="toolbar-btn" data-tip="立即预约" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener"><span class="toolbar-icon">⚔️</span><span class="toolbar-label">预约</span></a>
+        <button class="toolbar-btn" data-tip="搜索档案" id="ftSearch"><span class="toolbar-icon">🔍</span><span class="toolbar-label">搜索</span></button>
+        <a class="toolbar-btn" data-tip="官方网址" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener"><span class="toolbar-icon">🌐</span><span class="toolbar-label">官网</span></a>
+        <button class="toolbar-btn" data-tip="使用帮助" id="ftHelp"><span class="toolbar-icon">❓</span><span class="toolbar-label">帮助</span></button>
+        <button class="toolbar-btn logout" data-tip="退出登录" id="ftLogout"><span class="toolbar-icon">🚪</span><span class="toolbar-label">退出</span></button>
+        <button class="toolbar-btn toggle" data-tip="收起工具栏" id="ftToggle"><span class="toolbar-icon">▶</span><span class="toolbar-label">收起</span></button>
+    </div>
+    <button class="toolbar-expand-btn" id="ftExpand" aria-label="展开工具栏" title="展开工具栏"><span class="expand-icon">◀</span></button>
+
+    <script>
+        // ====================== 用户下拉菜单 ======================
+        var userAvatarBtn = document.getElementById('userAvatarBtn');
+        var userDropdown = document.getElementById('userDropdown');
+        var userNameDisplay = document.getElementById('userNameDisplay');
+        var dropdownUserName = document.getElementById('dropdownUserName');
+        var savedUsername = localStorage.getItem('username');
+        if (savedUsername) {
+            if (userNameDisplay) userNameDisplay.textContent = savedUsername;
+            if (dropdownUserName) dropdownUserName.textContent = savedUsername;
+        }
+        var dropdownOpen = false;
+        function positionDropdown() {
+            var rect = userAvatarBtn.getBoundingClientRect();
+            var dropdownWidth = 260;
+            var left = rect.right - dropdownWidth;
+            if (left < 10) left = 10;
+            if (left + dropdownWidth > window.innerWidth - 10) left = window.innerWidth - dropdownWidth - 10;
+            var top = rect.bottom + 10;
+            userDropdown.style.left = left + 'px';
+            userDropdown.style.top = top + 'px';
+        }
+        userAvatarBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (dropdownOpen) { userDropdown.classList.remove('open'); userAvatarBtn.classList.remove('open'); dropdownOpen = false; }
+            else { positionDropdown(); userDropdown.classList.add('open'); userAvatarBtn.classList.add('open'); dropdownOpen = true; }
+        });
+        userDropdown.addEventListener('click', function (e) { e.stopPropagation(); });
+        document.addEventListener('click', function () { if (dropdownOpen) { userDropdown.classList.remove('open'); userAvatarBtn.classList.remove('open'); dropdownOpen = false; } });
+        window.addEventListener('resize', function () { if (dropdownOpen) positionDropdown(); });
+        window.addEventListener('scroll', function () { if (dropdownOpen) positionDropdown(); }, true);
+        document.getElementById('logoutBtn').onclick = function () {
+            localStorage.removeItem("token"); localStorage.removeItem("username");
+            alert("已退出登录"); window.location.href = "login.html";
+        };
+
+        // ====================== 导航高亮 ======================
+        var url = window.location.href;
+        document.querySelectorAll('.nav-menu li a').forEach(function (link) {
+            if (url.endsWith(link.getAttribute('href'))) link.classList.add('active');
+        });
+
+        // ====================== Hero 粒子 ======================
+        (function initHeroParticles() {
+            var wrap = document.getElementById('heroParticles');
+            if (!wrap) return;
+            for (var i = 0; i < 45; i++) {
+                var p = document.createElement('span');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                var size = 2 + Math.random() * 5;
+                p.style.width = size + 'px'; p.style.height = size + 'px';
+                var duration = 8 + Math.random() * 10;
+                p.style.animationDuration = duration + 's';
+                p.style.animationDelay = '-' + (Math.random() * duration) + 's';
+                p.style.opacity = 0.4 + Math.random() * 0.6;
+                wrap.appendChild(p);
+            }
+        })();
+
+        // ====================== 搜索框 ======================
+        var searchInput = document.getElementById('searchInput');
+        var searchBtn = document.getElementById('searchBtn');
+        function performSearch() {
+            var keyword = searchInput.value.trim();
+            if (!keyword) { alert('请输入搜索关键词，例如 "玛莉卡"、"女武神"、"史东薇尔"'); return; }
+            var found = false, matchCount = 0, firstMatch = null;
+            document.querySelectorAll('.search-highlight').forEach(function (el) { el.style.backgroundColor = ''; el.style.color = ''; el.classList.remove('search-highlight'); });
+            var textElements = document.querySelectorAll('.page-title, .page-subtitle, .page-desc, .book-title');
+            textElements.forEach(function (el) {
+                if (el.textContent.includes(keyword)) {
+                    el.style.backgroundColor = '#5c1a1a'; el.style.color = '#d4af37';
+                    el.classList.add('search-highlight'); found = true; matchCount++;
+                    if (!firstMatch) firstMatch = el;
+                }
+            });
+            if (found) {
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(function () { alert('找到 ' + matchCount + ' 处包含 "' + keyword + '" 的内容，已定位到第一个匹配处。'); }, 300);
+            } else { alert('没有找到包含 "' + keyword + '" 的内容，请尝试其他关键词。'); }
+        }
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } });
+
+        // ====================== 书本翻页 ======================
+        function initBook(opts) {
+            var section = document.getElementById(opts.sectionId);
+            var viewport = document.getElementById(opts.viewportId);
+            var prevBtn = document.getElementById(opts.prevId);
+            var nextBtn = document.getElementById(opts.nextId);
+            var progress = document.getElementById(opts.progressId);
+            var counterCur = document.getElementById(opts.counterCurId);
+            var counterTotal = document.getElementById(opts.counterTotalId);
+            var loading = document.getElementById(opts.loadingId);
+            var bgStack = document.getElementById(opts.bgStackId);
+            var particleWrap = document.getElementById(opts.particlesId);
+            var data = opts.data;
+
+            if (!viewport || !data || !data.length) return;
+            if (loading) loading.style.display = 'none';
+
+            var total = data.length;
+            if (counterTotal) counterTotal.textContent = pad(total);
+
+            var bgHtml = '';
+            data.forEach(function (item, idx) {
+                bgHtml += '<div class="book-bg' + (idx === 0 ? ' active' : '') + '" style="background-image: url(' + (item.img_url || '') + ');"></div>';
+            });
+            bgStack.innerHTML = bgHtml;
+            var bgs = bgStack.querySelectorAll('.book-bg');
+
+            var pagesHtml = '';
+            data.forEach(function (item, idx) {
+                pagesHtml +=
+                    '<div class="book-page" data-index="' + idx + '">' +
+                        '<div class="page-content">' +
+                            '<div class="page-num"><div class="page-num-mark">' + pad(idx + 1) + '</div><div class="page-num-brand">交 界 地 档 案</div></div>' +
+                            '<h3 class="page-title">' + item.name + '</h3>' +
+                            '<div class="page-subtitle">' + (item.subtitle || '大卢恩持有者') + '</div>' +
+                            '<p class="page-desc">' + item.desc + '</p>' +
+                        '</div>' +
+                        '<div class="page-figure"><img src="' + (item.img_url || '') + '" alt="' + item.name + '"></div>' +
+                    '</div>';
+            });
+            viewport.innerHTML = pagesHtml;
+            var pages = viewport.querySelectorAll('.book-page');
+
+            progress.innerHTML = '';
+            for (var i = 0; i < total; i++) {
+                var dot = document.createElement('button');
+                dot.className = 'page-dot' + (i === 0 ? ' active' : '');
+                (function (idx) { dot.addEventListener('click', function () { goTo(idx); }); })(i);
+                progress.appendChild(dot);
+            }
+            var dots = progress.querySelectorAll('.page-dot');
+            var current = 0;
+
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+            function goTo(idx) {
+                if (idx < 0) idx = 0;
+                if (idx > total - 1) idx = total - 1;
+                current = idx;
+                var left = idx * viewport.clientWidth;
+                viewport.scrollTo({ left: left, behavior: 'smooth' });
+                updateUI(idx);
+            }
+
+            function updateUI(idx) {
+                pages.forEach(function (p, i) { p.classList.toggle('active', i === idx); });
+                bgs.forEach(function (b, i) { b.classList.toggle('active', i === idx); });
+                dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+                if (counterCur) counterCur.textContent = pad(idx + 1);
+                if (prevBtn) prevBtn.disabled = idx <= 0;
+                if (nextBtn) nextBtn.disabled = idx >= total - 1;
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+
+            // ================= ★ 边缘悬停自动滚动（稳定版） ★ =================
+            var edgeState = 0;
+            var rafId = null;
+            var edgeSpeed = 14;
+            var edgeThreshold = 150;
+            var isDragging = false;
+            var snapTimer = null;
+
+            function tick() {
+                rafId = null;
+                if (edgeState === 0) return;
+                if (isDragging) return;
+                var maxScroll = viewport.scrollWidth - viewport.clientWidth;
+                var next = viewport.scrollLeft + edgeState * edgeSpeed;
+                if (next <= 0) { viewport.scrollLeft = 0; return; }
+                if (next >= maxScroll) { viewport.scrollLeft = maxScroll; return; }
+                viewport.scrollLeft = next;
+                rafId = requestAnimationFrame(tick);
+            }
+
+            function ensureTicking() {
+                if (rafId === null) {
+                    viewport.style.scrollBehavior = 'auto';
+                    rafId = requestAnimationFrame(tick);
+                }
+            }
+
+            function stopEdgeScrollAndSnap() {
+                if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+                clearTimeout(snapTimer);
+                snapTimer = setTimeout(function () {
+                    var w = viewport.clientWidth;
+                    var idx = Math.round(viewport.scrollLeft / w);
+                    if (idx < 0) idx = 0;
+                    if (idx > total - 1) idx = total - 1;
+                    current = idx;
+                    viewport.style.scrollBehavior = 'smooth';
+                    viewport.scrollTo({ left: idx * w, behavior: 'smooth' });
+                    updateUI(idx);
+                }, 120);
+            }
+
+            viewport.addEventListener('mousemove', function (e) {
+                if (isDragging) return;
+                var rect = viewport.getBoundingClientRect();
+                var x = e.clientX - rect.left;
+                var newState = 0;
+                if (x < edgeThreshold) newState = -1;
+                else if (x > rect.width - edgeThreshold) newState = 1;
+                if (newState !== edgeState) {
+                    edgeState = newState;
+                    if (edgeState !== 0) {
+                        clearTimeout(snapTimer);
+                        ensureTicking();
+                    } else {
+                        stopEdgeScrollAndSnap();
+                    }
+                }
+            });
+
+            viewport.addEventListener('mouseleave', function () {
+                if (edgeState !== 0) {
+                    edgeState = 0;
+                    stopEdgeScrollAndSnap();
+                }
+            });
+
+            // ================= 手动鼠标拖拽 =================
+            var startX = 0, startScrollLeft = 0;
+            viewport.addEventListener('mousedown', function (e) {
+                isDragging = true;
+                edgeState = 0;
+                if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+                clearTimeout(snapTimer);
+                startX = e.clientX;
+                startScrollLeft = viewport.scrollLeft;
+                viewport.style.scrollBehavior = 'auto';
+                viewport.style.cursor = 'grabbing';
+            });
+            window.addEventListener('mousemove', function (e) {
+                if (!isDragging) return;
+                var walk = e.clientX - startX;
+                viewport.scrollLeft = startScrollLeft - walk;
+            });
+            window.addEventListener('mouseup', function () {
+                if (!isDragging) return;
+                isDragging = false;
+                viewport.style.cursor = 'grab';
+                viewport.style.scrollBehavior = 'smooth';
+                var w = viewport.clientWidth;
+                var idx = Math.round(viewport.scrollLeft / w);
+                goTo(idx);
+            });
+
+            // ================= 滚动同步 UI =================
+            var scrollTimer;
+            viewport.addEventListener('scroll', function () {
+                if (edgeState !== 0) return;
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function () {
+                    var w = viewport.clientWidth;
+                    var idx = Math.round(viewport.scrollLeft / w);
+                    if (idx !== current) { current = idx; updateUI(idx); }
+                }, 80);
+            });
+
+            // 键盘
+            document.addEventListener('keydown', function (e) {
+                var rect = section.getBoundingClientRect();
+                var visible = rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5;
+                if (!visible) return;
+                if (e.key === 'ArrowLeft') goTo(current - 1);
+                if (e.key === 'ArrowRight') goTo(current + 1);
+            });
+
+            window.addEventListener('resize', function () {
+                var w = viewport.clientWidth;
+                viewport.scrollTo({ left: current * w, behavior: 'auto' });
+            });
+
+            updateUI(0);
+
+            // ================= ★ 每次进入视口，重播揭示动画 ★ =================
+            if (section && 'IntersectionObserver' in window) {
+                var revealIO = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            // 移除 reveal-play，强制重排，再加回 → 动画重播
+                            section.classList.remove('reveal-play');
+                            // 双 rAF 确保浏览器完成一次渲染，再触发新动画
+                            requestAnimationFrame(function () {
+                                requestAnimationFrame(function () {
+                                    section.classList.add('reveal-play');
+                                });
+                            });
+                        }
+                    });
+                }, { threshold: 0.25 });
+                revealIO.observe(section);
+            } else if (section) {
+                // 兜底：不支持 IntersectionObserver 时直接显示
+                section.classList.add('reveal-play');
+            }
+
+            if (particleWrap) {
+                for (var j = 0; j < 36; j++) {
+                    var p = document.createElement('span');
+                    p.className = 'particle';
+                    p.style.left = Math.random() * 100 + '%';
+                    var size = 2 + Math.random() * 5;
+                    p.style.width = size + 'px'; p.style.height = size + 'px';
+                    var duration = 8 + Math.random() * 10;
+                    p.style.animationDuration = duration + 's';
+                    p.style.animationDelay = '-' + (Math.random() * duration) + 's';
+                    p.style.opacity = 0.4 + Math.random() * 0.6;
+                    particleWrap.appendChild(p);
+                }
+            }
+        }
+
+        // ====================== 加载数据 ======================
+        window.addEventListener('load', function () {
+            fetch('/api/demigod')
+                .then(function (res) { return res.json(); })
+                .then(function (ret) {
+                    if (ret.code === 200 && ret.godList && ret.godList.length) {
+                        initBook({
+                            sectionId: 'bookGod', viewportId: 'godViewport',
+                            prevId: 'godPrev', nextId: 'godNext',
+                            progressId: 'godProgress', counterCurId: 'godCur', counterTotalId: 'godTotal',
+                            loadingId: 'godLoading', bgStackId: 'godBgStack',
+                            particlesId: 'godParticles', data: ret.godList
+                        });
+                    } else { document.getElementById('godLoading').textContent = '暂 无 数 据'; }
+                })
+                .catch(function (err) {
+                    console.error("半神数据加载失败", err);
+                    document.getElementById('godLoading').textContent = '加 载 失 败';
+                });
+
+            fetch('/api/class')
+                .then(function (res) { return res.json(); })
+                .then(function (ret) {
+                    if (ret.code === 200 && ret.classList && ret.classList.length) {
+                        initBook({
+                            sectionId: 'bookClass', viewportId: 'classViewport',
+                            prevId: 'classPrev', nextId: 'classNext',
+                            progressId: 'classProgress', counterCurId: 'classCur', counterTotalId: 'classTotal',
+                            loadingId: 'classLoading', bgStackId: 'classBgStack',
+                            particlesId: 'classParticles', data: ret.classList
+                        });
+                    } else { document.getElementById('classLoading').textContent = '暂 无 数 据'; }
+                })
+                .catch(function (err) {
+                    console.error("出身数据加载失败", err);
+                    document.getElementById('classLoading').textContent = '加 载 失 败';
+                });
+        });
+
+        // ====================== 右侧悬浮工具栏 ======================
+        (function initFloatToolbar() {
+            var toolbar = document.getElementById('floatToolbar');
+            var expandBtn = document.getElementById('ftExpand');
+            var hero = document.getElementById('hero');
+            if (!toolbar || !expandBtn) return;
+
+            document.getElementById('ftTop').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            document.getElementById('ftSearch').addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                var input = document.getElementById('searchInput');
+                if (input) { setTimeout(function () { input.focus(); input.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 400); }
+            });
+            document.getElementById('ftHelp').addEventListener('click', function () {
+                alert('使用帮助：\n\n· 顶部按钮 → 回到页面最上方\n· 预约按钮 → 跳转官方预约页\n· 搜索按钮 → 快速聚焦搜索框\n· 官网按钮 → 打开官方网站\n· 退出按钮 → 清除登录信息\n· 收起按钮 → 折叠工具栏\n· 右侧小箭头 → 重新展开工具栏');
+            });
+            document.getElementById('ftLogout').addEventListener('click', function () {
+                if (confirm('确定要退出登录吗？')) { localStorage.removeItem('token'); localStorage.removeItem('username'); window.location.href = 'login.html'; }
+            });
+            document.getElementById('ftToggle').addEventListener('click', function () { toolbar.classList.add('collapsed'); expandBtn.classList.add('show'); });
+            expandBtn.addEventListener('click', function () { toolbar.classList.remove('collapsed'); expandBtn.classList.remove('show'); updateToolbarVisibility(); });
+
+            function updateToolbarVisibility() {
+                if (!hero) return;
+                var threshold = hero.offsetHeight - 100;
+                if (window.scrollY > threshold) { toolbar.classList.remove('scroll-hidden'); }
+                else { toolbar.classList.add('scroll-hidden'); }
+            }
+            window.addEventListener('scroll', updateToolbarVisibility);
+            window.addEventListener('resize', updateToolbarVisibility);
+            updateToolbarVisibility();
+        })();
+    </script>
+</body>
+</html>

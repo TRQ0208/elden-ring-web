@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>a<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王城罗德尔 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;          
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        /* 卡片网格，和武器、地理页面保持一致 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>王城罗德尔 Leyndell</h2>
+    <p>黄金王朝的都城，黄金树所在的圣城，律法的中心</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+王城罗德尔坐落于亚坛高原北端，是玛莉卡女王与黄金王朝的首都，整座城市依黄金树而建，立体交错的巨型建筑是交界地权力与信仰的核心。需要集齐两个大卢恩，解除王城结界才可进入。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+王城分为地上城区与庞大的下水道迷宫。地上布满罗德尔骑士、调香师与石像鬼；地下藏着恶兆之子蒙格与癫火封印。主线一路向上，依次对战初始之王葛孚雷（幻影）、恶兆王蒙葛特。击败蒙葛特后，黄金树大门开启，解锁巨人山顶路线。金面具、柯林支线也在此推进。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：巨型立体都城、黄金树大殿、下水道迷宫</span>
+                <span class="tag">主线：恶兆王蒙葛特，黄金树之门</span>
+                <span class="tag">推荐等级：80~100</span>
+                <span class="tag">包含：罗德尔地上王城、王城下水道、癫火封印</span>
+            </div>
+            <!-- 返回地理页面按钮 -->
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/morgott.jpg" alt="恶兆王 蒙葛特"></div>
+                    <h4>恶兆王 蒙葛特</h4>
+                    <p>王城半神，玛莉卡之子，破碎战争中守住王城。武器为恶兆骨刺，招式多变，二阶段释放大范围诅咒雾，击杀获得蒙葛特的大卢恩。</p>
+                    <span class="tag">半神BOSS</span>
+                    <span class="tag">黄金树大殿</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/godfrey_phantom.jpg" alt="初始之王葛孚雷（幻影）"></div>
+                    <h4>初始之王葛孚雷（幻影）</h4>
+                    <p>黄金树大殿前的幻影BOSS，战士荷莱·露，近战力量型，斧击猛烈，击杀后才能进入蒙葛特房间。</p>
+                    <span class="tag">主线BOSS</span>
+                    <span class="tag">女王闺阁前方</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/17.jpg" alt="恶兆之子蒙格"></div>
+                    <h4>恶兆之子蒙格</h4>
+                    <p>王城下水道隐藏BOSS，鲜血魔法，出血攻击。不是鲜血君王，是蒙格特的弟弟，癫火封印旁。</p>
+                    <span class="tag">隐藏BOSS</span>
+                    <span class="tag">王城下水道</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/gargoyles_leyndell.jpg" alt="黑剑眷属"></div>
+                    <h4>黑剑眷属</h4>
+                    <p>王城底层教堂BOSS，巨型石像鬼，双持黑剑与斧，大范围斩击，击败后通往洛德大升降机。</p>
+                    <span class="tag">下水道BOSS</span>
+                    <span class="tag">王城底层教堂</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/ulcerated_tree_spirit_leyndell.jpg" alt="溃烂树灵"></div>
+                    <h4>溃烂树灵</h4>
+                    <p>王城外围屋顶的树灵，剧毒腐蚀攻击，掉落黄金种子。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">王城外墙</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/parasite_flower_leyndell.jpg" alt="寄生米兰达"></div>
+                    <h4>寄生米兰达</h4>
+                    <p>王城内部巨型腐败花，持续释放腐败孢子，王城庭院可见。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">王城庭院</span>
+                </div>
+            </div>
+        </div>
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/wc.jpg" alt="罗德尔地上王城"></div>
+                    <h4>罗德尔地上王城</h4>
+                    <p>高低错落的巨型都城，大量屋顶捷径，罗德尔骑士、调香师驻守，通往黄金树大殿。</p>
+                    <span class="tag">王城主体</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/golden_tree_chamber.jpg" alt="黄金树大殿"></div>
+                    <h4>黄金树大殿</h4>
+                    <p>王城最深处，黄金树本体所在，蒙葛特的战斗场地。</p>
+                    <span class="tag">主线终点</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/leyndell_sewers.jpg" alt="王城下水道"></div>
+                    <h4>王城下水道</h4>
+                    <p>庞大迷宫，藏着恶兆之子蒙格、癫火封印，解锁癫火结局的关键区域。</p>
+                    <span class="tag">地下迷宫</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/queens_bedchamber.jpg" alt="女王闺阁"></div>
+                    <h4>女王闺阁</h4>
+                    <p>黄金树大殿前赐福点，葛孚雷幻影战斗场地，金面具支线关键位置。</p>
+                    <span class="tag">主线赐福点</span>
+                </div>
+            </div>
+        </div>
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>王城罗德尔可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/golden_tree_favor2.jpg" alt="黄金树的恩惠+2"></div>
+                    <h4>黄金树的恩惠+2</h4>
+                    <p>大幅提升血量、精力、装备重量上限，泛用最强护符之一，王城屋顶拾取。</p>
+                    <span class="tag">护符</span>
+                    <span class="tag">王城屋顶拾取</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/regression_prayer.jpg" alt="回归性原理"></div>
+                    <h4>回归性原理</h4>
+                    <p>黄金律法祷告，可揭露雕像秘密，金面具支线必备祷告，黄金律法原本获得。</p>
+                    <span class="tag">祷告</span>
+                    <span class="tag">黄金律法原本</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/roland_armor.jpg" alt="罗德尔骑士套装"></div>
+                    <h4>罗德尔骑士套装</h4>
+                    <p>均衡重甲，圣属性抗性优秀，王城骑士敌人掉落。</p>
+                    <span class="tag">防具套装</span>
+                    <span class="tag">王城骑士掉落</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/greatsword_graft.jpg" alt="古兰桑克斯的雷"></div>
+                    <h4>古兰桑克斯的雷</h4>
+                    <p>传说祷告，降下古龙雷矛，王城巨大古龙枪顶端拾取。</p>
+                    <span class="tag">传说祷告</span>
+                    <span class="tag">古龙长枪顶端</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+
+	<body>
+	</body>
+</html>

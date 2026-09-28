@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宁姆格福 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;          
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+
+        /* 卡片网格，和武器、地理页面保持一致 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container scroll-header">
+    <h2>宁姆格福 Limgrave</h2>
+    <p>褪色者苏醒之地，草原、森林与风暴古城，交界地旅途的起点</p>
+</div>
+
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+宁姆格福是褪色者踏入交界地的第一片土地，广袤草原、浓密森林、湖畔沼泽与高耸的史东薇尔城共同构成这片区域。曾经是风暴王的领地，破碎战争之后，接肢葛瑞克占据史东薇尔城，在这里掠夺强者肢体，用以拼凑自身力量。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+阳光常常洒落草原，废墟散落于原野之间，赐福的金光点缀大地。这片土地看似平和，却潜伏着无数危险：游荡骑士、亚人族群、巨龙与恶兆。这里适合新手探索，拥有大量洞窟、废墟与秘密，收集武器、护符、锻造石，为后续旅途积蓄力量。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：草原 / 森林 / 湖泊 / 古城</span>
+                <span class="tag">主线：史东薇尔城，击败接肢葛瑞克</span>
+                <span class="tag">推荐等级：1~30</span>
+                <span class="tag">包含：宁姆格福西部、东部、啜泣半岛</span>
+            </div>
+            <!-- 返回地理页面按钮 -->
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/tree_sentinel.jpg" alt="大树守卫"></div>
+                    <h4>大树守卫</h4>
+                    <p>黄金树的守卫骑士，骑乘巨大战马，在初始草原巡逻。属于可选BOSS，新手初期可以绕开。使用黄金戟，招式厚重，骑马作战。</p>
+                    <span class="tag">掉落：黄金戟</span>
+                    <span class="tag">野外精英</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/margit.jpg" alt="恶兆妖鬼玛尔基特"></div>
+                    <h4>恶兆妖鬼 玛尔基特</h4>
+                    <p>进入史东薇尔城的守门BOSS，玩家第一个主线门槛。擅长长短混合攻击，携带恶兆匕首，击败后获得护符皮袋。</p>
+                    <span class="tag">主线必打</span>
+                    <span class="tag">地点：风暴山丘</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/1.jpg" alt="接肢葛瑞克"></div>
+                    <h4>接肢葛瑞克</h4>
+                    <p>史东薇尔城城主，半神。破碎战争的失败者，掠夺他人肢体接在自己身上。二阶段会接上龙头，使用吐息。</p>
+                    <span class="tag">半神BOSS</span>
+                    <span class="tag">掉落：接肢的追忆、葛瑞克的大卢恩</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/agheel.jpg" alt="飞龙亚基尔"></div>
+                    <h4>飞龙亚基尔</h4>
+                    <p>盘旋在亚基尔湖上空的巨龙，会远距离喷火。击败后获得龙心脏，可以前往龙飨教堂兑换龙类祷告。</p>
+                    <span class="tag">野外巨龙</span>
+                    <span class="tag">地点：亚基尔湖</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/patches.jpg" alt="帕奇"></div>
+                    <h4>帕奇</h4>
+                    <p>蒙流洞窟的奸商，打到半血就求饶，是FromSoftware经典的NPC。饶恕他之后开启商店，可以购买道具。</p>
+                    <span class="tag">洞窟BOSS</span>
+                    <span class="tag">支线NPC</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/beastman.jpg" alt="法姆亚兹拉的兽人"></div>
+                    <h4>法姆亚兹拉的兽人</h4>
+                    <p>近林洞窟深处的BOSS，动作迅猛，连续斩击，击败后可获得武器与材料。洞窟内还有大量野狼埋伏。</p>
+                    <span class="tag">洞窟BOSS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/church_elleh.jpg" alt="艾蕾教堂"></div>
+                    <h4>艾蕾教堂</h4>
+                    <p>离起始赐福不远的古老教堂，有商人咖列，可以购买道具、制作笔记。教堂内拥有赐福点，夜晚会触发魔女蕾娜剧情，获得灵马哨子。</p>
+                    <span class="tag">NPC据点</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/gatefront.jpg" alt="关卡前废墟"></div>
+                    <h4>关卡前废墟</h4>
+                    <p>宁姆格福西部的大型废墟，有大量士兵驻守。废墟石碑拾取【宁姆格福（西）地图碎片】。</p>
+                    <span class="tag">地图碎片</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/stormveil.jpg" alt="史东薇尔城"></div>
+                    <h4>史东薇尔城</h4>
+                    <p>风暴古城，葛瑞克的居所，宁姆格福最重要的箱庭地下城。城内大量士兵、嫁接敌人，藏有石剑钥匙、铁制砥石刀等珍贵物品。</p>
+                    <span class="tag">主线城堡</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/murkwater_cave.jpg" alt="蒙流洞窟"></div>
+                    <h4>蒙流洞窟</h4>
+                    <p>亚基尔湖北方的洞窟，BOSS帕奇。洞窟内有不少物资，帕奇商店出售弓箭、飞刀等消耗品。</p>
+                    <span class="tag">洞窟</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>宁姆格福可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/golden_halberd.jpg" alt="黄金戟"></div>
+                    <h4>黄金戟</h4>
+                    <p>大树守卫的武器，重型长柄武器，附带圣属性伤害。战技【黄金之盾】可以展开黄金盾牌进行防御反击。</p>
+                    <span class="tag">力量/信仰</span>
+                    <span class="tag">掉落：大树守卫</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/short_sword.jpg" alt="短剑"></div>
+                    <h4>短剑</h4>
+                    <p>初始区域就能捡到的轻型武器，出手速度快，可附加出血效果，适合敏捷流开荒。</p>
+                    <span class="tag">敏捷</span>
+                    <span class="tag">拾取：关卡前废墟</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/blue_gold_kite_shield.jpg" alt="蓝金鸢形盾"></div>
+                    <h4>蓝金鸢形盾</h4>
+                    <p>士兵装备的中型盾牌，物理减伤优秀，重量适中，新手非常推荐的格挡盾。</p>
+                    <span class="tag">防御盾</span>
+                    <span class="tag">拾取：史东薇尔城</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/ash_war_no_skill.jpg" alt="无战技护符"></div>
+                    <h4>无战技护符</h4>
+                    <p>取消武器战技，改为使用盾牌的战技，适合习惯盾牌格挡的玩家。</p>
+                    <span class="tag">护符</span>
+                    <span class="tag">拾取：风暴山丘小屋</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

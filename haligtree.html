@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米凯拉的圣树 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>米凯拉的圣树 Elphael</h2>
+    <p>米凯拉打造的理想圣土，玛莲妮亚长眠之地，纯净猩红的花园圣城</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+集齐圣树秘密符节后，通过化圣雪原深处的圣树密道抵达艾布雷菲尔——米凯拉为治愈姐姐玛莲妮亚的猩红腐败而打造的理想圣城。整片区域环绕巨大的圣树根部建造，繁花遍布，却也被腐败侵蚀。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+区域立体结构复杂，包含圣树镇、排水通道、祈祷室、城墙下段等多个区域。圣树骑士、小玛利亚、腐烂树灵遍布，深处圣树大殿是米凯拉之刃玛莲妮亚的长眠之地。米莉森支线最终决战也在此处——四兄弟姐妹前来刺杀玛莲妮亚。区域难度极高，是交界地最顶级的挑战区域之一。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：圣树巨根、繁花圣城、地下排水通道</span>
+                <span class="tag">主线：玛莲妮亚，米凯拉之刃</span>
+                <span class="tag">推荐等级：120~150</span>
+                <span class="tag">包含：艾布雷菲尔外墙、圣树镇、排水通道、圣树大殿</span>
+            </div>
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/malenia.jpg" alt="玛莲妮亚，米凯拉之刃"></div>
+                    <h4>玛莲妮亚，米凯拉之刃</h4>
+                    <p>交界地最强半神，米凯拉的姐姐，背负猩红腐败。一阶段水鸟乱舞横扫全场；二阶段绽放猩红腐败，连击附带血焰。击败获得玛莲妮亚的追忆与维纳斯的大卢恩。</p>
+                    <span class="tag">半神BOSS</span>
+                    <span class="tag">圣树大殿</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/loretta_holy_tree.jpg" alt="圣树骑士罗蕾塔"></div>
+                    <h4>圣树骑士罗蕾塔</h4>
+                    <p>圣树镇屋顶BOSS，持巨镰与魔法弓箭，骑灵马作战。击败获得罗蕾塔的巨镰与罗蕾塔的绝招魔法。</p>
+                    <span class="tag">区域精英BOSS</span>
+                    <span class="tag">圣树镇屋顶</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/draconic_tree_sentinel.jpg" alt="龙装大树守卫"></div>
+                    <h4>龙装大树守卫</h4>
+                    <p>圣树入口处的精英BOSS，身披龙雷铠甲，持黄金戟与大盾，攻防兼备。击败获得龙装大盾。</p>
+                    <span class="tag">野外精英</span>
+                    <span class="tag">圣树外墙</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/putrid_tree_spirit_haligtree.jpg" alt="腐烂树灵（圣树）"></div>
+                    <h4>腐烂树灵（圣树）</h4>
+                    <p>排水通道深处的树灵，全身猩红腐败，大范围腐败喷吐。击败获得大量锻造石与腐败相关道具。</p>
+                    <span class="tag">地下BOSS</span>
+                    <span class="tag">排水通道</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/millicent_four_sisters.jpg" alt="米莉森的四姐妹"></div>
+                    <h4>米莉森的四姐妹</h4>
+                    <p>排水通道尽头，四名入侵NPC同时登场，猩红腐败义手剑连击。选择协助米莉森则击败她们；米莉森死亡则获得纯血骑士勋章。</p>
+                    <span class="tag">支线BOSS</span>
+                    <span class="tag">米莉森支线</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/stray_mimic_tear.jpg" alt="流浪泪滴幼体"></div>
+                    <h4>流浪泪滴幼体</h4>
+                    <p>圣树分支的隐藏BOSS，复制褪色者的装备与动作，高难度单挑。</p>
+                    <span class="tag">隐藏BOSS</span>
+                    <span class="tag">圣树分支</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/elphael_main.jpg" alt="艾布雷菲尔外墙"></div>
+                    <h4>艾布雷菲尔外墙</h4>
+                    <p>圣树入口区域，龙装大树守卫把守，沿城墙向上进入圣树镇。</p>
+                    <span class="tag">入口区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/haligtree_town.jpg" alt="圣树镇"></div>
+                    <h4>圣树镇</h4>
+                    <p>环绕圣树建造的繁华城镇遗迹，遍布圣树骑士与小玛利亚，罗蕾塔在屋顶驻守。</p>
+                    <span class="tag">城镇区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/drainage_channel.jpg" alt="排水通道"></div>
+                    <h4>排水通道</h4>
+                    <p>圣树地下的排水迷宫，腐烂树灵与米莉森四姐妹所在，藏有大量优质道具。</p>
+                    <span class="tag">地下区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/prayer_room.jpg" alt="祈祷室"></div>
+                    <h4>祈祷室</h4>
+                    <p>圣树中上部赐福点，连接城墙下段与圣树大殿，是推进玛莲妮亚战的关键中转站。</p>
+                    <span class="tag">主线赐福点</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>米凯拉的圣树可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/hand_of_malenia.jpg" alt="玛莲妮亚的手甲"></div>
+                    <h4>玛莲妮亚的手甲</h4>
+                    <p>传说大曲剑，战技水鸟乱舞，多段连击附带出血。玛莲妮亚追忆兑换。</p>
+                    <span class="tag">传说武器</span>
+                    <span class="tag">追忆兑换</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/rotten_winged_insignia.jpg" alt="腐败翼剑徽章"></div>
+                    <h4>腐败翼剑徽章</h4>
+                    <p>连续攻击提升攻击力护符，近战连击流毕业护符。击败米莉森四姐妹后，米莉森赠送。</p>
+                    <span class="tag">护符</span>
+                    <span class="tag">米莉森支线奖励</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/malenias_armor_set.jpg" alt="玛莲妮亚套装"></div>
+                    <h4>玛莲妮亚套装</h4>
+                    <p>轻甲套装，平衡防御与机动性，玛莲妮亚击败后在圆桌厅堂购买。</p>
+                    <span class="tag">防具套装</span>
+                    <span class="tag">圆桌厅堂购买</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/scaduutree_ash.jpg" alt="黑翼贵族骨灰"></div>
+                    <h4>黑翼贵族骨灰</h4>
+                    <p>传说骨灰，黑翼贵族持大斧与盾牌，吸引火力能力极强。圣树排水通道拾取。</p>
+                    <span class="tag">传说骨灰</span>
+                    <span class="tag">排水通道拾取</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

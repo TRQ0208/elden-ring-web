@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交界地</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            background:#000;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            position:relative;
+        }
+        /* ★ 视频全屏铺满 */
+        video{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            object-fit:cover;  /* 铺满屏幕，保持比例裁切多余部分 */
+        }
+        /* 跳过按钮样式，右下角 */
+        #skipBtn{
+            position:absolute;
+            bottom:40px;
+            right:40px;
+            padding:10px 22px;
+            background:rgba(75,20,20,0.75);
+            color:#e2dfd8;
+            border:1px solid #994444;
+            border-radius:4px;
+            font-size:16px;
+            cursor:pointer;
+            display:none;
+            z-index:10;
+            transition:all 0.3s ease;
+        }
+        #skipBtn:hover{
+            background:rgba(75,20,20,0.95);
+            color:#d4af37;
+            border-color:#d4af37;
+            box-shadow:0 0 15px rgba(212,175,55,0.5);
+        }
+    </style>
+</head>
+<body>
+    <video id="cgVideo" autoplay playsinline>
+        <source src="video/elden_cg.mp4" type="video/mp4">
+    </video>
+    <!-- 跳过按钮 -->
+    <button id="skipBtn">跳过 CG</button>
+    <script>
+        // ============ 登录校验逻辑 ============
+        const token = localStorage.getItem('token');
+        if(!token){
+            alert("请先登录！");
+            location.href = "login.html";
+        }
+
+        // ============ CG播放逻辑 ============
+        const video = document.getElementById("cgVideo");
+        const skipBtn = document.getElementById("skipBtn");
+        video.play();
+        // 视频播放2秒后才显示跳过按钮，防止一进来直接跳过
+        setTimeout(()=>{
+            skipBtn.style.display = "block";
+        },2000);
+        // 点击跳过，直接跳首页
+        skipBtn.onclick = function(){
+            window.location.href = "index.html";
+        }
+        // 视频播放结束 → 跳转首页
+        video.onended = function(){
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地下永恒之城 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>地下永恒之城 Nokron & Nokstella</h2>
+    <p>被无上意志毁灭的星辰文明，沉入地底的两座繁星古城，菈妮支线核心区域</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+永恒之城分为诺克隆恩与诺克史黛拉两座古城，是古老的星辰民族所建造。因为试图打造弑神武器猎杀指头刀，触怒无上意志，被流星砸入地底，永远失去天空。击败碎星拉塔恩后，陨石砸开宁姆格福的大坑，即可进入诺克隆恩；推进菈妮支线，通过蕾娜魔法师塔传送抵达安瑟尔河，进入诺克史黛拉。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+整片区域悬浮于地下河上空，穹顶是璀璨星空，分布大量银色泪滴、诺克斯剑士与黑夜女巫。诺克隆恩的黑夜神域存放猎杀指头刀；诺克史黛拉一路通往腐败湖，是菈妮抛弃肉身、对抗双指的关键旅途。两座城市共享地下河体系，可探索祖灵森林、圣树下水道、乌鲁王朝遗迹等分支区域。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：地下河、浮空石殿、祖灵森林、星空废墟</span>
+                <span class="tag">主线：菈妮支线关键区域</span>
+                <span class="tag">推荐等级：85~110</span>
+                <span class="tag">包含：诺克隆恩、祖灵森林、黑夜神域、诺克史黛拉、乌鲁王朝遗迹</span>
+            </div>
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mimic_tear.jpg" alt="仿身泪滴"></div>
+                    <h4>仿身泪滴</h4>
+                    <p>诺克隆恩核心BOSS，银色泪滴凝聚而成，会完全复制玩家装备、法术与骨灰。卸下装备可大幅降低难度。击杀获得传说骨灰仿身泪滴、银色泪滴面具。</p>
+                    <span class="tag">传说BOSS</span>
+                    <span class="tag">诺克隆恩</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/ancestor_spirit.jpg" alt="祖灵之王"></div>
+                    <h4>祖灵之王</h4>
+                    <p>祖灵森林隐藏BOSS，点燃6座火盆后唤醒。巨大灵体鹿，释放大范围灵体冲击波。击杀获得祖灵之王追忆。</p>
+                    <span class="tag">隐藏BOSS</span>
+                    <span class="tag">祖灵森林</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/dragonkin_nokstella.jpg" alt="诺克史黛拉的龙人士兵"></div>
+                    <h4>诺克史黛拉的龙人士兵</h4>
+                    <p>驻守诺克史黛拉入口，使用冰雷吐息与近战横扫。击败获得祷告冰雷枪。</p>
+                    <span class="tag">区域BOSS</span>
+                    <span class="tag">诺克史黛拉</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/baleful_shadow.jpg" alt="灾厄影子"></div>
+                    <h4>灾厄影子</h4>
+                    <p>双指派出的杀手，菈妮支线BOSS，模仿布莱泽外形，高速双刀连击。击杀后继续前往腐败湖。</p>
+                    <span class="tag">支线BOSS</span>
+                    <span class="tag">诺克史黛拉后方</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/valiant_gargoyles.jpg" alt="英雄石像鬼"></div>
+                    <h4>英雄石像鬼</h4>
+                    <p>西弗拉水道双石像鬼，同时持斧与矛，附带毒液与圣属性吐息。击杀后石棺传送至深根底层。</p>
+                    <span class="tag">双BOSS</span>
+                    <span class="tag">西弗拉水道</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/nokron_city.jpg" alt="诺克隆恩"></div>
+                    <h4>诺克隆恩</h4>
+                    <p>第一座永恒之城，碎星陨落开启入口，浮空石柱与星之废墟，仿身泪滴在此镇守。</p>
+                    <span class="tag">主城区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/ancestor_woods.jpg" alt="祖灵森林"></div>
+                    <h4>祖灵森林</h4>
+                    <p>诺克隆恩下层，遍布灵体鹿群，点燃全部火盆可召唤祖灵之王。</p>
+                    <span class="tag">隐藏区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/night_sacred_ground.jpg" alt="黑夜神域"></div>
+                    <h4>黑夜神域</h4>
+                    <p>诺克隆恩最深处，存放猎杀指头刀，菈妮任务的关键道具。</p>
+                    <span class="tag">剧情关键地点</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/nokstella_city.jpg" alt="诺克史黛拉"></div>
+                    <h4>诺克史黛拉</h4>
+                    <p>第二座永恒之城，安瑟尔河下游，诺克斯女巫与剑士驻守，通往腐败湖。</p>
+                    <span class="tag">主城区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/uru_ruins.jpg" alt="乌鲁王朝遗迹"></div>
+                    <h4>乌鲁王朝遗迹</h4>
+                    <p>诺克史黛拉旁的残破遗迹，巨型蚂蚁盘踞，宝箱可拾取艾丝缇薄翼。</p>
+                    <span class="tag">分支遗迹</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>永恒之城可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mimic_tear.jpg" alt="仿身泪滴骨灰"></div>
+                    <h4>仿身泪滴骨灰</h4>
+                    <p>传说骨灰，复制使用者本体，法环最强骨灰之一。击败仿身泪滴获得。</p>
+                    <span class="tag">传说骨灰</span>
+                    <span class="tag">诺克隆恩</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/fingerslayer_blade.jpg" alt="猎杀指头刀"></div>
+                    <h4>猎杀指头刀</h4>
+                    <p>星辰民族打造的弑神武器，菈妮用来杀害双指。黑夜神域宝箱拾取。</p>
+                    <span class="tag">关键剧情道具</span>
+                    <span class="tag">黑夜神域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/estee_flight.jpg" alt="艾丝缇薄翼"></div>
+                    <h4>艾丝缇薄翼</h4>
+                    <p>魔法杖，战技星云，释放大范围星尘爆炸。乌鲁王朝遗迹宝箱拾取。</p>
+                    <span class="tag">魔法武器</span>
+                    <span class="tag">乌鲁王朝遗迹</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/nox_set.jpg" alt="诺克斯套装"></div>
+                    <h4>诺克斯剑士/女巫套装</h4>
+                    <p>白色丝质长袍套装，诺克斯剑士与黑夜女巫掉落，造型独特。</p>
+                    <span class="tag">防具套装</span>
+                    <span class="tag">诺克史黛拉</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

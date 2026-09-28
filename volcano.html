@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>格密尔火山 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;          
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        /* 卡片网格，和武器、地理页面保持一致 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>格密尔火山 Mt.Gelmir</h2>
+    <p>火山官邸所在之地，背叛黄金树的势力，亵渎君王拉卡德的领地</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+格密尔火山位于亚坛高原西侧，滚烫熔岩遍布山体，火山官邸盘踞在火山腹地。这里由拉卡德建立，集结叛律者，猎杀黄金树的半神。可从亚坛高原绕行，或通过雷亚卢卡利亚学院北侧的铁处女传送直达火山区域。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+区域包含火山洞窟、官邸内部、火山谷底。玩家可以加入火山官邸，完成暗杀委托推进塔妮丝支线。区域终点为亵渎君王拉卡德，击杀拉卡德获得大卢恩，之后塔妮丝剧情会发生变化。火山遍布熔岩、蛇人、调香师与铁处女。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：熔岩山地、火山洞窟、火山官邸</span>
+                <span class="tag">主线：亵渎君王拉卡德</span>
+                <span class="tag">推荐等级：70~90</span>
+                <span class="tag">包含：格密尔火山、火山官邸、火山谷底</span>
+            </div>
+            <!-- 返回地理页面按钮 -->
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/lakade.jpg" alt="亵渎君王 拉卡德"></div>
+                    <h4>亵渎君王 拉卡德</h4>
+                    <p>火山半神，大蛇吞噬自身化为一体，大量远程熔岩吐息，近战撕咬。使用大蛇狩猎矛能打出高额伤害，击杀获得拉卡德的大卢恩。</p>
+                    <span class="tag">半神BOSS</span>
+                    <span class="tag">火山官邸大蛇房间</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/abductor_virgin_volcano.jpg" alt="铁处女"></div>
+                    <h4>铁处女</h4>
+                    <p>区域机械拷问装置，抓取攻击，被抓到会直接秒杀。雷亚卢卡利亚的铁处女可传送至火山。</p>
+                    <span class="tag">野外精英</span>
+                    <span class="tag">火山山路</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/demi_human_queen_volcano.jpg" alt="火山半人女王"></div>
+                    <h4>火山半人女王</h4>
+                    <p>火山洞窟深处BOSS，带领大量半人仆从，释放火焰法术。</p>
+                    <span class="tag">洞窟BOSS</span>
+                    <span class="tag">火山洞窟</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/tear_of_astel_volcano.jpg" alt="艾斯提的陨石"></div>
+                    <h4>艾斯提的陨石</h4>
+                    <p>火山地下区域的外星生命，重力魔法，远程陨石攻击。</p>
+                    <span class="tag">隐藏BOSS</span>
+                    <span class="tag">火山地下区域</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/night_cavalry_volcano.jpg" alt="黑夜骑兵（火山）"></div>
+                    <h4>黑夜骑兵</h4>
+                    <p>火山区域夜间刷新，持熔岩连枷，附带火焰伤害。</p>
+                    <span class="tag">夜晚限定</span>
+                    <span class="tag">火山山道</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/fulgur_volcano.jpg" alt="熔岩土龙 马卡尔"></div>
+                    <h4>熔岩土龙 马卡尔</h4>
+                    <p>火山外侧土龙，熔岩吐息，龙爪横扫，击杀获得龙心脏。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">火山外围</span>
+                </div>
+            </div>
+        </div>
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mount_gelmir_view.jpg" alt="格密尔火山"></div>
+                    <h4>格密尔火山主区域</h4>
+                    <p>熔岩遍布的险峻山体，蛇人、调香师、铁处女把守山路，通往火山官邸。</p>
+                    <span class="tag">火山山地</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/volcano_mansion.jpg" alt="火山官邸"></div>
+                    <h4>火山官邸</h4>
+                    <p>叛律者据点，可以加入阵营，领取暗杀任务，塔妮丝、菈雅支线所在地。</p>
+                    <span class="tag">支线据点</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/volcano_cave..jpg" alt="火山洞窟"></div>
+                    <h4>火山洞窟</h4>
+                    <p>熔岩地下洞窟，大量半人敌人，关底半人女王。</p>
+                    <span class="tag">洞窟</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/volcano_boss_room.jpg" alt="大蛇的王座"></div>
+                    <h4>大蛇的王座</h4>
+                    <p>拉卡德战斗场地，巨大的蛇形大厅，火山区域主线终点。</p>
+                    <span class="tag">主线BOSS房</span>
+                </div>
+            </div>
+        </div>
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>格密尔火山可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/great_spear_of_serpent_hunter.jpg" alt="大蛇狩猎矛"></div>
+                    <h4>大蛇狩猎矛</h4>
+                    <p>对抗拉卡德专用武器，对大蛇造成巨额伤害，BOSS房间入口拾取。</p>
+                    <span class="tag">武器</span>
+                    <span class="tag">大蛇王座门口</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/ash_of_war_flame_of_the_redmanes.jpg" alt="红狮子火焰"></div>
+                    <h4>红狮子火焰</h4>
+                    <p>强力战灰，近距离爆发火焰冲击，火山区域拾取。</p>
+                    <span class="tag">战灰</span>
+                    <span class="tag">火山山路拾取</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/tanith_set.jpg" alt="塔妮丝套装"></div>
+                    <h4>塔妮丝套装</h4>
+                    <p>火山官邸女主人套装，完成塔妮丝支线后获取。</p>
+                    <span class="tag">防具套装</span>
+                    <span class="tag">塔妮丝支线</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/serpent_ash.jpg" alt="蛇人艾利梅尔骨灰"></div>
+                    <h4>蛇人艾利梅尔骨灰</h4>
+                    <p>召唤蛇人，释放熔岩吐息，火山地下拾取。</p>
+                    <span class="tag">骨灰</span>
+                    <span class="tag">火山地下</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

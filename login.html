@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交界地档案 - 登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;
+            color: #d9c9b4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            width: 420px;
+            padding: 40px;
+            background: linear-gradient(145deg, #27221b, #181511);
+            border: 1px solid #5c4c3a;
+            border-radius: 8px;
+            box-shadow: 0 0 20px #00000088;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #c9a87c;
+        }
+        .item {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #1a1713;
+            border: 1px solid #5c4c3a;
+            color: #e2dfd8;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btns {
+            display: flex;
+            gap:12px;
+            margin-top:25px;
+        }
+        button {
+            flex:1;
+            padding:12px;
+            border: none;
+            border-radius:4px;
+            background:#5c3822;
+            color:#fff;
+            font-size:16px;
+            cursor:pointer;
+        }
+        button:hover {
+            background:#744528;
+        }
+        .msg {
+            margin-top:16px;
+            text-align:center;
+            min-height:22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>交界地档案 · 褪色者登录</h2>
+        <div class="item">
+            <label>用户名</label>
+            <input type="text" id="username" placeholder="输入褪色者名称">
+        </div>
+        <div class="item">
+            <label>密码</label>
+            <input type="password" id="password" placeholder="输入密码">
+        </div>
+        <div class="btns">
+            <button id="regBtn">注册</button>
+            <button id="loginBtn">登录</button>
+        </div>
+        <div class="msg" id="msgDom"></div>
+    </div>
+    <script>
+        const msgDom = document.getElementById('msgDom');
+        const baseUrl = "";
+
+        // 注册
+        document.getElementById('regBtn').onclick = async ()=>{
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            msgDom.innerText = "";
+            if(!username){
+                msgDom.innerText = "用户名不能为空";
+                return;
+            }
+            if(username.length < 3){
+                msgDom.innerText = "用户名至少3个字符";
+                return;
+            }
+            if(!password){
+                msgDom.innerText = "密码不能为空";
+                return;
+            }
+            if(password.length < 6){
+                msgDom.innerText = "密码至少6位";
+                return;
+            }
+            const res = await fetch(baseUrl + "/api/register",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({username,password})
+            })
+            const data = await res.json();
+            msgDom.innerText = data.msg;
+        }
+
+        // 登录（抽成函数，供按钮和回车共用）
+        async function doLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            msgDom.innerText = "";
+            if(!username || !password){
+                msgDom.innerText = "用户名和密码不能为空";
+                return;
+            }
+            const res = await fetch(baseUrl + "/api/login",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({username,password})
+            })
+            const data = await res.json();
+            console.log("后端返回完整数据：", data);
+            console.log("msg原始字符串：", JSON.stringify(data.msg));
+            msgDom.innerText = data.msg;
+
+            // 兜底判断：只要msg里面包含"登录成功"四个字就跳转
+            if(data.msg.includes("登录成功")){
+                localStorage.setItem("token",data.token);
+                localStorage.setItem("username",username);
+                location.href = "/cg.html";
+            }
+        }
+
+        // 登录按钮
+        document.getElementById('loginBtn').onclick = doLogin;
+
+        // ★ 回车登录：用户名和密码框按回车都触发登录
+        document.getElementById('username').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                doLogin();
+            }
+        });
+        document.getElementById('password').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                doLogin();
+            }
+        });
+
+        // 页面加载后自动聚焦用户名输入框，方便直接输入
+        window.addEventListener('load', function() {
+            var u = document.getElementById('username');
+            if (u) u.focus();
+        });
+    </script>
+</body>
+</html>

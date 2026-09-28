@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利耶尼亚湖 - 艾尔登法环交界地档案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #0f141c;
+            color: #e2dfd8;
+            line-height: 1.8;
+        }
+        /* 全站统一头部导航 */
+        header {
+            background: linear-gradient(135deg, #1f2b42, #121822);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #c2d8ff;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav {
+            background-color: #171c26;
+            padding: 15px 0;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .nav-menu li a {
+            color: #e2dfd8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover {
+            background-color: #2c3b58;
+            color: #c2d8ff;
+        }
+
+        /* 区域全景横幅 区别角色页 */
+        .area-banner{
+            width:100%;
+            height:380px;
+            background: linear-gradient(rgba(10,15,25,0.75),rgba(10,15,25,0.88)), url(img/2.jpg);
+            background-size: cover;
+            background-position: center;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            border-bottom: 2px solid #425b88;
+        }
+        .area-banner h2{
+            font-size:3rem;
+            color:#c2d8ff;
+            font-family:'SimSun',serif;
+            margin-bottom:10px;
+        }
+        .area-banner .sub-desc{
+            font-size:1.2rem;
+            color:#a8b8d4;
+        }
+
+        .content-wrap{
+            padding:50px 0;
+        }
+        /* 简介通栏模块 */
+        .intro-block{
+            background-color:#18202e;
+            padding:32px;
+            border-radius:12px;
+            border:1px solid #2c3b58;
+            margin-bottom:40px;
+        }
+        .intro-block h3{
+            color:#c2d8ff;
+            font-size:1.7rem;
+            font-family:'SimSun',serif;
+            margin-bottom:16px;
+        }
+        .intro-block p{
+            color:#cad4e6;
+            margin-bottom:12px;
+        }
+
+        /* 三栏卡片布局，地理/势力/地点 */
+        .card-grid{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:26px;
+            margin-bottom:45px;
+        }
+        .info-card{
+            background-color:#18202e;
+            padding:26px;
+            border-radius:10px;
+            border-top:4px solid #5478b8;
+        }
+        .info-card h4{
+            color:#c2d8ff;
+            font-family:'SimSun',serif;
+            font-size:1.4rem;
+            margin-bottom:14px;
+        }
+        .info-card p{
+            color:#cad4e6;
+            font-size:0.98rem;
+        }
+
+        /* 视频整块通栏，不再放在侧边 */
+        .video-section{
+            background-color:#18202e;
+            padding:30px;
+            border-radius:12px;
+            border:1px solid #2c3b58;
+            margin-bottom:30px;
+        }
+        .video-section h3{
+            color:#c2d8ff;
+            font-family:'SimSun',serif;
+            margin-bottom:18px;
+        }
+        video{
+            width:100%;
+            border-radius:8px;
+        }
+        .video-tip{
+            margin-top:12px;
+            color:#889cb8;
+            font-size:0.9rem;
+        }
+
+        .back-link{
+            display:inline-block;
+            padding:10px 22px;
+            background:#2c3b58;
+            color:#e2dfd8;
+            text-decoration:none;
+            border-radius:6px;
+        }
+        .back-link:hover{
+            background:#425b88;
+            color:#c2d8ff;
+        }
+
+        footer {
+            background-color: #171c26;
+            padding: 40px 0 20px;
+            margin-top:60px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-section h3 {
+            color: #c2d8ff;
+            margin-bottom: 20px;
+            font-family: 'SimSun', serif;
+        }
+        .footer-section p {
+            margin-bottom: 10px;
+            color:#b8c4d8;
+        }
+        .footer-bottom {
+            border-top: 1px solid #2c3b58;
+            padding-top: 20px;
+            text-align:center;
+            color:#7788a0;
+        }
+
+        @media(max-width:768px){
+            .card-grid{
+                grid-template-columns:1fr;
+            }
+            .nav-menu{
+                flex-direction:column;
+                gap:12px;
+                text-align:center;
+            }
+            .area-banner h2{
+                font-size:2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 区域全景横幅 -->
+<section class="area-banner">
+    <h2>利耶尼亚湖</h2>
+    <div class="sub-desc">辉石魔法的故土 · 卡利亚王室的领地</div>
+</section>
+
+<main class="content-wrap">
+    <div class="container">
+        <!-- 区域总览通栏 -->
+        <div class="intro-block">
+            <h3>区域概况</h3>
+            <p>利耶尼亚湖，因大地震形成的巨大湖泊，卡利亚王室与辉石魔法师的家园。整片区域被湖水分割成陆地岛屿，遍布辉石洞窟、魔法塔与古老的学院建筑。</p>
+            <p>雷亚卢卡利亚魔法学院坐落于此，曾经兴盛的辉石魔法文明在此绽放。卡利亚王室与魔法师时而合作，时而互相争斗，这片土地埋藏大量群星与月亮相关的秘密。</p>
+            <p>无数人偶、辉石魔法师、骑士游荡在湖面废墟，也是魔女菈妮、满月女王蕾娜菈故事发生的主要舞台。</p>
+        </div>
+
+        <!-- 三栏信息卡片：地理、势力、关键地点 -->
+        <div class="card-grid">
+            <div class="info-card">
+                <h4>地理特征</h4>
+                <p>巨大内陆湖泊，陆地碎片化，大量水下废墟露出水面。地下遍布辉石矿脉，魔力弥漫。北边连接史东薇尔，向南通往湖之利耶尼亚深处。</p>
+            </div>
+            <div class="info-card">
+                <h4>主要势力</h4>
+                <p>雷亚卢卡利亚魔法学院、卡利亚王室。学院崇尚辉石魔法；卡利亚王室信奉月亮，用人偶魔法，两股势力曾经爆发漫长内战。</p>
+            </div>
+            <div class="info-card">
+                <h4>关键地点</h4>
+                <p>雷亚卢卡利亚魔法学院、卡利亚城寨、菈妮的魔法师塔、绝路地下墓地、湖畔洞窟，诸多支线NPC都在此处出没。</p>
+            </div>
+        </div>
+
+        <!-- 通栏视频区域，不再左右分栏 -->
+        <div class="video-section">
+            <h3>利耶尼亚湖探索实况</h3>
+            <video controls>
+                <source src="video/liurnia_explore.mp4" type="video/mp4">
+                你的浏览器不支持视频播放
+            </video>
+            <p class="video-tip">视频：利耶尼亚湖全域风景与关键地点游览</p>
+        </div>
+
+        <a href="geography.html" class="back-link">← 返回地理总览</a>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于本站</h3>
+                <p>艾尔登法环交界地档案，玩家向资料网站，整理交界地人物、地理、装备与剧情设定。</p>
+            </div>
+            <div class="footer-section">
+                <h3>资料来源</h3>
+                <p>游戏文本、物品说明、NPC对话</p>
+                <p>玩家剧情考据整理</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p>地图大全</p>
+                <p>支线任务汇总</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 · 仅供学习演示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

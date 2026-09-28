@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚坛高原 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;          
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        /* 卡片网格，和武器、地理页面保持一致 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>亚坛高原 Altus Plateau</h2>
+    <p>通往罗德尔王城的高地，黄金树的近郊，丰饶的金色高原</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+亚坛高原是位于利耶尼亚东北侧的巨大高地，需要集齐两块符节启动迪可达斯大升降机才能抵达。整片高原沐浴在黄金树的光辉之下，草木繁盛，遍布黄金树的子民与旧时代骑士，是通往罗德尔王城的必经之路。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+高原分为亚坛大道、风车村、尊贵者的英雄墓地、调香师洞窟等地。区域内有黄金树化身、古龙大树守卫。这里可以收集黄金信仰祷告、王城骑士装备，米莉森支线会在此处推进剧情，但米莉森最终决战不在这片区域。向北前进即可抵达罗德尔王城外围。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：金色高原 / 森林 / 英雄墓地 / 风车村落</span>
+                <span class="tag">主线：前往罗德尔王城</span>
+                <span class="tag">推荐等级：70~90</span>
+                <span class="tag">包含：亚坛高原、风车村、尊贵者墓地</span>
+            </div>
+            <!-- 返回地理页面按钮 -->
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/golden_tree_avatar_altus.jpg" alt="黄金树化身"></div>
+                    <h4>黄金树化身</h4>
+                    <p>黄金树的使者，巨大树状怪物，大范围黄金火焰攻击，击杀掉落黄金系祷告。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">亚坛高原野外</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/godskin_apostle_windmill.jpg" alt="神皮使徒"></div>
+                    <h4>神皮使徒</h4>
+                    <p>风车村山顶BOSS，使用黑焰与双头剥制剑，二阶段身体拉伸，大范围黑焰旋风。</p>
+                    <span class="tag">野外精英</span>
+                    <span class="tag">风车村</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/samir_hero.jpg" alt="萨米尔的古英雄"></div>
+                    <h4>萨米尔的古英雄</h4>
+                    <p>尊贵者的英雄墓地关底BOSS，寒气近战，灵活突进，击败获得古龙骑士克里斯托福骨灰。</p>
+                    <span class="tag">墓地BOSS</span>
+                    <span class="tag">尊贵者的英雄墓地</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/draconic_tree_sentinel.jpg" alt="古龙大树守卫"></div>
+                    <h4>古龙大树守卫</h4>
+                    <p>王城大门守护者，身披古龙雷属性，持巨矛与大盾，攻防极强，阻挡进入罗德尔。</p>
+                    <span class="tag">野外精英</span>
+                    <span class="tag">王城入口</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/miranda_blossom.jpg" alt="米兰达之花"></div>
+                    <h4>米兰达之花</h4>
+                    <p>巨型腐败花，释放大范围腐败孢子，高原洼地随处可见。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">高原洼地</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/night_cavalry_flail.jpg" alt="黑夜骑兵（亚坛）"></div>
+                    <h4>黑夜骑兵</h4>
+                    <p>亚坛大道夜间刷新，重型连枷，附带圣属性伤害，掉落黑夜骑兵武器。</p>
+                    <span class="tag">夜晚限定</span>
+                    <span class="tag">亚坛大道</span>
+                </div>
+            </div>
+        </div>
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/altus_plateau_main.jpg" alt="亚坛高原主区域"></div>
+                    <h4>亚坛高原主区域</h4>
+                    <p>广阔金色高原，道路直通罗德尔，沿途大量赐福、黄金树化身与王城骑士敌人。</p>
+                    <span class="tag">高原原野</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/windmill_village.jpg" alt="风车村"></div>
+                    <h4>风车村</h4>
+                    <p>疯狂舞者盘踞的村落，米莉森支线剧情停留点，村落顶端有神皮使徒。</p>
+                    <span class="tag">支线村落</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/hero_grave_altus.jpg" alt="尊贵者的英雄墓地"></div>
+                    <h4>尊贵者的英雄墓地</h4>
+                    <p>带光影解谜机制的地下墓地，入口有黑刀刺客，深处BOSS萨米尔的古英雄。</p>
+                    <span class="tag">英雄墓地</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/grand_lift_altus.jpg" alt="迪可达斯大升降机"></div>
+                    <h4>迪可达斯大升降机</h4>
+                    <p>进入亚坛高原的入口，集齐左右两块符节即可启动升降机。</p>
+                    <span class="tag">区域入口</span>
+                </div>
+            </div>
+        </div>
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>亚坛高原可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/golden_vow.jpg" alt="黄金树立誓"></div>
+                    <h4>黄金树立誓</h4>
+                    <p>强力增益祷告，提升自身与友军攻防，黄金树化身掉落。</p>
+                    <span class="tag">祷告</span>
+                    <span class="tag">黄金树化身掉落</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/millicent_prosthesis.jpg" alt="米莉森的义手"></div>
+                    <h4>米莉森的义手</h4>
+                    <p>连续攻击提升攻击力护符，敏捷近战毕业护符，米莉森支线奖励。</p>
+                    <span class="tag">护符</span>
+                    <span class="tag">米莉森支线</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/godskin_peeler.jpg" alt="神皮剥制剑"></div>
+                    <h4>神皮剥制剑</h4>
+                    <p>双头武器，附带黑焰战技，风车村神皮使徒掉落。</p>
+                    <span class="tag">武器</span>
+                    <span class="tag">风车村BOSS</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/cristoff_ash.jpg" alt="古龙骑士克里斯托福骨灰"></div>
+                    <h4>古龙骑士克里斯托福骨灰</h4>
+                    <p>传说骨灰，持古龙大盾与长矛，高坦度，吸引BOSS火力，尊贵者英雄墓地获得。</p>
+                    <span class="tag">传说骨灰</span>
+                    <span class="tag">尊贵者英雄墓地</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

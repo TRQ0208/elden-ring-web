@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天空城 法姆·亚兹拉 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        /* 图片和视频共用尺寸样式 */
+        .card-img img,
+        .card-img video {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>天空城 法姆·亚兹拉 Farum Azula</h2>
+    <p>悬浮于风暴中的古老龙之城，时间破碎的遗迹，烧树的必经之地</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+法姆·亚兹拉是一座漂浮在风暴中的远古龙文明都市，时间在此碎裂，城市的残片不断被风暴撕扯。完成巨人山顶剧情后，梅琳娜会带褪色者传送至此。这里是古龙的故乡，也是黄金树燃烧的起点。整座城市由漂浮的断垣残壁拼接而成，狂风肆虐，古龙、兽人、黑剑眷属在此驻守。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+天空城分为风暴中心、龙庙平台、大桥、黑剑厅堂多个区域。兽人与雷龙随处可见，城内还留存着古龙的祭祀遗迹。区域终点是黑剑玛利喀斯的战斗场地，击败黑剑后，黄金树大门开启，进入游戏最终阶段。天空城的时间处于崩坏状态，传说这座城市本不属于交界地，是被风暴裹挟而来。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：浮空断壁、风暴回廊、古龙祭坛、黑剑大殿</span>
+                <span class="tag">主线：黑剑玛利喀斯，剧情终章前置区域</span>
+                <span class="tag">推荐等级：130~160</span>
+                <span class="tag">包含：法姆·亚兹拉入口、龙庙、风暴平台、黑剑厅堂</span>
+            </div>
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <!-- 黑剑玛利喀斯：手动控制视频，带播放控件 -->
+                <div class="region-card">
+                    <div class="card-img">
+                        <video src="video/maliketh.mp4" controls playsinline alt="黑剑玛利喀斯"></video>
+                    </div>
+                    <h4>黑剑玛利喀斯</h4>
+                    <p>守护命定之死的影子野兽，玛莉卡的义弟。一阶段使用兽爪；二阶段解放黑剑，释放命定之死，攻击可以剥夺生命本源。击杀后黄金树燃烧，开启王城崩坏结局。</p>
+                    <span class="tag">主线BOSS</span>
+                    <span class="tag">黑剑厅堂</span>
+                </div>
+
+                <!-- 龙王普拉顿桑克斯：手动控制视频，带播放控件 -->
+                <div class="region-card">
+                    <div class="card-img">
+                        <video src="video/placidusax.mp4" controls playsinline alt="龙王普拉顿桑克斯"></video>
+                    </div>
+                    <h4>龙王普拉顿桑克斯</h4>
+                    <p>天空城隐藏远古龙王，褪色者时代之前的艾尔登之王。双头古龙，掌控红雷与湮灭，在风暴中心隐藏区域。击败获得追忆，可以兑换龙王武器。</p>
+                    <span class="tag">隐藏传说BOSS</span>
+                    <span class="tag">风暴中心</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img">
+						<video src="video/ancient_dragon_lansseax.mp4" controls playsinline  alt="古龙兰斯桑克斯"></video>
+					</div>
+                    <h4>古龙兰斯桑克斯</h4>
+                    <p>天空城大桥古龙，掌控红色雷枪，大范围雷击。击杀获得兰斯桑克斯的刀。</p>
+                    <span class="tag">古龙BOSS</span>
+                    <span class="tag">天空城大桥</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/farum_azula_entrance.jpg" alt="天空城入口"></div>
+                    <h4>天空城入口</h4>
+                    <p>梅琳娜传送抵达的起始赐福，狂风不断，大量兽人巡逻，通往龙庙平台。</p>
+                    <span class="tag">起始区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/dragon_temple_farum.jpg" alt="古龙祭坛"></div>
+                    <h4>古龙祭坛</h4>
+                    <p>龙庙平台，多处古龙雕像，可拾取大量古龙祷告，分支小路通往隐藏龙王区域。</p>
+                    <span class="tag">祭坛区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/farum_azula_bridge.jpg" alt="风暴大桥"></div>
+                    <h4>风暴大桥</h4>
+                    <p>兰斯桑克斯镇守的长桥，狂风干扰移动，桥下有隐藏道具。</p>
+                    <span class="tag">大桥区域</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/maliketh_arena.jpg" alt="黑剑厅堂"></div>
+                    <h4>黑剑厅堂</h4>
+                    <p>法姆·亚兹拉终点，玛利喀斯的战斗场地，击败之后触发黄金树焚毁剧情。</p>
+                    <span class="tag">主线终点</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>天空城可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/black_blade.jpg" alt="黑剑"></div>
+                    <h4>黑剑</h4>
+                    <p>传说大剑，战技黑剑命定之死，削减敌人最大生命值。玛利喀斯追忆兑换。</p>
+                    <span class="tag">传说武器</span>
+                    <span class="tag">追忆兑换</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/placidusax_ruin.jpg" alt="普拉顿桑克斯的湮灭"></div>
+                    <h4>普拉顿桑克斯的湮灭</h4>
+                    <p>传说祷告，释放湮灭风暴，大范围重力伤害。龙王追忆兑换。</p>
+                    <span class="tag">传说祷告</span>
+                    <span class="tag">追忆兑换</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/old_dragon_set.jpg" alt="古龙套装"></div>
+                    <h4>古龙套装</h4>
+                    <p>厚重鳞甲套装，古龙系敌人掉落，高抗雷属性。</p>
+                    <span class="tag">防具套装</span>
+                    <span class="tag">龙庙拾取</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/lansseax_glaive.jpg" alt="兰斯桑克斯的刀"></div>
+                    <h4>兰斯桑克斯的刀</h4>
+                    <p>雷属性矛，战技释放红雷枪，古龙流派武器。击败古龙兰斯桑克斯获得。</p>
+                    <span class="tag">武器</span>
+                    <span class="tag">风暴大桥</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

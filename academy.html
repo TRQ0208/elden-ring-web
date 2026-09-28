@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷亚卢卡利亚学院 - 艾尔登法环交界地档案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #0c1220;
+            color: #e2e8f5;
+            line-height: 1.8;
+        }
+
+        /* 全站统一头部 */
+        header {
+            background: linear-gradient(135deg, #1b2a44, #0f1729);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #b8d4ff;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav {
+            background-color: #141c2e;
+            padding: 15px 0;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .nav-menu li a {
+            color: #e2e8f5;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover {
+            background-color: #25375a;
+            color: #b8d4ff;
+        }
+
+        /* 学院全景横幅 */
+        .academy-banner {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            background: linear-gradient(rgba(8, 14, 28, 0.75), rgba(8, 14, 28, 0.9)), url(img/3.jpg);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid #3f5b8c;
+        }
+        .academy-banner h2 {
+            font-size: 3rem;
+            color: #b8d4ff;
+            font-family: 'SimSun', serif;
+            margin-bottom: 10px;
+        }
+        .academy-banner .sub-title {
+            font-size: 1.2rem;
+            color: #9fb8db;
+        }
+
+        .content-wrap {
+            padding: 50px 0;
+        }
+
+        /* 总览介绍 */
+        .overview-block {
+            background-color: #152036;
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid #2a3b5f;
+            margin-bottom: 40px;
+        }
+        .overview-block h3 {
+            color: #b8d4ff;
+            font-size: 1.7rem;
+            font-family: 'SimSun', serif;
+            margin-bottom: 16px;
+        }
+        .overview-block p {
+            color: #cfd9ee;
+            margin-bottom: 12px;
+        }
+
+        /* 三栏信息：建筑历史 / 学院势力 / 探索要点 */
+        .academy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+            margin-bottom: 45px;
+        }
+        .academy-card {
+            background-color: #152036;
+            padding: 26px;
+            border-radius: 10px;
+            border-top: 4px solid #4a67a1;
+        }
+        .academy-card h4 {
+            color: #b8d4ff;
+            font-family: 'SimSun', serif;
+            font-size: 1.4rem;
+            margin-bottom: 14px;
+        }
+        .academy-card p {
+            color: #cfd9ee;
+            font-size: 0.98rem;
+        }
+
+        /* 视频区域 */
+        .video-section {
+            background-color: #152036;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #2a3b5f;
+            margin-bottom: 30px;
+        }
+        .video-section h3 {
+            color: #b8d4ff;
+            font-family: 'SimSun', serif;
+            margin-bottom: 18px;
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .video-tip {
+            margin-top: 12px;
+            color: #889cb8;
+            font-size: 0.9rem;
+        }
+
+        /* 返回链接 */
+        .back-link {
+            display: inline-block;
+            padding: 10px 22px;
+            background: #25375a;
+            color: #e2e8f5;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .back-link:hover {
+            background: #3f5b8c;
+            color: #b8d4ff;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #141c2e;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-section h3 {
+            color: #b8d4ff;
+            margin-bottom: 20px;
+            font-family: 'SimSun', serif;
+        }
+        .footer-section p {
+            margin-bottom: 10px;
+            color: #aab9d6;
+        }
+        .footer-bottom {
+            border-top: 1px solid #2a3b5f;
+            padding-top: 20px;
+            text-align: center;
+            color: #7788a8;
+        }
+
+        @media (max-width: 768px) {
+            .academy-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-menu {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .academy-banner h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 顶部学院全景横幅 -->
+<section class="academy-banner">
+    <h2>雷亚卢卡利亚学院</h2>
+    <div class="sub-title">辉石魔法的圣殿 · 卡利亚王室的学问之地</div>
+</section>
+
+<main class="content-wrap">
+    <div class="container">
+
+        <!-- 区域总览 -->
+        <div class="overview-block">
+            <h3>学院概况</h3>
+            <p>雷亚卢卡利亚学院坐落于利耶尼亚湖中央，是交界地最著名的辉石魔法学府。高塔、回廊与魔法封印交织，历代学者在这里研究星辰、月亮与辉石的秘密。</p>
+            <p>学院曾由满月女王蕾娜菈领导，后因拉达冈离开、王室纷争与内部学派冲突陷入混乱。许多魔法师被剥夺学院身份，湖岸废墟中仍残留着过去仪式与战争的痕迹。</p>
+            <p>对褪色者而言，这里不仅是获取强大魔法的重要区域，也是理解卡利亚王室、群星律法与菈妮支线的关键舞台。</p>
+        </div>
+
+        <!-- 三栏信息卡片 -->
+        <div class="academy-grid">
+            <div class="academy-card">
+                <h4>建筑历史</h4>
+                <p>学院以辉石建造，高塔用于观测星象与研究魔法，回廊连接课堂、祭坛与封印区域。许多殿堂曾是学者研讨群星律法的场所，如今被魔法师、傀儡与魔法陷阱占据。</p>
+            </div>
+            <div class="academy-card">
+                <h4>学院势力</h4>
+                <p>蕾娜菈的卡利亚王室、学院魔法师与诸多魔法学派在此交汇。学院崇尚知识与力量，内部并非统一团体，不同学者之间存在竞争、敌视与权力争夺。</p>
+            </div>
+            <div class="academy-card">
+                <h4>探索要点</h4>
+                <p>探索学院需要留意魔法封印、隐藏宝箱与法师敌人。关键地点包括大书库、红狼竞技场、屋顶区域与学院正门，是获取强力法术与推进剧情的重要区域。</p>
+            </div>
+        </div>
+
+        <!-- 视频区域 -->
+        <div class="video-section">
+            <h3>学院探索演示</h3>
+            <video controls>
+                <source src="video/raya_lucaria_explore.mp4" type="video/mp4">
+                你的浏览器不支持视频播放
+            </video>
+            <p class="video-tip">视频：雷亚卢卡利亚学院路线与关键地点探索</p>
+        </div>
+
+        <a href="geography.html" class="back-link">← 返回交界地地理</a>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于本站</h3>
+                <p>艾尔登法环交界地档案，玩家向资料网站，整理交界地人物、地理、装备与剧情设定。</p>
+            </div>
+            <div class="footer-section">
+                <h3>资料来源</h3>
+                <p>游戏文本、物品说明、NPC对话</p>
+                <p>玩家剧情考据整理</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p>地图大全</p>
+                <p>支线任务汇总</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 · 仅供学习演示</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

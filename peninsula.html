@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>啜泣半岛 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;          
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        /* 卡片网格，和武器、地理页面保持一致 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>啜泣半岛 Weeping Peninsula</h2>
+    <p>宁姆格福南方的阴雨之地，死亡力量蔓延，悲剧故事在此上演</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+啜泣半岛位于宁姆格福南方，献祭大桥断裂之后与大陆分隔。终年阴雨笼罩，死亡的力量侵蚀土地，大量死者无法归命，化为亡灵徘徊荒野。这里没有半神统治者，却藏着大量前期优质道具、骨灰与祷告。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+这片土地的核心故事围绕摩恩城城主埃德加与女儿伊蕾娜展开，是黄金律法下死亡失控的缩影。难度略高于宁姆格福，适合打完史东薇尔城之后前来探索。洞窟、地下墓地数量众多，很多骨灰、护符都能大幅提升褪色者战力。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：阴雨荒原 / 墓地 / 海岸 / 古城</span>
+                <span class="tag">主线：无半神，支线摩恩城伊蕾娜</span>
+                <span class="tag">推荐等级：20~35</span>
+                <span class="tag">包含：摩恩城、巡礼教堂、多个地下墓地</span>
+            </div>
+            <!-- 返回地理页面按钮 -->
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/lion_mixed.jpg" alt="狮子混种"></div>
+                    <h4>狮子混种</h4>
+                    <p>摩恩城海滩的守关BOSS，狮首人身，招式迅猛，连续斩击。击败后可以拿到接肢贵族后裔大剑。</p>
+                    <span class="tag">区域精英</span>
+                    <span class="tag">地点：摩恩城</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/samir_hero.jpg" alt="萨米尔的古英雄"></div>
+                    <h4>萨米尔的古英雄</h4>
+                    <p>啜泣封印监牢BOSS，冰属性，使用双弯刀，攻击附带冻伤。需要石剑钥匙打开封印监牢大门。</p>
+                    <span class="tag">封印监牢</span>
+                    <span class="tag">掉落：拉达冈的烙印</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/grave_shadow.jpg" alt="墓地影子"></div>
+                    <h4>墓地影子</h4>
+                    <p>灵庙原野地下墓地BOSS，双刀快速连击，击败后获得传说骨灰无头骑士露提尔。</p>
+                    <span class="tag">地下墓地</span>
+                    <span class="tag">传说骨灰</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/miranda_blossom.jpg" alt="病花米兰达"></div>
+                    <h4>病花米兰达</h4>
+                    <p>灵庙原野洞窟的毒花BOSS，释放大范围毒雾，远程喷射毒液。击败掉落绿琥珀链坠。</p>
+                    <span class="tag">洞窟BOSS</span>
+                    <span class="tag">毒属性</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/night_cavalry_flail.jpg" alt="黑夜骑兵（链枷）"></div>
+                    <h4>黑夜骑兵（链枷）</h4>
+                    <p>摩恩城城墙夜晚才会刷新的黑夜骑兵，使用重型链枷，范围伤害。掉落黑夜骑兵链枷与战灰铁壁盾防。</p>
+                    <span class="tag">夜晚限定</span>
+                    <span class="tag">野外精英</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/deathbird_peninsula.jpg" alt="死之鸟"></div>
+                    <h4>死之鸟</h4>
+                    <p>摩恩城附近夜晚刷新，死亡眷属，使用镰刀攻击。击败获得活祭品斧。</p>
+                    <span class="tag">夜晚限定</span>
+                    <span class="tag">死亡系</span>
+                </div>
+            </div>
+        </div>
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/morne_castle.jpg" alt="摩恩城"></div>
+                    <h4>摩恩城</h4>
+                    <p>啜泣半岛核心古城，伊蕾娜与埃德加支线发生地。城内遍布失乡骑士，海滩BOSS狮子混种。</p>
+                    <span class="tag">支线据点</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/church_pilgrimage.jpg" alt="巡礼教堂"></div>
+                    <h4>巡礼教堂</h4>
+                    <p>玛莉卡第四教堂，赐福点，可以拾取圣杯滴露。周围遍地墓碑与亡灵士兵。</p>
+                    <span class="tag">教堂</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/sacrifice_bridge.jpg" alt="献祭大桥"></div>
+                    <h4>献祭大桥</h4>
+                    <p>断裂石桥，宁姆格福通往啜泣半岛唯一通道，桥上有大量士兵与弩兵。</p>
+                    <span class="tag">交通要道</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/temple_ruins_catacomb.jpg" alt="灵庙原野地下墓地"></div>
+                    <h4>灵庙原野地下墓地</h4>
+                    <p>地下亡灵墓地，大量骷髅，BOSS墓地影子，传说骨灰无头骑士露提尔在此获取。</p>
+                    <span class="tag">地下墓地</span>
+                </div>
+            </div>
+        </div>
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>啜泣半岛可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/grafted_axe.jpg" alt="接肢贵族后裔大剑"></div>
+                    <h4>接肢贵族后裔大剑</h4>
+                    <p>狮子混种掉落，重型大剑，力量补正优秀，战技可打出强力横扫。</p>
+                    <span class="tag">力量</span>
+                    <span class="tag">掉落：狮子混种</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/night_cavalry_flail_weapon.jpg" alt="黑夜骑兵链枷"></div>
+                    <h4>黑夜骑兵链枷</h4>
+                    <p>黑夜骑兵掉落，重型钝器，范围攻击，战灰铁壁盾防可以大幅提升盾牌防御。</p>
+                    <span class="tag">力量</span>
+                    <span class="tag">夜晚BOSS掉落</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/radagons_scarseal.jpg" alt="拉达冈的烙印"></div>
+                    <h4>拉达冈的烙印</h4>
+                    <p>萨米尔的古英雄掉落护符，提升全部属性，但受到伤害增加。开荒提升属性神器。</p>
+                    <span class="tag">护符</span>
+                    <span class="tag">封印监牢获取</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/lhutel_ash.jpg" alt="无头骑士露提尔骨灰"></div>
+                    <h4>无头骑士露提尔骨灰</h4>
+                    <p>传说骨灰，无头骑士，持盾持枪，机动性强，很难被打断，前期最强骨灰之一。</p>
+                    <span class="tag">传说骨灰</span>
+                    <span class="tag">地下墓地BOSS掉落</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

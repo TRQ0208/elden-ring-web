@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPC故事 - 艾尔登法环交界地档案</title>
+    <script>
+        if(!localStorage.getItem("token")){
+            location.href="login.html";
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #1a1817;
+            color: #e2dfd8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+
+        /* ============================================================
+           头部：首页同款
+           ============================================================ */
+        header {
+            background: linear-gradient(135deg, #4b1414, #2e1c1c);
+            color: #fff;
+            padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: nowrap;
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: radial-gradient(circle, #d4af37 0%, #8b6f1c 80%);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(212,175,55,0.5), inset 0 0 8px rgba(0,0,0,0.6);
+            font-size: 26px; font-weight: bold;
+            color: #1a1817; text-shadow: 0 0 6px #ffe28a;
+            border: 2px solid #b49438;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .logo-icon:hover {
+            box-shadow: 0 0 25px #d4af37, inset 0 0 8px #000;
+            transform: scale(1.03);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 6px #000000;
+            color: #d4af37;
+            font-family: 'SimSun', serif;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+            flex-shrink: 0;
+        }
+        .search-box {
+            display: flex; align-items: center;
+            background: #1e1b1a;
+            border: 2px solid #5c3a2b;
+            border-radius: 30px;
+            padding: 4px 4px 4px 16px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+            height: 44px;
+        }
+        .search-box:focus-within {
+            border-color: #d4af37;
+            box-shadow: 0 0 12px rgba(212,175,55,0.4), inset 0 2px 5px #000;
+        }
+        .search-box input {
+            background: transparent;
+            border: none; outline: none;
+            color: #e2dfd8;
+            font-size: 0.95rem;
+            padding: 0;
+            width: 140px;
+            font-family: 'Microsoft YaHei', serif;
+        }
+        .search-box input::placeholder { color: #a39e97; font-style: italic; font-size: 0.9rem; }
+        .search-box button {
+            background: #4b1414;
+            border: none;
+            color: #e2dfd8;
+            padding: 7px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid #773333;
+            display: flex; align-items: center; gap: 4px;
+            white-space: nowrap;
+        }
+        .search-box button:hover { background: #681e1e; color: #d4af37; border-color: #d4af37; }
+        .reserve-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #4b1414, #6b1e1e);
+            border: 2px solid #d4af37;
+            border-radius: 40px;
+            padding: 8px 18px;
+            color: #f3d98b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 12px rgba(212,175,55,0.3);
+            white-space: nowrap;
+            height: 44px;
+        }
+        .reserve-btn:hover {
+            background: linear-gradient(135deg, #6b1e1e, #8b2a2a);
+            color: #fff;
+            box-shadow: 0 0 22px rgba(212,175,55,0.7);
+            transform: translateY(-2px);
+        }
+        .reserve-btn .reserve-icon { font-size: 1rem; line-height: 1; }
+        .user-avatar-btn {
+            display: flex; align-items: center; gap: 8px;
+            background: #2a2422;
+            border: 2px solid #5c3a2b;
+            border-radius: 40px;
+            padding: 3px 12px 3px 3px;
+            cursor: pointer;
+            color: #e2dfd8;
+            font-size: 0.9rem;
+            font-weight: bold;
+            white-space: nowrap;
+            height: 44px;
+        }
+        .user-avatar-btn:hover { border-color: #d4af37; box-shadow: 0 0 12px rgba(212,175,55,0.4); }
+        .user-avatar-btn .avatar-img {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #8b6f1c);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            color: #1a1817;
+            border: 2px solid #b49438;
+            flex-shrink: 0;
+        }
+        .user-avatar-btn .avatar-name { max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .user-avatar-btn .arrow { font-size: 0.65rem; color: #d4af37; transition: transform 0.3s ease; }
+        .user-avatar-btn.open .arrow { transform: rotate(180deg); }
+
+        .user-dropdown {
+            position: fixed;
+            width: 260px;
+            background: #262220;
+            border: 2px solid #5c3a2b;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.2);
+            padding: 8px;
+            display: none;
+            z-index: 999999;
+        }
+        .user-dropdown.open { display: block; }
+        .dropdown-header {
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            border-radius: 10px;
+            padding: 18px 16px;
+            text-align: center;
+            margin-bottom: 8px;
+            border: 1px solid #5c3a2b;
+        }
+        .dropdown-header .big-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #8b6f1c);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 34px;
+            color: #1a1817;
+            border: 2px solid #b49438;
+            margin: 0 auto 10px;
+            box-shadow: 0 0 20px rgba(212,175,55,0.4);
+        }
+        .dropdown-header .user-name { color: #f3d98b; font-size: 1rem; font-weight: bold; }
+        .dropdown-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 11px 14px;
+            border-radius: 8px;
+            color: #e2dfd8;
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            font-family: inherit;
+            text-align: left;
+        }
+        .dropdown-item:hover { background: #3a2a24; color: #d4af37; }
+        .dropdown-item .item-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+        .dropdown-item.logout { color: #e08a8a; }
+        .dropdown-item.logout:hover { background: #4b1414; color: #ffb3b3; }
+
+        nav { background-color: #12100f; padding: 15px 0; position: relative; z-index: 99; }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-menu li a {
+            color: #e2dfd8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover,
+        .nav-menu li a.active { background-color: #5c1a1a; color: #d4af37; }
+
+        /* ============================================================
+           背景飘浮火星/符文
+           ============================================================ */
+        .ambient-layer {
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0;
+            overflow: hidden;
+        }
+        .amb-ember {
+            position: absolute; bottom: -10px;
+            width: 3px; height: 3px; border-radius: 50%;
+            background: radial-gradient(circle, #ffdd99 0%, #c93c1e 60%, transparent 100%);
+            box-shadow: 0 0 8px 2px rgba(255,140,60,0.6);
+            opacity: 0;
+            animation: ambRise linear infinite;
+        }
+        @keyframes ambRise {
+            0%   { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+            12%  { opacity: 0.8; }
+            88%  { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(30px) scale(0.3); opacity: 0; }
+        }
+        .amb-rune {
+            position: absolute;
+            color: rgba(212,175,55,0.35);
+            font-size: 18px;
+            font-family: 'SimSun', serif;
+            text-shadow: 0 0 10px rgba(212,175,55,0.5);
+            opacity: 0;
+            animation: runeDrift linear infinite;
+            user-select: none;
+        }
+        @keyframes runeDrift {
+            0%   { transform: translateY(20px) rotate(0deg) scale(0.7); opacity: 0; }
+            20%  { opacity: 0.5; }
+            80%  { opacity: 0.4; }
+            100% { transform: translateY(-60px) rotate(40deg) scale(1); opacity: 0; }
+        }
+
+        /* ============================================================
+           页面大标题 Hero
+           ============================================================ */
+        .page-hero {
+            position: relative;
+            padding: 70px 0 40px;
+            text-align: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .hero-erdtree {
+            position: absolute; top: -40px; left: 50%;
+            transform: translateX(-50%);
+            width: 460px; height: 420px;
+            opacity: 0.32;
+            pointer-events: none; z-index: 0;
+            animation: erdBreath 6s ease-in-out infinite;
+        }
+        @keyframes erdBreath {
+            0%,100% { opacity: 0.26; }
+            50%     { opacity: 0.42; }
+        }
+        .grace-beacon {
+            position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 3px; height: 320px;
+            background: linear-gradient(to top, transparent, rgba(255,220,120,0.85), transparent);
+            box-shadow: 0 0 40px 12px rgba(255,200,90,0.35);
+            pointer-events: none; z-index: 0;
+            animation: beaconPulse 4s ease-in-out infinite;
+        }
+        @keyframes beaconPulse {
+            0%,100% { opacity: 0.4; height: 300px; }
+            50%     { opacity: 0.9; height: 340px; }
+        }
+        .page-hero .eyebrow {
+            position: relative; z-index: 2;
+            font-size: 0.9rem; color: #a85438;
+            letter-spacing: 10px; margin-bottom: 18px;
+            font-family: 'SimSun', serif;
+        }
+        .page-hero h2 {
+            position: relative; z-index: 2;
+            display: inline-block;
+            font-size: 3rem; color: #d4af37;
+            font-family: 'SimSun', serif; letter-spacing: 8px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffe9a8 0%, #d4af37 45%, #8b3000 100%);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 18px rgba(212,175,55,0.6));
+            animation: titleShine 3.5s ease-in-out infinite;
+        }
+        @keyframes titleShine {
+            0%,100% { filter: drop-shadow(0 0 18px rgba(212,175,55,0.6)); }
+            50%     { filter: drop-shadow(0 0 30px rgba(255,220,120,1)); }
+        }
+        .page-hero .subtitle {
+            position: relative; z-index: 2;
+            color: #a89678; font-size: 1.08rem; letter-spacing: 2px;
+            max-width: 640px; margin: 0 auto;
+        }
+        .title-divider {
+            position: relative; z-index: 2;
+            display: flex; align-items: center; justify-content: center;
+            gap: 14px; margin: 22px 0 6px;
+        }
+        .title-divider .line {
+            width: 120px; height: 1px;
+            background: linear-gradient(90deg, transparent, #b8863b);
+        }
+        .title-divider .line.right { background: linear-gradient(90deg, #b8863b, transparent); }
+        .title-divider .sigil {
+            color: #d4af37; font-size: 1.2rem;
+            text-shadow: 0 0 12px rgba(212,175,55,0.7);
+            animation: sigilSpin 12s linear infinite;
+        }
+        @keyframes sigilSpin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+        /* ============================================================
+           ★ 视频区（全屏 + 滚动自动播放 + 声音开关）
+           ============================================================ */
+        .video-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 620px;
+            overflow: hidden;
+            background: #0a0a0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-section video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            background: #000;
+            pointer-events: none;
+        }
+        .video-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 12, 0.55) 0%,
+                rgba(10, 10, 12, 0.25) 40%,
+                rgba(10, 10, 12, 0.55) 75%,
+                rgba(10, 10, 12, 0.85) 100%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+        .video-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 160px;
+            background: linear-gradient(to bottom, #1a1817 0%, transparent 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .video-fade-bottom {
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 100%; height: 200px;
+            background: linear-gradient(to top, #1a1817 0%, transparent 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .video-head {
+            position: absolute;
+            top: 60px;
+            left: 0; right: 0;
+            text-align: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .video-head .eyebrow {
+            font-size: 0.85rem;
+            color: #d4af37;
+            letter-spacing: 12px;
+            margin-bottom: 14px;
+            font-family: 'SimSun', serif;
+            text-shadow: 0 0 12px rgba(0, 0, 0, 0.95);
+        }
+        .video-head h2 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            font-family: 'SimSun', serif;
+            letter-spacing: 8px;
+            color: #f3d98b;
+            text-shadow:
+                0 0 16px rgba(255, 215, 100, 0.6),
+                0 0 40px rgba(212, 175, 55, 0.4),
+                2px 4px 12px rgba(0, 0, 0, 0.95);
+            margin-bottom: 12px;
+        }
+        .video-head .divider {
+            width: 80px; height: 2px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 0 auto;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 0; right: 0;
+            text-align: center;
+            z-index: 10;
+            color: #f3d98b;
+            font-size: 1rem;
+            letter-spacing: 6px;
+            font-family: 'SimSun', serif;
+            text-shadow: 0 0 14px rgba(0, 0, 0, 0.95);
+            pointer-events: none;
+        }
+        .video-caption::before,
+        .video-caption::after {
+            content: '—';
+            color: #8b6f1c;
+            margin: 0 16px;
+        }
+
+        /* 声音开关按钮 */
+        .video-sound-btn {
+            position: absolute;
+            right: 40px;
+            bottom: 100px;
+            z-index: 20;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(75, 20, 20, 0.75);
+            border: 2px solid #d4af37;
+            color: #f3d98b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            padding: 0;
+            font-family: inherit;
+        }
+        .video-sound-btn:hover {
+            background: linear-gradient(135deg, #6b1e1e, #8b2a2a);
+            box-shadow: 0 0 32px rgba(212, 175, 55, 0.85);
+            transform: scale(1.08);
+        }
+        .video-sound-btn.unmuted {
+            background: linear-gradient(135deg, #4b1414, #8b2a2a);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(255, 220, 130, 0.7);
+        }
+        .video-sound-btn .sound-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* 提示气泡 */
+        .video-sound-hint {
+            position: absolute;
+            right: 112px;
+            bottom: 114px;
+            z-index: 20;
+            background: rgba(10, 10, 12, 0.88);
+            color: #f3d98b;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            pointer-events: none;
+            animation: hintFloat 2.4s ease-in-out infinite;
+            transition: opacity 0.4s ease;
+            font-family: 'Microsoft YaHei', serif;
+        }
+        .video-sound-hint.hide {
+            opacity: 0;
+        }
+        .video-sound-hint::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: #d4af37;
+        }
+        @keyframes hintFloat {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-3px); }
+        }
+
+        /* ============================================================
+           对话区
+           ============================================================ */
+        .dialog-section {
+            position: relative;
+            z-index: 1;
+            padding: 20px 0 0;
+        }
+        .dialog-wrap {
+            position: relative; z-index: 1;
+            display: flex; gap: 28px;
+            margin-bottom: 50px; min-height: 540px;
+        }
+
+        .npc-list { width: 270px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+        .npc-list-head {
+            text-align: center; color: #b8863b;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            font-size: 0.95rem; padding-bottom: 6px;
+            border-bottom: 1px solid rgba(184,134,59,0.3);
+            margin-bottom: 4px;
+        }
+        .npc-item {
+            position: relative;
+            padding: 15px 18px 15px 40px;
+            background: linear-gradient(135deg, rgba(34,17,15,0.92), rgba(18,9,9,0.96));
+            border: 1px solid #4a1a12;
+            border-radius: 8px;
+            cursor: pointer; color: #b8a994;
+            transition: all 0.3s ease; font-size: 1.05rem;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.7);
+            overflow: hidden;
+        }
+        .npc-item::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+            background: linear-gradient(to top, #8b3000, #ffb347, #8b3000);
+            opacity: 0; transition: opacity 0.3s ease;
+            box-shadow: 0 0 12px rgba(255,150,50,0.8);
+        }
+        .npc-item::after {
+            content: '🔥';
+            position: absolute; left: 14px; top: 50%;
+            transform: translateY(-50%) scale(0.6);
+            font-size: 0.9rem; opacity: 0;
+            transition: all 0.3s ease;
+            filter: grayscale(0.3);
+        }
+        .npc-item:hover {
+            border-color: #8b3000; color: #e8c870;
+            background: linear-gradient(135deg, rgba(56,20,18,0.95), rgba(28,12,12,0.98));
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.7), 0 0 18px rgba(200,60,30,0.4);
+            transform: translateX(4px);
+        }
+        .npc-item.active {
+            border-color: #d4af37; color: #ffe9a8;
+            background: linear-gradient(135deg, rgba(70,28,18,0.97), rgba(34,16,12,0.99));
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.7), 0 0 22px rgba(212,175,55,0.45);
+        }
+        .npc-item.active::before, .npc-item:hover::before { opacity: 1; }
+        .npc-item.active::after {
+            opacity: 1; transform: translateY(-50%) scale(1);
+            animation: flameWiggle 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes flameWiggle {
+            0%   { transform: translateY(-50%) scale(1) rotate(-6deg); }
+            100% { transform: translateY(-52%) scale(1.12) rotate(6deg); }
+        }
+
+        .dialog-box {
+            flex: 1; position: relative;
+            background: linear-gradient(135deg, rgba(26,14,12,0.97), rgba(14,7,7,0.99));
+            border: 1px solid #6b2418; border-radius: 10px;
+            padding: 34px;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.88), 0 0 24px rgba(0,0,0,0.7);
+            display: flex; flex-direction: column;
+        }
+        .dialog-box::before {
+            content: ''; position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px solid rgba(212,175,55,0.22);
+            border-radius: 6px; pointer-events: none;
+        }
+        .dialog-corner {
+            position: absolute; width: 26px; height: 26px; z-index: 2;
+            border-color: #d4af37; opacity: 0.7;
+        }
+        .dialog-corner.tl { top: 4px; left: 4px; border-top: 2px solid; border-left: 2px solid; }
+        .dialog-corner.tr { top: 4px; right: 4px; border-top: 2px solid; border-right: 2px solid; }
+        .dialog-corner.bl { bottom: 4px; left: 4px; border-bottom: 2px solid; border-left: 2px solid; }
+        .dialog-corner.br { bottom: 4px; right: 4px; border-bottom: 2px solid; border-right: 2px solid; }
+
+        .npc-info {
+            display: flex; align-items: center; gap: 20px;
+            margin-bottom: 24px; padding-bottom: 18px;
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+        }
+        .npc-avatar {
+            position: relative;
+            width: 84px; height: 84px; border-radius: 50%;
+            border: 2px solid #d4af37; background-color: #1a0a0a;
+            overflow: hidden; flex-shrink: 0;
+            box-shadow: 0 0 18px rgba(212,175,55,0.4);
+            animation: avatarGlow 3.5s ease-in-out infinite;
+        }
+        @keyframes avatarGlow {
+            0%,100% { box-shadow: 0 0 18px rgba(212,175,55,0.4); }
+            50%     { box-shadow: 0 0 28px rgba(212,175,55,0.75); }
+        }
+        .npc-avatar img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
+        .npc-name {
+            font-size: 1.55rem; color: #e8c870;
+            font-family: 'SimSun', serif; letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(232,200,112,0.5);
+        }
+        .npc-title { color: #8a7a68; font-size: 0.95rem; margin-top: 4px; }
+        .voice-btn {
+            margin-top: 12px; padding: 8px 18px;
+            background: linear-gradient(135deg, rgba(44,22,20,0.9), rgba(26,13,13,0.95));
+            border: 1px solid #4a1a12; border-radius: 30px;
+            color: #c9bba8; font-size: 0.92rem; cursor: pointer;
+            transition: all 0.3s ease; font-family: inherit;
+        }
+        .voice-btn:hover {
+            border-color: #d4af37; color: #fff;
+            background: linear-gradient(135deg, rgba(74,28,26,0.95), rgba(44,18,18,0.98));
+            box-shadow: 0 0 14px rgba(212,175,55,0.4);
+        }
+        .voice-btn.playing {
+            border-color: #ffb347; color: #ffd98b;
+            animation: voicePulse 1s ease-in-out infinite;
+        }
+        @keyframes voicePulse {
+            0%,100% { box-shadow: 0 0 8px rgba(255,180,70,0.4); }
+            50%     { box-shadow: 0 0 22px rgba(255,180,70,0.9); }
+        }
+
+        .dialog-text {
+            font-size: 1.12rem; line-height: 2; color: #d9c9b8;
+            margin-bottom: 25px; min-height: 140px;
+            white-space: pre-line; cursor: pointer;
+            padding: 14px 16px; border-radius: 6px;
+            border-left: 2px solid rgba(212,175,55,0.35);
+            background: rgba(0,0,0,0.25);
+            transition: background-color 0.2s ease;
+        }
+        .dialog-text:hover { background-color: rgba(212,175,55,0.05); }
+        .cursor {
+            display: inline-block; width: 2px; height: 1.4em;
+            background-color: #e8c870; margin-left: 2px;
+            vertical-align: text-bottom;
+            box-shadow: 0 0 6px #e8c870;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+        .dialog-options {
+            display: flex; flex-direction: column; gap: 10px;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .dialog-options.show { opacity: 1; transform: translateY(0); }
+        .option-btn {
+            position: relative;
+            padding: 14px 20px 14px 40px;
+            background: linear-gradient(135deg, rgba(44,22,20,0.9), rgba(26,13,13,0.95));
+            border: 1px solid #4a1a12; border-radius: 6px;
+            color: #c9bba8; font-size: 1rem; cursor: pointer;
+            text-align: left; transition: all 0.3s ease; font-family: inherit;
+        }
+        .option-btn::before {
+            content: '◆';
+            position: absolute; left: 16px; top: 50%;
+            transform: translateY(-50%);
+            color: #8b3000; font-size: 0.7rem;
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            border-color: #d4af37; color: #fff;
+            background: linear-gradient(135deg, rgba(74,28,26,0.95), rgba(44,18,18,0.98));
+            box-shadow: 0 0 14px rgba(212,175,55,0.35);
+            transform: translateX(6px);
+        }
+        .option-btn:hover::before { color: #d4af37; text-shadow: 0 0 8px #d4af37; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #4b1414, #6b1e1e);
+            color: #f3d98b; text-decoration: none;
+            border-radius: 30px; border: 2px solid #d4af37;
+            box-shadow: 0 0 14px rgba(212,175,55,0.28);
+            margin-bottom: 50px; letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: linear-gradient(135deg, #6b1e1e, #8b2a2a);
+            color: #fff; box-shadow: 0 0 24px rgba(212,175,55,0.6);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           ★★★★★ 对话区 · 滚动进入揭示动画（每次进入都重播） ★★★★★
+           ============================================================ */
+        @keyframes npcHeadIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes npcItemIn {
+            from { opacity: 0; transform: translateX(-60px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes dialogBoxIn {
+            from { opacity: 0; transform: translateX(90px) scale(0.97); }
+            to   { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        /* 未触发时隐藏（防止初始闪现） */
+        .dialog-section:not(.reveal-play) .npc-list-head,
+        .dialog-section:not(.reveal-play) .npc-item,
+        .dialog-section:not(.reveal-play) .dialog-box {
+            opacity: 0;
+        }
+
+        /* 触发 reveal-play 时播放动画 */
+        .dialog-section.reveal-play .npc-list-head {
+            animation: npcHeadIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+        }
+        .dialog-section.reveal-play .npc-item {
+            animation: npcItemIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .dialog-section.reveal-play .npc-item:nth-child(2) { animation-delay: 0.18s; }
+        .dialog-section.reveal-play .npc-item:nth-child(3) { animation-delay: 0.28s; }
+        .dialog-section.reveal-play .npc-item:nth-child(4) { animation-delay: 0.38s; }
+        .dialog-section.reveal-play .npc-item:nth-child(5) { animation-delay: 0.48s; }
+        .dialog-section.reveal-play .npc-item:nth-child(6) { animation-delay: 0.58s; }
+        .dialog-section.reveal-play .npc-item:nth-child(7) { animation-delay: 0.68s; }
+        .dialog-section.reveal-play .dialog-box {
+            animation: dialogBoxIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+        }
+
+        /* ============================================================
+           页脚：首页同款
+           ============================================================ */
+        footer {
+            background-color: #12100f;
+            color: #e2dfd8;
+            padding: 50px 0 24px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #d4af37; margin-bottom: 20px; font-family: 'SimSun', serif; font-size: 1.2rem; }
+        .footer-section p { margin-bottom: 10px; line-height: 1.8; color: #b8b4ae; }
+        .footer-section a {
+            color: #b8b4ae;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            line-height: 1.8;
+            transition: all 0.2s ease;
+        }
+        .footer-section a:hover { color: #d4af37; padding-left: 5px; }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 20px; color: #888; }
+
+        /* ============================================================
+           右侧悬浮工具栏：首页同款
+           ============================================================ */
+        .float-toolbar {
+            position: fixed;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 9998;
+            transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .float-toolbar.collapsed,
+        .float-toolbar.scroll-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-50%) translateX(calc(100% + 30px));
+        }
+        .toolbar-btn {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 56px;
+            height: 60px;
+            background: linear-gradient(135deg, #2a2422, #1a1615);
+            border: 2px solid #5c3a2b;
+            border-radius: 12px;
+            color: #e2dfd8;
+            text-decoration: none;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            padding: 0;
+        }
+        .toolbar-btn:hover {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            color: #d4af37;
+            transform: translateX(-4px);
+            box-shadow: 0 0 18px rgba(212,175,55,0.5), 0 4px 12px rgba(0,0,0,0.6);
+        }
+        .toolbar-btn .toolbar-icon { font-size: 1.3rem; line-height: 1; color: #d4af37; }
+        .toolbar-btn .toolbar-label { font-size: 0.7rem; color: #c5c2bd; letter-spacing: 1px; }
+        .toolbar-btn:hover .toolbar-label { color: #d4af37; }
+        .toolbar-btn.logout .toolbar-icon { color: #e08a8a; }
+        .toolbar-btn.logout:hover { border-color: #e08a8a; }
+        .toolbar-btn.logout:hover .toolbar-icon,
+        .toolbar-btn.logout:hover .toolbar-label { color: #ffb3b3; }
+        .toolbar-btn.toggle {
+            height: 40px;
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            border-color: #d4af37;
+        }
+        .toolbar-btn.toggle .toolbar-icon { font-size: 1rem; }
+        .toolbar-btn::before {
+            content: attr(data-tip);
+            position: absolute;
+            right: calc(100% + 12px);
+            top: 50%;
+            transform: translateY(-50%) translateX(8px);
+            background: #1a1615;
+            color: #f3d98b;
+            border: 1px solid #d4af37;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+        .toolbar-btn::after {
+            content: '';
+            position: absolute;
+            right: calc(100% + 4px);
+            top: 50%;
+            transform: translateY(-50%) translateX(8px);
+            border: 6px solid transparent;
+            border-left-color: #d4af37;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+        }
+        .toolbar-btn:hover::before,
+        .toolbar-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(0);
+        }
+        .toolbar-expand-btn {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) translateX(100%);
+            width: 36px;
+            height: 70px;
+            background: linear-gradient(135deg, #2a2422, #1a1615);
+            border: 2px solid #d4af37;
+            border-right: none;
+            border-radius: 12px 0 0 12px;
+            color: #d4af37;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.3);
+            z-index: 9997;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 0;
+        }
+        .toolbar-expand-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(0);
+        }
+        .toolbar-expand-btn:hover {
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            box-shadow: -4px 0 20px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.6);
+        }
+        .toolbar-expand-btn .expand-icon {
+            font-size: 1.1rem;
+            animation: arrowPulse 2s ease-in-out infinite;
+        }
+        @keyframes arrowPulse {
+            0%, 100% { transform: translateX(0); }
+            50%      { transform: translateX(-3px); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 1200px) {
+            h1 { font-size: 1.6rem; }
+            .search-box input { width: 110px; }
+            .reserve-btn { padding: 8px 14px; font-size: 0.85rem; }
+            .user-avatar-btn .avatar-name { max-width: 60px; }
+        }
+        @media (max-width: 992px) {
+            h1 { font-size: 1.4rem; }
+            .search-box input { width: 90px; }
+            .reserve-btn { padding: 7px 12px; font-size: 0.8rem; }
+            .reserve-btn span:not(.reserve-icon) { display: none; }
+            .user-avatar-btn .avatar-name { display: none; }
+            .dialog-wrap { flex-direction: column; }
+            .npc-list { width: 100%; flex-direction: row; flex-wrap: wrap; }
+            .npc-list-head { width: 100%; }
+            .npc-item { flex: 1; min-width: 140px; text-align: center; padding-left: 18px; }
+            .npc-item::after, .npc-item::before { display: none; }
+            .hero-erdtree { width: 320px; }
+            .video-head h2 { font-size: 2rem; }
+        }
+        @media (max-width: 768px) {
+            header { padding: 10px 0; }
+            .container { padding: 0 12px; }
+            .logo-icon { width: 34px; height: 34px; font-size: 20px; }
+            h1 { font-size: 1rem; }
+            .header-content { gap: 8px; }
+            .header-right { gap: 6px; }
+            .search-box { padding: 3px 3px 3px 10px; height: 36px; }
+            .search-box input { width: 60px; font-size: 0.8rem; }
+            .search-box button { padding: 5px 10px; font-size: 0.75rem; }
+            .reserve-btn { padding: 6px 10px; height: 36px; }
+            .user-avatar-btn { height: 36px; padding: 3px; }
+            .user-avatar-btn .avatar-img { width: 28px; height: 28px; font-size: 16px; }
+            .user-avatar-btn .arrow { display: none; }
+            .nav-menu { flex-direction: column; align-items: center; gap: 15px; }
+            .page-hero h2 { font-size: 2rem; letter-spacing: 4px; }
+            .dialog-box { padding: 22px; }
+            .npc-info { flex-direction: column; text-align: center; }
+            .float-toolbar { right: 8px; gap: 6px; }
+            .toolbar-btn { width: 48px; height: 52px; border-radius: 10px; }
+            .toolbar-btn .toolbar-icon { font-size: 1.1rem; }
+            .toolbar-btn .toolbar-label { font-size: 0.65rem; }
+            .toolbar-expand-btn { width: 30px; height: 60px; }
+
+            /* 视频响应式 */
+            .video-section { min-height: 520px; }
+            .video-head { top: 30px; }
+            .video-head h2 { font-size: 1.5rem; letter-spacing: 4px; }
+            .video-caption { bottom: 24px; font-size: 0.85rem; letter-spacing: 3px; }
+            .video-sound-btn { right: 16px; bottom: 80px; width: 48px; height: 48px; }
+            .video-sound-btn .sound-icon { font-size: 1.2rem; }
+            .video-sound-hint { right: 76px; bottom: 88px; font-size: 0.75rem; padding: 6px 12px; }
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 0.9rem; }
+            .logo-icon { width: 28px; height: 28px; font-size: 16px; }
+            .search-box input { display: none; }
+            .search-box { padding: 3px; }
+            .search-box button { padding: 5px 8px; font-size: 0.7rem; }
+            .video-head h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-layer" id="ambientLayer"></div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-area">
+                <div class="logo-icon" title="艾尔登法环">⭘</div>
+                <h1>艾尔登法环 · 交界地档案</h1>
+            </div>
+
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索..." aria-label="搜索档案内容">
+                    <button id="searchBtn" title="搜索"><i>🔍</i> 搜索</button>
+                </div>
+
+                <a class="reserve-btn" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
+                    <span class="reserve-icon">⚔️</span>
+                    <span>立即预约</span>
+                </a>
+
+                <button class="user-avatar-btn" id="userAvatarBtn" aria-label="用户菜单">
+                    <span class="avatar-img">👤</span>
+                    <span class="avatar-name" id="userNameDisplay">褪色者</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="geography.html">交界地地理</a></li>
+                <li><a href="demigod.html">半神角色</a></li>
+                <li><a href="weapon.html">武器装备</a></li>
+                <li><a href="dungeon.html">遗迹地下城</a></li>
+                <li><a href="npc.html">NPC故事</a></li>
+                <li><a href="worldview.html">世界观设定</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面大标题 -->
+    <div class="page-hero">
+        <div class="grace-beacon"></div>
+        <div class="hero-erdtree">
+            <svg viewBox="0 0 460 420" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <linearGradient id="erdGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%"  stop-color="#fff2b0" stop-opacity="0.95"/>
+                        <stop offset="40%" stop-color="#ffd070" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#7a4a10" stop-opacity="0.3"/>
+                    </linearGradient>
+                    <radialGradient id="erdHalo" cx="50%" cy="25%" r="60%">
+                        <stop offset="0%" stop-color="#fff2b0" stop-opacity="0.5"/>
+                        <stop offset="100%" stop-color="#e8a854" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <ellipse cx="230" cy="150" rx="190" ry="160" fill="url(#erdHalo)"/>
+                <path fill="url(#erdGrad)" d="M218,420 L242,420 L237,300 L244,200 L248,140 L244,100 L235,70 L232,50 L235,50 L235,100 L232,140 L220,200 L216,300 L222,420 Z"/>
+                <path fill="url(#erdGrad)" d="M232,140 Q205,122 175,112 Q140,108 100,112 Q135,120 172,130 Q210,140 233,148 Z"/>
+                <path fill="url(#erdGrad)" d="M232,118 Q198,96 158,84 Q112,78 65,90 Q110,98 158,110 Q205,124 233,134 Z"/>
+                <path fill="url(#erdGrad)" d="M233,96 Q192,60 140,44 Q88,38 40,58 Q92,66 145,80 Q195,98 233,120 Z"/>
+                <path fill="url(#erdGrad)" d="M228,140 Q255,122 285,112 Q320,108 360,112 Q325,120 288,130 Q250,140 227,148 Z"/>
+                <path fill="url(#erdGrad)" d="M228,118 Q262,96 302,84 Q348,78 395,90 Q350,98 302,110 Q255,124 227,134 Z"/>
+                <path fill="url(#erdGrad)" d="M227,96 Q268,60 320,44 Q372,38 420,58 Q368,66 315,80 Q265,98 227,120 Z"/>
+                <ellipse cx="230" cy="55" rx="16" ry="26" fill="#fff2b0" opacity="0.9"/>
+                <ellipse cx="230" cy="55" rx="32" ry="48" fill="#ffd070" opacity="0.4"/>
+            </svg>
+        </div>
+        <div class="eyebrow">T A L E S   O F   T H E   L A N D S   B E T W E E N</div>
+        <h2>人物对话纪事</h2>
+        <div class="title-divider">
+            <span class="line"></span>
+            <span class="sigil">✦</span>
+            <span class="line right"></span>
+        </div>
+        <p class="subtitle">与交界地的行者们对话，你的每一次选择，都将改变故事的走向</p>
+    </div>
+
+    <!-- ============================================================
+         ★ 全屏视频区（滚动进入自动播放 + 离开自动暂停 + 声音开关）
+         ============================================================ -->
+    <section class="video-section" id="videoSection">
+        <video id="npcVideo" src="video/npc_story.mp4" muted loop playsinline preload="metadata"></video>
+
+        <div class="video-head">
+            <div class="eyebrow">T A L E S   O F   N P C</div>
+            <h2>交界地NPC人物纪事</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="video-caption">命运交织 · 交界地的行者们</div>
+        <div class="video-fade-bottom"></div>
+
+        <button class="video-sound-btn" id="soundBtn" title="开启声音" aria-label="开启声音">
+            <span class="sound-icon" id="soundIcon">🔇</span>
+        </button>
+        <div class="video-sound-hint" id="soundHint">点击开启声音</div>
+    </section>
+
+    <!-- 对话区 -->
+    <div class="dialog-section">
+        <div class="container">
+            <div class="dialog-wrap">
+                <div class="npc-list" id="npcListBox"></div>
+                <div class="dialog-box">
+                    <span class="dialog-corner tl"></span>
+                    <span class="dialog-corner tr"></span>
+                    <span class="dialog-corner bl"></span>
+                    <span class="dialog-corner br"></span>
+                    <div class="npc-info">
+                        <div class="npc-avatar">
+                            <img src="" alt="" id="avatarImg">
+                        </div>
+                        <div>
+                            <div class="npc-name" id="npcName"></div>
+                            <div class="npc-title" id="npcTitle"></div>
+                            <button class="voice-btn" id="voiceBtn">🔊 重播本段语音</button>
+                        </div>
+                    </div>
+                    <div class="dialog-text" id="dialogText"></div>
+                    <div class="dialog-options" id="dialogOptions"></div>
+                </div>
+            </div>
+            <div style="text-align:center;">
+                <a href="index.html" class="back-link">← 返回网站首页</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于本站</h3>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">艾尔登法环交界地档案，玩家向资料网站，整理交界地人物、地理、装备与剧情设定。</a>
+                </div>
+                <div class="footer-section">
+                    <h3>资料来源</h3>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">游戏文本、物品说明、NPC对话</a>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">玩家剧情考据整理</a>
+                </div>
+                <div class="footer-section">
+                    <h3>导航</h3>
+                    <p>地图大全</p>
+                    <p>支线任务汇总</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 艾尔登法环交界地档案 · 仅供学习演示</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="user-dropdown" id="userDropdown">
+        <div class="dropdown-header">
+            <div class="big-avatar">👤</div>
+            <div class="user-name" id="dropdownUserName">褪色者</div>
+        </div>
+        <button class="dropdown-item logout" id="logoutBtn">
+            <span class="item-icon">🚪</span>
+            <span>退出登录</span>
+        </button>
+    </div>
+
+    <div class="float-toolbar" id="floatToolbar">
+        <button class="toolbar-btn" data-tip="回到顶部" id="ftTop">
+            <span class="toolbar-icon">⬆</span>
+            <span class="toolbar-label">顶部</span>
+        </button>
+        <a class="toolbar-btn" data-tip="立即预约" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
+            <span class="toolbar-icon">⚔️</span>
+            <span class="toolbar-label">预约</span>
+        </a>
+        <button class="toolbar-btn" data-tip="搜索档案" id="ftSearch">
+            <span class="toolbar-icon">🔍</span>
+            <span class="toolbar-label">搜索</span>
+        </button>
+        <a class="toolbar-btn" data-tip="官方网址" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
+            <span class="toolbar-icon">🌐</span>
+            <span class="toolbar-label">官网</span>
+        </a>
+        <button class="toolbar-btn" data-tip="使用帮助" id="ftHelp">
+            <span class="toolbar-icon">❓</span>
+            <span class="toolbar-label">帮助</span>
+        </button>
+        <button class="toolbar-btn logout" data-tip="退出登录" id="ftLogout">
+            <span class="toolbar-icon">🚪</span>
+            <span class="toolbar-label">退出</span>
+        </button>
+        <button class="toolbar-btn toggle" data-tip="收起工具栏" id="ftToggle">
+            <span class="toolbar-icon">▶</span>
+            <span class="toolbar-label">收起</span>
+        </button>
+    </div>
+
+    <button class="toolbar-expand-btn" id="ftExpand" aria-label="展开工具栏" title="展开工具栏">
+        <span class="expand-icon">◀</span>
+    </button>
+
+<script>
+    let npcData = {};
+    let currentNpc = 'melina';
+    let currentState = 'init';
+    let typingTimer = null;
+    let currentAudio = null;
+    let userHasInteract = false;
+
+    const npcListBox = document.getElementById('npcListBox');
+    const avatarImg = document.getElementById('avatarImg');
+    const npcName = document.getElementById('npcName');
+    const npcTitle = document.getElementById('npcTitle');
+    const dialogText = document.getElementById('dialogText');
+    const dialogOptions = document.getElementById('dialogOptions');
+    const voiceBtn = document.getElementById('voiceBtn');
+
+    // ========== 用户下拉菜单 ==========
+    var userAvatarBtn = document.getElementById('userAvatarBtn');
+    var userDropdown = document.getElementById('userDropdown');
+    var userNameDisplay = document.getElementById('userNameDisplay');
+    var dropdownUserName = document.getElementById('dropdownUserName');
+
+    var savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+        if (userNameDisplay) userNameDisplay.textContent = savedUsername;
+        if (dropdownUserName) dropdownUserName.textContent = savedUsername;
+    }
+
+    var dropdownOpen = false;
+    function positionDropdown() {
+        var rect = userAvatarBtn.getBoundingClientRect();
+        var dropdownWidth = 260;
+        var left = rect.right - dropdownWidth;
+        if (left < 10) left = 10;
+        if (left + dropdownWidth > window.innerWidth - 10) {
+            left = window.innerWidth - dropdownWidth - 10;
+        }
+        var top = rect.bottom + 10;
+        userDropdown.style.left = left + 'px';
+        userDropdown.style.top = top + 'px';
+    }
+    userAvatarBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (dropdownOpen) {
+            userDropdown.classList.remove('open');
+            userAvatarBtn.classList.remove('open');
+            dropdownOpen = false;
+        } else {
+            positionDropdown();
+            userDropdown.classList.add('open');
+            userAvatarBtn.classList.add('open');
+            dropdownOpen = true;
+        }
+    });
+    userDropdown.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.addEventListener('click', function () {
+        if (dropdownOpen) {
+            userDropdown.classList.remove('open');
+            userAvatarBtn.classList.remove('open');
+            dropdownOpen = false;
+        }
+    });
+    window.addEventListener('resize', function () { if (dropdownOpen) positionDropdown(); });
+    window.addEventListener('scroll', function () { if (dropdownOpen) positionDropdown(); }, true);
+
+    document.getElementById('logoutBtn').onclick = function () {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        alert("已退出登录");
+        window.location.href = "login.html";
+    };
+
+    // ========== 导航高亮 ==========
+    var url = window.location.href;
+    document.querySelectorAll('.nav-menu li a').forEach(function (link) {
+        if (url.endsWith(link.getAttribute('href'))) link.classList.add('active');
+    });
+
+    // ========== ★ 视频：滚动自动播放/暂停 + 声音开关 ==========
+    (function initVideoControl() {
+        var video = document.getElementById('npcVideo');
+        var section = document.getElementById('videoSection');
+        var soundBtn = document.getElementById('soundBtn');
+        var soundIcon = document.getElementById('soundIcon');
+        var soundHint = document.getElementById('soundHint');
+        if (!video || !section) return;
+
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var p = video.play();
+                        if (p && p.catch) {
+                            p.catch(function () {
+                                video.muted = true;
+                                if (soundIcon) soundIcon.textContent = '🔇';
+                                video.play().catch(function () {});
+                            });
+                        }
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.35 });
+            io.observe(section);
+        } else {
+            window.addEventListener('scroll', function () {
+                var rect = section.getBoundingClientRect();
+                var visible = rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.3;
+                if (visible) {
+                    video.play().catch(function () {});
+                } else {
+                    video.pause();
+                }
+            });
+        }
+
+        if (soundBtn && soundIcon) {
+            soundBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (video.muted) {
+                    video.muted = false;
+                    soundIcon.textContent = '🔊';
+                    soundBtn.classList.add('unmuted');
+                    soundBtn.setAttribute('title', '关闭声音');
+                    if (soundHint) soundHint.classList.add('hide');
+                    video.play().catch(function () {});
+                } else {
+                    video.muted = true;
+                    soundIcon.textContent = '🔇';
+                    soundBtn.classList.remove('unmuted');
+                    soundBtn.setAttribute('title', '开启声音');
+                }
+            });
+
+            video.addEventListener('click', function () {
+                if (video.muted) {
+                    video.muted = false;
+                    soundIcon.textContent = '🔊';
+                    soundBtn.classList.add('unmuted');
+                    if (soundHint) soundHint.classList.add('hide');
+                }
+            });
+        }
+    })();
+
+    // ========== 搜索 ==========
+    var searchInput = document.getElementById('searchInput');
+    var searchBtn = document.getElementById('searchBtn');
+    function performSearch() {
+        var keyword = searchInput.value.trim();
+        if (!keyword) { alert('请输入搜索关键词，例如 "梅琳娜"、"菈妮"'); return; }
+        var found = false, matchCount = 0, firstMatch = null;
+        document.querySelectorAll('.search-highlight').forEach(function (el) {
+            el.style.backgroundColor = '';
+            el.style.color = '';
+            el.classList.remove('search-highlight');
+        });
+        var textElements = document.querySelectorAll('.npc-name, .npc-title, .dialog-text, .npc-item');
+        textElements.forEach(function (el) {
+            if (el.textContent.includes(keyword)) {
+                el.style.backgroundColor = '#5c1a1a';
+                el.style.color = '#d4af37';
+                el.classList.add('search-highlight');
+                found = true; matchCount++;
+                if (!firstMatch) firstMatch = el;
+            }
+        });
+        if (found) {
+            firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function () {
+                alert('找到 ' + matchCount + ' 处包含 "' + keyword + '" 的内容。');
+            }, 300);
+        } else {
+            alert('没有找到包含 "' + keyword + '" 的内容。');
+        }
+    }
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); performSearch(); }
+    });
+
+    // ========== 语音播放 ==========
+    function playCurrentVoice() {
+        if (!userHasInteract) return;
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.onended = null;
+            currentAudio = null;
+            voiceBtn.classList.remove('playing');
+        }
+        const src = `audio/${currentNpc}_${currentState}.mp3`;
+        currentAudio = new Audio(src);
+        currentAudio.play().then(() => {
+            voiceBtn.classList.add('playing');
+        }).catch(err => {
+            console.log("音频播放失败", err);
+            voiceBtn.classList.remove('playing');
+        });
+        currentAudio.onended = () => {
+            voiceBtn.classList.remove('playing');
+            currentAudio = null;
+        };
+    }
+
+    function loadDialog(state, autoPlay = true) {
+        const data = npcData[currentNpc];
+        const target = state === 'init' ? data.init : data.reply[state];
+        currentState = state;
+        clearTimeout(typingTimer);
+        dialogOptions.classList.remove('show');
+        avatarImg.src = data.avatar;
+        avatarImg.alt = data.name;
+        npcName.innerText = data.name;
+        npcTitle.innerText = data.title;
+        typeText(dialogText, target.text, () => {
+            renderOptions(target);
+            if(userHasInteract && autoPlay){
+                playCurrentVoice();
+            }
+        });
+    }
+
+    function typeText(element, text, callback) {
+        clearTimeout(typingTimer);
+        element.innerHTML = '';
+        let i = 0;
+        function addChar() {
+            if (i < text.length) {
+                let char = text.charAt(i);
+                if(char === '\n') {
+                    element.innerHTML += '<br><span class="cursor"></span>';
+                } else {
+                    element.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
+                }
+                i++;
+                typingTimer = setTimeout(addChar, 28);
+            } else {
+                element.innerHTML = text.replace(/\n/g, '<br>');
+                callback && callback();
+            }
+        }
+        addChar();
+    }
+
+    function skipTyping() {
+        clearTimeout(typingTimer);
+        const data = npcData[currentNpc];
+        const target = currentState === 'init' ? data.init : data.reply[currentState];
+        dialogText.innerHTML = target.text.replace(/\n/g, '<br>');
+        renderOptions(target);
+    }
+
+    function renderOptions(target) {
+        dialogOptions.innerHTML = '';
+        target.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt.label;
+            btn.addEventListener('click', () => {
+                userHasInteract = true;
+                if (opt.key === 'init') {
+                    loadDialog('init');
+                } else {
+                    loadDialog(opt.key);
+                }
+            });
+            dialogOptions.appendChild(btn);
+        });
+        setTimeout(() => {
+            dialogOptions.classList.add('show');
+        }, 120);
+    }
+
+    function renderNpcList() {
+        npcListBox.innerHTML = '<div class="npc-list-head">◈ 交 界 地 行 者 ◈</div>';
+        Object.keys(npcData).forEach(key => {
+            const item = document.createElement('div');
+            item.className = 'npc-item';
+            if(key === currentNpc) item.classList.add('active');
+            item.innerText = npcData[key].name;
+            item.dataset.npc = key;
+            item.addEventListener('click', () => {
+                userHasInteract = true;
+                document.querySelectorAll('.npc-item').forEach(i=>i.classList.remove('active'));
+                item.classList.add('active');
+                currentNpc = key;
+                loadDialog('init');
+            });
+            npcListBox.appendChild(item);
+        });
+
+        // 数据渲染完成后，如果对话区已经处于 reveal-play 状态，重新触发动画
+        var sec = document.querySelector('.dialog-section');
+        if (sec && sec.classList.contains('reveal-play')) {
+            sec.classList.remove('reveal-play');
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    sec.classList.add('reveal-play');
+                });
+            });
+        }
+    }
+
+    // ========== 后端拉取NPC数据 ==========
+    async function loadNpcFromServer(){
+        try {
+            const res = await fetch('/api/npc-list');
+            const result = await res.json();
+            if(result.code === 200){
+                result.data.forEach(item=>{
+                    npcData[item.npc_key] = item;
+                })
+                renderNpcList();
+                loadDialog('init', false);
+            } else {
+                npcListBox.innerHTML = `<p style="color:red">NPC数据加载失败</p>`;
+            }
+        } catch (err) {
+            console.error('NPC数据加载失败', err);
+            npcListBox.innerHTML = `<p style="color:red">NPC数据加载失败</p>`;
+        }
+    }
+
+    voiceBtn.addEventListener('click', () => {
+        userHasInteract = true;
+        if (currentAudio && !currentAudio.paused) {
+            currentAudio.pause();
+            currentAudio = null;
+            voiceBtn.classList.remove('playing');
+        } else {
+            playCurrentVoice();
+        }
+    });
+    dialogText.addEventListener('click', () => {
+        userHasInteract = true;
+        skipTyping();
+    });
+
+    loadNpcFromServer();
+
+    // ========== ★ 对话区：滚动进入视口时动态出现（每次进入都重播） ==========
+    (function initDialogReveal() {
+        var section = document.querySelector('.dialog-section');
+        if (!section) return;
+
+        // 初始禁用动画状态
+        section.classList.remove('reveal-play');
+
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        // 移除再重新加上 → 强制重播动画
+                        section.classList.remove('reveal-play');
+                        requestAnimationFrame(function () {
+                            requestAnimationFrame(function () {
+                                section.classList.add('reveal-play');
+                            });
+                        });
+                    }
+                });
+            }, { threshold: 0.15 });
+            io.observe(section);
+        } else {
+            // 兜底：不支持 IntersectionObserver 时直接显示
+            section.classList.add('reveal-play');
+        }
+    })();
+
+    // ========== 背景火星 + 符文 ==========
+    (function initAmbient(){
+        const layer = document.getElementById('ambientLayer');
+        if(!layer) return;
+        for(let i=0;i<40;i++){
+            const e = document.createElement('span');
+            e.className = 'amb-ember';
+            e.style.left = Math.random()*100 + '%';
+            const size = 2 + Math.random()*3;
+            e.style.width = size+'px'; e.style.height = size+'px';
+            const dur = 9 + Math.random()*11;
+            e.style.animationDuration = dur+'s';
+            e.style.animationDelay = '-' + (Math.random()*dur) + 's';
+            layer.appendChild(e);
+        }
+        const runes = ['ᛝ','ᛟ','ᚠ','ᛗ','ᛞ','ᛉ','ᚦ','ᛘ','ᛥ','ᚱ'];
+        for(let i=0;i<16;i++){
+            const r = document.createElement('span');
+            r.className = 'amb-rune';
+            r.innerText = runes[Math.floor(Math.random()*runes.length)];
+            r.style.left = Math.random()*100 + '%';
+            r.style.top = Math.random()*100 + '%';
+            r.style.fontSize = (14 + Math.random()*14) + 'px';
+            const dur = 8 + Math.random()*8;
+            r.style.animationDuration = dur+'s';
+            r.style.animationDelay = '-' + (Math.random()*dur) + 's';
+            layer.appendChild(r);
+        }
+    })();
+
+    // ========== 悬浮工具栏 ==========
+    (function initFloatToolbar() {
+        var toolbar = document.getElementById('floatToolbar');
+        var expandBtn = document.getElementById('ftExpand');
+        var hero = document.querySelector('.page-hero');
+        if (!toolbar || !expandBtn) return;
+
+        document.getElementById('ftTop').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('ftSearch').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            var input = document.getElementById('searchInput');
+            if (input) {
+                setTimeout(function () {
+                    input.focus();
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
+            }
+        });
+
+        document.getElementById('ftHelp').addEventListener('click', function () {
+            alert('使用帮助：\n\n· 顶部按钮 → 回到页面最上方\n· 预约按钮 → 跳转官方预约页\n· 搜索按钮 → 快速聚焦搜索框\n· 官网按钮 → 打开官方网站\n· 退出按钮 → 清除登录信息\n· 收起按钮 → 折叠工具栏\n· 右侧小箭头 → 重新展开工具栏');
+        });
+
+        document.getElementById('ftLogout').addEventListener('click', function () {
+            if (confirm('确定要退出登录吗？')) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('username');
+                window.location.href = 'login.html';
+            }
+        });
+
+        document.getElementById('ftToggle').addEventListener('click', function () {
+            toolbar.classList.add('collapsed');
+            expandBtn.classList.add('show');
+        });
+
+        expandBtn.addEventListener('click', function () {
+            toolbar.classList.remove('collapsed');
+            expandBtn.classList.remove('show');
+            updateToolbarVisibility();
+        });
+
+        function updateToolbarVisibility() {
+            if (!hero) return;
+            var threshold = hero.offsetHeight + 100;
+            if (window.scrollY > threshold) {
+                toolbar.classList.remove('scroll-hidden');
+            } else {
+                toolbar.classList.add('scroll-hidden');
+            }
+        }
+
+        window.addEventListener('scroll', updateToolbarVisibility);
+        window.addEventListener('resize', updateToolbarVisibility);
+        updateToolbarVisibility();
+    })();
+</script>
+</body>
+</html>

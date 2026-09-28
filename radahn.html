@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拉塔恩 - 艾尔登法环交界地档案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #12100f;
+            color: #e2dfd8;
+            line-height: 1.8;
+        }
+        /* 全站统一头部导航 */
+        header {
+            background: linear-gradient(135deg, #634020, #2e241c);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav {
+            background-color: #1a1817;
+            padding: 15px 0;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .nav-menu li a {
+            color: #e2dfd8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover {
+            background-color: #704822;
+            color: #d4af37;
+        }
+
+        /* 人物专题英雄横幅 */
+        .hero-banner{
+            width:100%;
+            height:420px;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)), url(img/4.jpg);
+            background-size: cover;
+            background-position: center;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+        }
+        .hero-banner h2{
+            font-size:3rem;
+            color:#f2c888;
+            font-family:'SimSun',serif;
+            margin-bottom:12px;
+        }
+        .hero-banner .sub-title{
+            font-size:1.2rem;
+            color:#c5c2bd;
+        }
+
+        .main-wrap{
+            padding:50px 0;
+        }
+        .two-col{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap:40px;
+            margin-bottom:45px;
+        }
+        .text-block{
+            background-color:#1e1c1b;
+            padding:30px;
+            border-left:4px solid #94642e;
+            border-radius:0 10px 10px 0;
+        }
+        .text-block h3{
+            color:#d4af37;
+            margin-bottom:18px;
+            font-size:1.6rem;
+            font-family:'SimSun',serif;
+        }
+        .text-block p{
+            margin-bottom:14px;
+            color:#c5c2bd;
+        }
+
+        /* 视频区域 */
+        .video-box{
+            background-color:#1e1c1b;
+            padding:24px;
+            border-radius:10px;
+            border:1px solid #3b3734;
+        }
+        .video-box h3{
+            color:#d4af37;
+            margin-bottom:16px;
+            font-family:'SimSun',serif;
+        }
+        video{
+            width:100%;
+            border-radius:6px;
+        }
+
+        .back-home{
+            display:inline-block;
+            margin-top:20px;
+            padding:10px 22px;
+            background:#583818;
+            color:#e2dfd8;
+            text-decoration:none;
+            border-radius:6px;
+        }
+        .back-home:hover{
+            background:#774c20;
+            color:#d4af37;
+        }
+
+        footer {
+            background-color: #1a1817;
+            padding: 40px 0 20px;
+            margin-top:60px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-section h3 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-family: 'SimSun', serif;
+        }
+        .footer-section p {
+            margin-bottom: 10px;
+            color:#b8b4ae;
+        }
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align:center;
+            color:#888;
+        }
+
+        @media(max-width:768px){
+            .two-col{
+                grid-template-columns:1fr;
+            }
+            .nav-menu{
+                flex-direction:column;
+                gap:12px;
+                text-align:center;
+            }
+            .hero-banner h2{
+                font-size:2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 顶部英雄横幅 -->
+<section class="hero-banner">
+    <h2>碎星拉塔恩</h2>
+    <div class="sub-title">碎星将军 · 盖利德的雄狮</div>
+</section>
+
+<main class="main-wrap">
+    <div class="container">
+        <div class="two-col">
+            <!-- 左侧人物介绍 -->
+            <div class="text-block">
+                <h3>人物背景</h3>
+                <p>拉塔恩是拉达冈与蕾娜菈的儿子，菈妮、拉卡德的兄长。黄金子嗣中的强大战士，习得重力魔法，以一己之力封印住坠落的群星，因此得到“碎星”之名。</p>
+                <p>他统御盖利德，麾下拥有强大的红狮子军团。拉塔恩十分崇敬戈弗雷，向往纯粹的战士荣耀。</p>
+                <p>玛莲妮亚率军入侵盖利德，两位半神爆发惨烈的大战。这场战斗没有真正胜利者，玛莲妮亚释放猩红腐败，拉塔恩也被腐败侵蚀心智。</p>
+
+                <h3 style="margin-top:24px;">人物结局</h3>
+                <p>被猩红腐败侵蚀之后，拉塔恩失去理智，徘徊在红狮子竞技场，终日啃食尸体。红狮子城主举办祭典，邀请各路勇士前来终结将军的痛苦。</p>
+                <p>褪色者在祭典之上击败拉塔恩，碎星死去，被他封印的群星重新开始流转，也直接解锁了魔女菈妮的支线剧情。</p>
+                <a href="index.html" class="back-home">← 返回首页</a>
+            </div>
+
+            <!-- 右侧视频位 -->
+            <div class="video-box">
+                <h3>BOSS战斗演示</h3>
+                <video controls>
+                    <source src="video/radahn_boss.mp4" type="video/mp4">
+                    你的浏览器不支持视频播放
+                </video>
+                <p style="margin-top:12px;color:#999;font-size:0.9rem;">视频：拉塔恩祭典BOSS战</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于本站</h3>
+                <p>艾尔登法环交界地档案，玩家向资料网站，整理交界地人物、地理、装备与剧情设定。</p>
+            </div>
+            <div class="footer-section">
+                <h3>资料来源</h3>
+                <p>游戏文本、物品说明、NPC对话</p>
+                <p>玩家剧情考据整理</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p>地图大全</p>
+                <p>支线任务汇总</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 · 仅供学习演示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

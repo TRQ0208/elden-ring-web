@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蒙格温王朝 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>蒙格温王朝 Mohgwyn Palace</h2>
+    <p>地底血池宫殿，鲜血君王蒙格的国度，以鲜血为信仰的隐秘王朝</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+蒙格温王朝是位于希芙拉河地底深处的隐秘宫殿，鲜血君王蒙格建立的鲜血王朝。可通过两条途径抵达：完成白面具瓦雷的支线，或是找到化圣雪原隐藏的鲜血传送门。整片区域被血色红光笼罩，遍地血池与血瀑布，血系敌人丛生。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+蒙格掳走神人米凯拉，打算在此处将米凯拉捧为新神，自己作为王，建立取代黄金树秩序的鲜血王朝。王朝入口的悬崖路是游戏最知名的刷卢恩地点。区域敌人大多附带出血，包含血贵族、血蛆、无名白面入侵者。宫殿最深处就是蒙格的王座，米凯拉沉睡在茧中。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：地底血池、王朝灵庙、血瀑布、悬崖通路</span>
+                <span class="tag">主线：鲜血君王蒙格（可选半神）</span>
+                <span class="tag">推荐等级：110~140</span>
+                <span class="tag">包含：王朝灵庙入口、王朝灵庙中段、鲜血君王大殿</span>
+            </div>
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/17.jpg" alt="鲜血君王蒙格"></div>
+                    <h4>鲜血君王蒙格</h4>
+                    <p>蒙葛特的孪生兄弟，弃子半神，信奉无形之母。一阶段释放血焰；二阶段开启“尼希尔”授血仪式，持续吸取玩家生命并回血。击杀获得蒙格的大卢恩与鲜血君王追忆。</p>
+                    <span class="tag">半神BOSS</span>
+                    <span class="tag">鲜血君王大殿</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/sanguine_noble.jpg" alt="血贵公子"></div>
+                    <h4>血贵公子</h4>
+                    <p>王朝灵庙入口入侵NPC，血系太刀，高速出血连击。击杀获得血贵公子套装。</p>
+                    <span class="tag">入侵NPC</span>
+                    <span class="tag">王朝灵庙入口</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/nameless_white_mask.jpg" alt="无名白面（三名）"></div>
+                    <h4>无名白面</h4>
+                    <p>王朝沿路三名白面入侵者，使用瓦雷的血刺，出血伤害极高。击败可获得消耗品。</p>
+                    <span class="tag">入侵NPC</span>
+                    <span class="tag">悬崖通路</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mohgwyn_ledge_road.jpg" alt="王朝灵庙入口悬崖路"></div>
+                    <h4>王朝灵庙入口悬崖路</h4>
+                    <p>蒙格温王朝入口，著名大鸟刷卢恩点位，大量血蛆与血贵族，地图碎片在此拾取。</p>
+                    <span class="tag">刷卢恩圣地</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mohgwyn_mausoleum.jpg" alt="王朝灵庙"></div>
+                    <h4>王朝灵庙</h4>
+                    <p>血色宫殿建筑群，血池遍布，灵庙中段赐福，可找到受囚商人，出售出血相关道具。</p>
+                    <span class="tag">宫殿主体</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mohg_arena.jpg" alt="鲜血君王大殿"></div>
+                    <h4>鲜血君王大殿</h4>
+                    <p>区域终点，蒙格的战斗场地，米凯拉的茧安放在王座旁。击败蒙格解锁赐福。</p>
+                    <span class="tag">BOSS场地</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>蒙格温王朝可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mohgwyn_sacred_spear.jpg" alt="蒙格温圣矛"></div>
+                    <h4>蒙格温圣矛</h4>
+                    <p>传说矛，战技血焰投掷，远程出血爆发。鲜血君王追忆兑换。</p>
+                    <span class="tag">传说武器</span>
+                    <span class="tag">追忆兑换</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/white_mask.jpg" alt="白面具"></div>
+                    <h4>白面具</h4>
+                    <p>头盔，出血触发后提升攻击力，出血流派核心头部装备，无名白面掉落。</p>
+                    <span class="tag">防具</span>
+                    <span class="tag">悬崖通路</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/lord_of_blood_exultation.jpg" alt="鲜血君王的欢愉"></div>
+                    <h4>鲜血君王的欢愉</h4>
+                    <p>护符，附近发生出血时大幅提升攻击力，出血流毕业护符。王朝血池拾取。</p>
+                    <span class="tag">护符</span>
+                    <span class="tag">王朝灵庙附近</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/sanguine_noble_set.jpg" alt="血贵公子套装"></div>
+                    <h4>血贵公子套装</h4>
+                    <p>轻甲套装，造型华丽，血贵公子入侵击杀掉落。</p>
+                    <span class="tag">防具套装</span>
+                    <span class="tag">王朝灵庙入口</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

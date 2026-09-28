@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界观设定 · 交界地深层卷宗 | 艾尔登法环</title>
+    <script>
+        if(!localStorage.getItem("token")){
+            location.href="login.html";
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #1a1817;
+            color: #e2dfd8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+
+        /* ============================================================
+           头部：首页同款
+           ============================================================ */
+        header {
+            background: linear-gradient(135deg, #4b1414, #2e1c1c);
+            color: #fff;
+            padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: nowrap;
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: radial-gradient(circle, #d4af37 0%, #8b6f1c 80%);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(212,175,55,0.5), inset 0 0 8px rgba(0,0,0,0.6);
+            font-size: 26px; font-weight: bold;
+            color: #1a1817; text-shadow: 0 0 6px #ffe28a;
+            border: 2px solid #b49438;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .logo-icon:hover {
+            box-shadow: 0 0 25px #d4af37, inset 0 0 8px #000;
+            transform: scale(1.03);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 6px #000000;
+            color: #d4af37;
+            font-family: 'SimSun', serif;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+            flex-shrink: 0;
+        }
+        .search-box {
+            display: flex; align-items: center;
+            background: #1e1b1a;
+            border: 2px solid #5c3a2b;
+            border-radius: 30px;
+            padding: 4px 4px 4px 16px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+            height: 44px;
+        }
+        .search-box:focus-within {
+            border-color: #d4af37;
+            box-shadow: 0 0 12px rgba(212,175,55,0.4), inset 0 2px 5px #000;
+        }
+        .search-box input {
+            background: transparent;
+            border: none; outline: none;
+            color: #e2dfd8;
+            font-size: 0.95rem;
+            padding: 0;
+            width: 140px;
+            font-family: 'Microsoft YaHei', serif;
+        }
+        .search-box input::placeholder { color: #a39e97; font-style: italic; font-size: 0.9rem; }
+        .search-box button {
+            background: #4b1414;
+            border: none;
+            color: #e2dfd8;
+            padding: 7px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid #773333;
+            display: flex; align-items: center; gap: 4px;
+            white-space: nowrap;
+        }
+        .search-box button:hover { background: #681e1e; color: #d4af37; border-color: #d4af37; }
+        .reserve-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #4b1414, #6b1e1e);
+            border: 2px solid #d4af37;
+            border-radius: 40px;
+            padding: 8px 18px;
+            color: #f3d98b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 12px rgba(212,175,55,0.3);
+            white-space: nowrap;
+            height: 44px;
+        }
+        .reserve-btn:hover {
+            background: linear-gradient(135deg, #6b1e1e, #8b2a2a);
+            color: #fff;
+            box-shadow: 0 0 22px rgba(212,175,55,0.7);
+            transform: translateY(-2px);
+        }
+        .reserve-btn .reserve-icon { font-size: 1rem; line-height: 1; }
+        .user-avatar-btn {
+            display: flex; align-items: center; gap: 8px;
+            background: #2a2422;
+            border: 2px solid #5c3a2b;
+            border-radius: 40px;
+            padding: 3px 12px 3px 3px;
+            cursor: pointer;
+            color: #e2dfd8;
+            font-size: 0.9rem;
+            font-weight: bold;
+            white-space: nowrap;
+            height: 44px;
+        }
+        .user-avatar-btn:hover { border-color: #d4af37; box-shadow: 0 0 12px rgba(212,175,55,0.4); }
+        .user-avatar-btn .avatar-img {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #8b6f1c);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            color: #1a1817;
+            border: 2px solid #b49438;
+            flex-shrink: 0;
+        }
+        .user-avatar-btn .avatar-name { max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .user-avatar-btn .arrow { font-size: 0.65rem; color: #d4af37; transition: transform 0.3s ease; }
+        .user-avatar-btn.open .arrow { transform: rotate(180deg); }
+
+        .user-dropdown {
+            position: fixed;
+            width: 260px;
+            background: #262220;
+            border: 2px solid #5c3a2b;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.2);
+            padding: 8px;
+            display: none;
+            z-index: 999999;
+        }
+        .user-dropdown.open { display: block; }
+        .dropdown-header {
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            border-radius: 10px;
+            padding: 18px 16px;
+            text-align: center;
+            margin-bottom: 8px;
+            border: 1px solid #5c3a2b;
+        }
+        .dropdown-header .big-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #8b6f1c);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 34px;
+            color: #1a1817;
+            border: 2px solid #b49438;
+            margin: 0 auto 10px;
+            box-shadow: 0 0 20px rgba(212,175,55,0.4);
+        }
+        .dropdown-header .user-name { color: #f3d98b; font-size: 1rem; font-weight: bold; }
+        .dropdown-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 11px 14px;
+            border-radius: 8px;
+            color: #e2dfd8;
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            font-family: inherit;
+            text-align: left;
+        }
+        .dropdown-item:hover { background: #3a2a24; color: #d4af37; }
+        .dropdown-item .item-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+        .dropdown-item.logout { color: #e08a8a; }
+        .dropdown-item.logout:hover { background: #4b1414; color: #ffb3b3; }
+
+        nav { background-color: #12100f; padding: 15px 0; position: relative; z-index: 99; }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-menu li a {
+            color: #e2dfd8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover,
+        .nav-menu li a.active { background-color: #5c1a1a; color: #d4af37; }
+
+        /* ============================================================
+           ★ 流星雨背景层
+           ============================================================ */
+        .meteor-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .meteor {
+            position: absolute;
+            width: 2.5px;
+            height: 2.5px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff8d8 0%, #ffd070 40%, #d4af37 70%, transparent 100%);
+            box-shadow:
+                0 0 6px 2px rgba(255, 220, 130, 0.9),
+                0 0 16px 4px rgba(212, 175, 55, 0.55);
+            opacity: 0;
+            animation: meteorFall linear infinite;
+            transform: rotate(45deg);
+        }
+        .meteor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            width: 160px;
+            height: 1.5px;
+            background: linear-gradient(to left,
+                rgba(255, 240, 190, 0.95) 0%,
+                rgba(255, 200, 80, 0.6) 25%,
+                rgba(212, 175, 55, 0.25) 60%,
+                transparent 100%);
+            border-radius: 50%;
+            filter: blur(0.4px);
+        }
+        .meteor.long::before   { width: 280px; }
+        .meteor.medium::before { width: 180px; }
+        .meteor.short::before  { width: 100px; }
+        .meteor.tiny {
+            width: 1.5px; height: 1.5px;
+            box-shadow: 0 0 4px 1px rgba(255,220,130,0.7), 0 0 10px 2px rgba(212,175,55,0.4);
+        }
+        .meteor.bright {
+            box-shadow:
+                0 0 8px 3px rgba(255, 240, 180, 1),
+                0 0 22px 6px rgba(255, 200, 90, 0.7);
+        }
+        @keyframes meteorFall {
+            0%   { transform: translate(0, 0) rotate(45deg); opacity: 0; }
+            6%   { opacity: 1; }
+            85%  { opacity: 0.9; }
+            100% { transform: translate(-130vw, 130vh) rotate(45deg); opacity: 0; }
+        }
+
+        .star-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: #f3d98b;
+            box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.7);
+            opacity: 0;
+            animation: starTwinkle ease-in-out infinite;
+        }
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50%      { opacity: 1; transform: scale(1.4); }
+        }
+
+        @media (max-width: 768px) {
+            .meteor::before        { width: 80px !important; }
+            .meteor.long::before   { width: 130px !important; }
+            .meteor.medium::before { width: 100px !important; }
+        }
+
+        /* ============================================================
+           Hero 王座区
+           ============================================================ */
+        .page-hero {
+            position: relative;
+            padding: 60px 0 0;
+            text-align: center;
+            overflow: hidden;
+            z-index: 1;
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(90, 20, 8, 0.55) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 90%, rgba(180, 60, 15, 0.22) 0%, transparent 60%),
+                linear-gradient(180deg, #150604 0%, #1a0605 60%, #0a0302 100%);
+        }
+
+        .grace-beacon {
+            position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 3px; height: 320px;
+            background: linear-gradient(to bottom, transparent, rgba(255,220,120,0.85), transparent);
+            box-shadow: 0 0 50px 14px rgba(255,200,90,0.4);
+            pointer-events: none; z-index: 0;
+            animation: beaconPulse 4s ease-in-out infinite;
+        }
+        @keyframes beaconPulse {
+            0%,100% { opacity: 0.4; height: 300px; }
+            50%     { opacity: 0.95; height: 360px; }
+        }
+
+        .throne-glow {
+            position: absolute;
+            top: 40%; left: 50%;
+            width: 900px; height: 900px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle,
+                rgba(255, 190, 80, 0.28) 0%,
+                rgba(201, 48, 10, 0.16) 30%,
+                rgba(139, 0, 0, 0.06) 55%,
+                transparent 78%);
+            filter: blur(20px);
+            z-index: 0; pointer-events: none;
+            animation: throneGlowPulse 6s ease-in-out infinite;
+        }
+        @keyframes throneGlowPulse {
+            0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+            50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            padding: 0 24px;
+        }
+        .page-hero .eyebrow {
+            font-size: 0.9rem; color: #a85438;
+            letter-spacing: 10px; margin-bottom: 18px;
+            font-family: 'SimSun', serif;
+            text-shadow: 0 0 12px rgba(0,0,0,0.9);
+        }
+        .page-hero h2 {
+            display: inline-block;
+            font-size: 3rem; color: #d4af37;
+            font-family: 'SimSun', serif; letter-spacing: 8px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffe9a8 0%, #d4af37 45%, #8b3000 100%);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 18px rgba(212,175,55,0.6));
+            animation: titleShine 3.5s ease-in-out infinite;
+        }
+        @keyframes titleShine {
+            0%,100% { filter: drop-shadow(0 0 18px rgba(212,175,55,0.6)); }
+            50%     { filter: drop-shadow(0 0 30px rgba(255,220,120,1)); }
+        }
+        .page-hero .subtitle {
+            color: #a89678; font-size: 1.08rem; letter-spacing: 2px;
+            max-width: 640px; margin: 0 auto;
+        }
+        .title-divider {
+            display: flex; align-items: center; justify-content: center;
+            gap: 14px; margin: 22px 0 6px;
+        }
+        .title-divider .line {
+            width: 120px; height: 1px;
+            background: linear-gradient(90deg, transparent, #b8863b);
+        }
+        .title-divider .line.right { background: linear-gradient(90deg, #b8863b, transparent); }
+        .title-divider .sigil {
+            color: #d4af37; font-size: 1.2rem;
+            text-shadow: 0 0 12px rgba(212,175,55,0.7);
+            animation: sigilSpin 12s linear infinite;
+        }
+        @keyframes sigilSpin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+        /* 王座舞台 */
+        .throne-stage {
+            position: relative;
+            width: 100%;
+            max-width: 620px;
+            height: 560px;
+            margin: 40px auto 0;
+            z-index: 3;
+            pointer-events: none;
+        }
+        .throne-beam {
+            position: absolute;
+            left: 50%; top: -80px;
+            transform: translateX(-50%);
+            width: 200px; height: 100%;
+            background: linear-gradient(to bottom,
+                rgba(255, 220, 120, 0) 0%,
+                rgba(255, 220, 120, 0.16) 25%,
+                rgba(255, 200, 80, 0.28) 55%,
+                rgba(255, 180, 60, 0.16) 80%,
+                rgba(255, 220, 120, 0) 100%);
+            filter: blur(24px);
+            z-index: 1;
+            animation: beamPulse 4.5s ease-in-out infinite;
+        }
+        @keyframes beamPulse {
+            0%,100% { opacity: 0.85; transform: translateX(-50%) scaleY(1); }
+            50%     { opacity: 1;    transform: translateX(-50%) scaleY(1.04); }
+        }
+        .throne-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            filter:
+                drop-shadow(0 0 30px rgba(212,175,55,0.4))
+                drop-shadow(0 0 70px rgba(201,48,10,0.25));
+            animation: throneBreath 6s ease-in-out infinite;
+        }
+        @keyframes throneBreath {
+            0%,100% {
+                filter:
+                    drop-shadow(0 0 30px rgba(212,175,55,0.4))
+                    drop-shadow(0 0 70px rgba(201,48,10,0.25));
+            }
+            50% {
+                filter:
+                    drop-shadow(0 0 50px rgba(255,215,100,0.8))
+                    drop-shadow(0 0 120px rgba(201,48,10,0.5));
+            }
+        }
+        .throne-wrap svg {
+            width: 100%; height: 100%;
+            display: block;
+            overflow: visible;
+        }
+        .throne-base-glow {
+            position: absolute;
+            bottom: -30px; left: 50%;
+            transform: translateX(-50%);
+            width: 480px; height: 120px;
+            background: radial-gradient(ellipse at 50% 100%,
+                rgba(255, 180, 80, 0.5) 0%,
+                rgba(201, 48, 10, 0.3) 40%,
+                transparent 75%);
+            filter: blur(20px);
+            z-index: 1;
+            animation: baseGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes baseGlow {
+            0%   { opacity: 0.7; transform: translateX(-50%) scale(1); }
+            100% { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+        }
+
+        /* 王座上方飘浮碎片 */
+        .floating-shards {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 4;
+            overflow: hidden;
+        }
+        .shard {
+            position: absolute;
+            bottom: 0;
+            width: 8px; height: 8px;
+            background: linear-gradient(135deg, #f3d98b 0%, #d4af37 60%, #8b6f1c 100%);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            box-shadow: 0 0 10px rgba(212,175,55,0.85);
+            opacity: 0;
+            animation: shardRise linear infinite;
+        }
+        @keyframes shardRise {
+            0%   { transform: translateY(0) translateX(0) rotate(0deg) scale(0.5); opacity: 0; }
+            12%  { opacity: 0.95; }
+            50%  { opacity: 0.85; }
+            90%  { opacity: 0.3; }
+            100% { transform: translateY(-90vh) translateX(30px) rotate(720deg) scale(0.4); opacity: 0; }
+        }
+        .ember-dot {
+            position: absolute;
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffdd99 0%, #ff5511 60%, transparent 100%);
+            box-shadow: 0 0 8px 2px rgba(255, 140, 60, 0.8);
+            opacity: 0;
+            animation: emberRise linear infinite;
+        }
+        @keyframes emberRise {
+            0%   { transform: translateY(0) translateX(0) scale(0.4); opacity: 0; }
+            15%  { opacity: 0.9; }
+            80%  { opacity: 0.7; }
+            100% { transform: translateY(-80vh) translateX(-20px) scale(0.3); opacity: 0; }
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 100%; height: 180px;
+            background: linear-gradient(to bottom, transparent, #1a1817);
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+           卷轴内容块
+           ============================================================ */
+        .main-content { padding: 60px 0 40px; position: relative; z-index: 7; }
+
+        .scroll-block {
+            background: linear-gradient(145deg, #1e1914 0%, #14100c 100%);
+            border: 1px solid #6e5e48;
+            border-left: 10px solid #8b7657;
+            border-radius: 8px;
+            padding: 40px 40px 45px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #2b241d;
+            position: relative;
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .scroll-block.in-view {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.3s ease;
+        }
+        .scroll-block:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), inset 0 0 50px rgba(100, 70, 30, 0.15), 0 0 0 1px #6b5b45;
+            transform: translateY(-3px);
+        }
+        .scroll-block::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px dashed rgba(200, 170, 120, 0.15);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        .scroll-block::after {
+            content: '';
+            position: absolute;
+            top: 8px; right: 8px;
+            width: 32px; height: 32px;
+            border-top: 2px solid #d4af37;
+            border-right: 2px solid #d4af37;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .scroll-block h3 {
+            color: #e3c79c;
+            font-family: 'SimSun', serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #5f503b;
+            letter-spacing: 3px;
+            font-weight: 500;
+            text-shadow: 0 2px 4px #000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .scroll-block h3::before {
+            content: '◆';
+            color: #b3925c;
+            font-size: 1.6rem;
+            opacity: 0.8;
+            text-shadow: 0 0 6px #ae8e5b;
+        }
+        .scroll-block h4 {
+            color: #e2cbaa;
+            margin: 1.8rem 0 0.8rem;
+            font-size: 1.4rem;
+            font-family: 'SimSun', serif;
+            border-left: 4px solid #ae8b5a;
+            padding-left: 16px;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-shadow: 0 1px 3px black;
+        }
+        .scroll-block p {
+            margin-bottom: 1.2rem;
+            color: #d2c1ab;
+            font-size: 1.05rem;
+            text-align: justify;
+            text-justify: inter-ideograph;
+            padding: 0 6px;
+            line-height: 1.9;
+        }
+        .img-box {
+            width: 100%;
+            height: 340px;
+            margin: 2rem 0 1.8rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #7b684c;
+            box-shadow: 0 18px 30px -8px black, inset 0 0 30px rgba(0,0,0,0.7), 0 0 0 1px #2b241d;
+            position: relative;
+            transition: all 0.4s ease;
+            background: #0e0c09;
+        }
+        .img-box:hover {
+            border-color: #c9a878;
+            box-shadow: 0 22px 40px -5px black, inset 0 0 20px rgba(180, 130, 60, 0.2);
+        }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.95) contrast(1.08) saturate(0.9);
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+        .img-box:hover img {
+            transform: scale(1.02);
+            filter: brightness(1.05) contrast(1.1) saturate(1);
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #a2917a;
+            margin-top: -1rem;
+            margin-bottom: 1.8rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        .ending-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 25px 0 15px;
+        }
+        .ending-card {
+            background: #1b1611;
+            border: 1px solid #4f4232;
+            border-radius: 8px;
+            padding: 18px 16px;
+            box-shadow: inset 0 0 20px #00000055, 0 5px 10px #00000033;
+            transition: all 0.25s;
+        }
+        .ending-card:hover {
+            border-color: #b3925c;
+            background: #221c15;
+            box-shadow: 0 0 18px #7a5d38, inset 0 0 20px #00000055;
+            transform: translateY(-2px);
+        }
+        .ending-card h5 {
+            color: #dfc7a3;
+            font-size: 1.15rem;
+            font-family: 'SimSun', serif;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #4e3f2e;
+            padding-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .ending-card p {
+            font-size: 0.95rem;
+            color: #c0af99;
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        .back-wrap {
+            text-align: center;
+            padding: 20px 0 60px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 52px;
+            padding: 0 36px;
+            background: linear-gradient(135deg, #4b1414, #6b1e1e);
+            color: #f3d98b;
+            text-decoration: none;
+            border: 2px solid #d4af37;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
+        }
+        .back-link:hover {
+            background: linear-gradient(135deg, #6b1e1e, #8b2a2a);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.65);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           页脚
+           ============================================================ */
+        footer {
+            background-color: #12100f;
+            color: #e2dfd8;
+            padding: 50px 0 24px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #d4af37; margin-bottom: 20px; font-family: 'SimSun', serif; font-size: 1.2rem; }
+        .footer-section p { margin-bottom: 10px; line-height: 1.8; color: #b8b4ae; }
+        .footer-section a {
+            color: #b8b4ae;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            line-height: 1.8;
+            transition: all 0.2s ease;
+        }
+        .footer-section a:hover { color: #d4af37; padding-left: 5px; }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 20px; color: #888; }
+
+        /* ============================================================
+           悬浮工具栏
+           ============================================================ */
+        .float-toolbar {
+            position: fixed;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 9998;
+            transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .float-toolbar.collapsed,
+        .float-toolbar.scroll-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-50%) translateX(calc(100% + 30px));
+        }
+        .toolbar-btn {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 56px;
+            height: 60px;
+            background: linear-gradient(135deg, #2a2422, #1a1615);
+            border: 2px solid #5c3a2b;
+            border-radius: 12px;
+            color: #e2dfd8;
+            text-decoration: none;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            padding: 0;
+        }
+        .toolbar-btn:hover {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            color: #d4af37;
+            transform: translateX(-4px);
+            box-shadow: 0 0 18px rgba(212,175,55,0.5), 0 4px 12px rgba(0,0,0,0.6);
+        }
+        .toolbar-btn .toolbar-icon { font-size: 1.3rem; line-height: 1; color: #d4af37; }
+        .toolbar-btn .toolbar-label { font-size: 0.7rem; color: #c5c2bd; letter-spacing: 1px; }
+        .toolbar-btn:hover .toolbar-label { color: #d4af37; }
+        .toolbar-btn.logout .toolbar-icon { color: #e08a8a; }
+        .toolbar-btn.logout:hover { border-color: #e08a8a; }
+        .toolbar-btn.logout:hover .toolbar-icon,
+        .toolbar-btn.logout:hover .toolbar-label { color: #ffb3b3; }
+        .toolbar-btn.toggle {
+            height: 40px;
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            border-color: #d4af37;
+        }
+        .toolbar-btn.toggle .toolbar-icon { font-size: 1rem; }
+        .toolbar-btn::before {
+            content: attr(data-tip);
+            position: absolute;
+            right: calc(100% + 12px);
+            top: 50%;
+            transform: translateY(-50%) translateX(8px);
+            background: #1a1615;
+            color: #f3d98b;
+            border: 1px solid #d4af37;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+        .toolbar-btn::after {
+            content: '';
+            position: absolute;
+            right: calc(100% + 4px);
+            top: 50%;
+            transform: translateY(-50%) translateX(8px);
+            border: 6px solid transparent;
+            border-left-color: #d4af37;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+        }
+        .toolbar-btn:hover::before,
+        .toolbar-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(0);
+        }
+        .toolbar-expand-btn {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) translateX(100%);
+            width: 36px;
+            height: 70px;
+            background: linear-gradient(135deg, #2a2422, #1a1615);
+            border: 2px solid #d4af37;
+            border-right: none;
+            border-radius: 12px 0 0 12px;
+            color: #d4af37;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.3);
+            z-index: 9997;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 0;
+        }
+        .toolbar-expand-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(0);
+        }
+        .toolbar-expand-btn:hover {
+            background: linear-gradient(135deg, #3a2a24, #2a1e1a);
+            box-shadow: -4px 0 20px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.6);
+        }
+        .toolbar-expand-btn .expand-icon {
+            font-size: 1.1rem;
+            animation: arrowPulse 2s ease-in-out infinite;
+        }
+        @keyframes arrowPulse {
+            0%, 100% { transform: translateX(0); }
+            50%      { transform: translateX(-3px); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 1200px) {
+            h1 { font-size: 1.6rem; }
+            .search-box input { width: 110px; }
+            .reserve-btn { padding: 8px 14px; font-size: 0.85rem; }
+            .user-avatar-btn .avatar-name { max-width: 60px; }
+            .throne-stage { max-width: 540px; height: 500px; }
+            .throne-glow { width: 700px; height: 700px; }
+        }
+        @media (max-width: 992px) {
+            h1 { font-size: 1.4rem; }
+            .search-box input { width: 90px; }
+            .reserve-btn { padding: 7px 12px; font-size: 0.8rem; }
+            .reserve-btn span:not(.reserve-icon) { display: none; }
+            .user-avatar-btn .avatar-name { display: none; }
+            .throne-stage { max-width: 460px; height: 440px; }
+            .throne-glow { width: 600px; height: 600px; }
+            .throne-beam { width: 160px; }
+        }
+        @media (max-width: 768px) {
+            header { padding: 10px 0; }
+            .container { padding: 0 12px; }
+            .logo-icon { width: 34px; height: 34px; font-size: 20px; }
+            h1 { font-size: 1rem; }
+            .header-content { gap: 8px; }
+            .header-right { gap: 6px; }
+            .search-box { padding: 3px 3px 3px 10px; height: 36px; }
+            .search-box input { width: 60px; font-size: 0.8rem; }
+            .search-box button { padding: 5px 10px; font-size: 0.75rem; }
+            .reserve-btn { padding: 6px 10px; height: 36px; }
+            .user-avatar-btn { height: 36px; padding: 3px; }
+            .user-avatar-btn .avatar-img { width: 28px; height: 28px; font-size: 16px; }
+            .user-avatar-btn .arrow { display: none; }
+            .nav-menu { flex-direction: column; align-items: center; gap: 15px; }
+            .page-hero { padding: 40px 0 0; }
+            .page-hero h2 { font-size: 2rem; letter-spacing: 4px; }
+            .throne-stage { max-width: 340px; height: 360px; margin-top: 20px; }
+            .throne-glow { width: 460px; height: 460px; }
+            .throne-beam { width: 120px; height: 320px; }
+            .throne-base-glow { width: 320px; height: 80px; }
+            .scroll-block { padding: 25px 20px; }
+            .scroll-block h3 { font-size: 1.7rem; }
+            .img-box { height: 220px; }
+            .ending-grid { grid-template-columns: 1fr; }
+            .float-toolbar { right: 8px; gap: 6px; }
+            .toolbar-btn { width: 48px; height: 52px; border-radius: 10px; }
+            .toolbar-btn .toolbar-icon { font-size: 1.1rem; }
+            .toolbar-btn .toolbar-label { font-size: 0.65rem; }
+            .toolbar-expand-btn { width: 30px; height: 60px; }
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 0.9rem; }
+            .logo-icon { width: 28px; height: 28px; font-size: 16px; }
+            .search-box input { display: none; }
+            .search-box { padding: 3px; }
+            .search-box button { padding: 5px 8px; font-size: 0.7rem; }
+            .throne-stage { max-width: 280px; height: 300px; }
+            .throne-glow { width: 380px; height: 380px; }
+            .page-hero h2 { font-size: 1.6rem; letter-spacing: 3px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ★ 流星雨背景层 -->
+    <div class="meteor-layer" id="meteorLayer"></div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-area">
+                <div class="logo-icon" title="艾尔登法环">⭘</div>
+                <h1>艾尔登法环 · 交界地档案</h1>
+            </div>
+
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索..." aria-label="搜索档案内容">
+                    <button id="searchBtn" title="搜索"><i>🔍</i> 搜索</button>
+                </div>
+
+                <a class="reserve-btn" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
+                    <span class="reserve-icon">⚔️</span>
+                    <span>立即预约</span>
+                </a>
+
+                <button class="user-avatar-btn" id="userAvatarBtn" aria-label="用户菜单">
+                    <span class="avatar-img">👤</span>
+                    <span class="avatar-name" id="userNameDisplay">褪色者</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="geography.html">交界地地理</a></li>
+                <li><a href="demigod.html">半神角色</a></li>
+                <li><a href="weapon.html">武器装备</a></li>
+                <li><a href="dungeon.html">遗迹地下城</a></li>
+                <li><a href="npc.html">NPC故事</a></li>
+                <li><a href="worldview.html">世界观设定</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ★ 王座 Hero 区 ★ -->
+    <div class="page-hero">
+        <div class="grace-beacon"></div>
+        <div class="throne-glow"></div>
+
+        <div class="hero-content">
+            <div class="eyebrow">T H E   L O R E   O F   T H E   L A N D S</div>
+            <h2>交界地世界观卷宗</h2>
+            <div class="title-divider">
+                <span class="line"></span>
+                <span class="sigil">✦</span>
+                <span class="line right"></span>
+            </div>
+            <p class="subtitle">黄金树兴衰 · 破碎战争 · 褪色者的命运</p>
+        </div>
+
+        <!-- 王座舞台 -->
+        <div class="throne-stage">
+            <div class="throne-beam"></div>
+            <div class="throne-base-glow"></div>
+
+            <div class="throne-wrap">
+                <svg viewBox="0 0 500 620" preserveAspectRatio="xMidYMax meet">
+                    <defs>
+                        <linearGradient id="throneBody" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%"  stop-color="#241410" stop-opacity="1"/>
+                            <stop offset="50%" stop-color="#140806" stop-opacity="1"/>
+                            <stop offset="100%" stop-color="#050101" stop-opacity="1"/>
+                        </linearGradient>
+                        <linearGradient id="throneEdgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%"  stop-color="#ffd070" stop-opacity="0.9"/>
+                            <stop offset="50%" stop-color="#d4af37" stop-opacity="0.7"/>
+                            <stop offset="100%" stop-color="#5c3a2b" stop-opacity="0.35"/>
+                        </linearGradient>
+                        <radialGradient id="runeCore" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%"  stop-color="#fff2b0" stop-opacity="1"/>
+                            <stop offset="50%" stop-color="#ffd070" stop-opacity="0.7"/>
+                            <stop offset="100%" stop-color="#c9300a" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+
+                    <!-- 三级台阶 -->
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M30,612 L470,612 L470,596 L30,596 Z"/>
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M60,596 L440,596 L440,580 L60,580 Z"/>
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M90,580 L410,580 L410,562 L90,562 Z"/>
+
+                    <!-- 座位基座 -->
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M110,562 L390,562 L390,510 L110,510 Z"/>
+
+                    <!-- 扶手柱（左） -->
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M110,510 L110,340 Q110,318 132,318 L148,318 L148,510 Z"/>
+                    <!-- 扶手柱（右） -->
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M390,510 L390,340 Q390,318 368,318 L352,318 L352,510 Z"/>
+
+                    <!-- 高椅背 -->
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M148,510 L148,235 Q148,115 250,55 Q352,115 352,235 L352,510 Z"/>
+
+                    <!-- 椅背内框装饰线 -->
+                    <path fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.5"
+                        d="M170,510 L170,248 Q170,150 250,98 Q330,150 330,248 L330,510"/>
+
+                    <!-- 椅背中央 · 破碎法环 -->
+                    <g transform="translate(250,250)" fill="none" stroke="#d4af37" stroke-width="2">
+                        <path d="M0,-76 A76,76 0 0 1 62,-44" opacity="0.9"/>
+                        <path d="M62,-44 A76,76 0 0 1 73,24" opacity="0.9"/>
+                        <path d="M73,24 A76,76 0 0 1 22,72" opacity="0.9"/>
+                        <path d="M22,72 A76,76 0 0 1 -48,58" opacity="0.9"/>
+                        <path d="M-48,58 A76,76 0 0 1 -73,-22" opacity="0.9"/>
+                        <path d="M-73,-22 A76,76 0 0 1 -22,-73" opacity="0.9"/>
+                        <circle r="55" opacity="0.45" stroke-dasharray="6 8"/>
+                        <circle r="38" opacity="0.35"/>
+                        <circle r="14" fill="url(#runeCore)" stroke="none"/>
+                        <circle r="5" fill="#fff2b0" stroke="none" opacity="0.95"/>
+                    </g>
+
+                    <!-- 顶部尖顶 -->
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1.5"
+                        d="M228,60 L250,5 L272,60 Z"/>
+                    <circle cx="250" cy="5" r="6" fill="#ffd070" opacity="0.95"/>
+                    <circle cx="250" cy="5" r="13" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.7"/>
+                    <circle cx="250" cy="5" r="22" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.4"/>
+
+                    <!-- 椅背两侧小尖塔 -->
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1"
+                        d="M162,240 L150,196 L172,240 Z"/>
+                    <path fill="url(#throneBody)" stroke="url(#throneEdgeGrad)" stroke-width="1"
+                        d="M338,240 L350,196 L328,240 Z"/>
+
+                    <!-- 扶手顶端球形装饰 -->
+                    <circle cx="129" cy="318" r="15" fill="url(#throneBody)" stroke="#d4af37" stroke-width="1.5"/>
+                    <circle cx="129" cy="318" r="6"  fill="#d4af37" opacity="0.7"/>
+                    <circle cx="371" cy="318" r="15" fill="url(#throneBody)" stroke="#d4af37" stroke-width="1.5"/>
+                    <circle cx="371" cy="318" r="6"  fill="#d4af37" opacity="0.7"/>
+
+                    <!-- 座位高光 -->
+                    <path fill="none" stroke="#d4af37" stroke-width="1" opacity="0.5"
+                        d="M120,520 L380,520"/>
+                    <path fill="none" stroke="#d4af37" stroke-width="0.8" opacity="0.35"
+                        d="M125,540 L375,540"/>
+
+                    <!-- 椅背顶部符文点缀 -->
+                    <g fill="#d4af37" opacity="0.85">
+                        <circle cx="200" cy="140" r="2.5"/>
+                        <circle cx="250" cy="130" r="2.5"/>
+                        <circle cx="300" cy="140" r="2.5"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 王座上方飘浮碎片 -->
+        <div class="floating-shards" id="floatingShards"></div>
+    </div>
+
+    <main class="main-content">
+        <div class="container" id="contentWrap">
+            <!-- JS 动态渲染 scroll-block -->
+        </div>
+        <div class="back-wrap">
+            <a href="index.html" class="back-link">← 返回网站首页</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于本站</h3>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">艾尔登法环交界地档案，玩家向资料网站，整理交界地人物、地理、装备与剧情设定。</a>
+                </div>
+                <div class="footer-section">
+                    <h3>资料来源</h3>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">游戏文本、物品说明、NPC对话</a>
+                    <a href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">玩家剧情考据整理</a>
+                </div>
+                <div class="footer-section">
+                    <h3>导航</h3>
+                    <p>地图大全</p>
+                    <p>支线任务汇总</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 艾尔登法环交界地档案 · 仅供学习演示</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="user-dropdown" id="userDropdown">
+        <div class="dropdown-header">
+            <div class="big-avatar">👤</div>
+            <div class="user-name" id="dropdownUserName">褪色者</div>
+        </div>
+        <button class="dropdown-item logout" id="logoutBtn">
+            <span class="item-icon">🚪</span>
+            <span>退出登录</span>
+        </button>
+    </div>
+
+    <div class="float-toolbar" id="floatToolbar">
+        <button class="toolbar-btn" data-tip="回到顶部" id="ftTop">
+            <span class="toolbar-icon">⬆</span>
+            <span class="toolbar-label">顶部</span>
+        </button>
+        <a class="toolbar-btn" data-tip="立即预约" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
+            <span class="toolbar-icon">⚔️</span>
+            <span class="toolbar-label">预约</span>
+        </a>
+        <button class="toolbar-btn" data-tip="搜索档案" id="ftSearch">
+            <span class="toolbar-icon">🔍</span>
+            <span class="toolbar-label">搜索</span>
+        </button>
+        <a class="toolbar-btn" data-tip="官方网址" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
+            <span class="toolbar-icon">🌐</span>
+            <span class="toolbar-label">官网</span>
+        </a>
+        <button class="toolbar-btn" data-tip="使用帮助" id="ftHelp">
+            <span class="toolbar-icon">❓</span>
+            <span class="toolbar-label">帮助</span>
+        </button>
+        <button class="toolbar-btn logout" data-tip="退出登录" id="ftLogout">
+            <span class="toolbar-icon">🚪</span>
+            <span class="toolbar-label">退出</span>
+        </button>
+        <button class="toolbar-btn toggle" data-tip="收起工具栏" id="ftToggle">
+            <span class="toolbar-icon">▶</span>
+            <span class="toolbar-label">收起</span>
+        </button>
+    </div>
+
+    <button class="toolbar-expand-btn" id="ftExpand" aria-label="展开工具栏" title="展开工具栏">
+        <span class="expand-icon">◀</span>
+    </button>
+
+<script>
+    // ====================== 用户下拉菜单 ======================
+    var userAvatarBtn = document.getElementById('userAvatarBtn');
+    var userDropdown = document.getElementById('userDropdown');
+    var userNameDisplay = document.getElementById('userNameDisplay');
+    var dropdownUserName = document.getElementById('dropdownUserName');
+
+    var savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+        if (userNameDisplay) userNameDisplay.textContent = savedUsername;
+        if (dropdownUserName) dropdownUserName.textContent = savedUsername;
+    }
+
+    var dropdownOpen = false;
+    function positionDropdown() {
+        var rect = userAvatarBtn.getBoundingClientRect();
+        var dropdownWidth = 260;
+        var left = rect.right - dropdownWidth;
+        if (left < 10) left = 10;
+        if (left + dropdownWidth > window.innerWidth - 10) {
+            left = window.innerWidth - dropdownWidth - 10;
+        }
+        var top = rect.bottom + 10;
+        userDropdown.style.left = left + 'px';
+        userDropdown.style.top = top + 'px';
+    }
+    userAvatarBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (dropdownOpen) {
+            userDropdown.classList.remove('open');
+            userAvatarBtn.classList.remove('open');
+            dropdownOpen = false;
+        } else {
+            positionDropdown();
+            userDropdown.classList.add('open');
+            userAvatarBtn.classList.add('open');
+            dropdownOpen = true;
+        }
+    });
+    userDropdown.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.addEventListener('click', function () {
+        if (dropdownOpen) {
+            userDropdown.classList.remove('open');
+            userAvatarBtn.classList.remove('open');
+            dropdownOpen = false;
+        }
+    });
+    window.addEventListener('resize', function () { if (dropdownOpen) positionDropdown(); });
+    window.addEventListener('scroll', function () { if (dropdownOpen) positionDropdown(); }, true);
+
+    document.getElementById('logoutBtn').onclick = function () {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        alert("已退出登录");
+        window.location.href = "login.html";
+    };
+
+    // ====================== 导航高亮 ======================
+    var url = window.location.href;
+    document.querySelectorAll('.nav-menu li a').forEach(function (link) {
+        if (url.endsWith(link.getAttribute('href'))) link.classList.add('active');
+    });
+
+    // ====================== 搜索 ======================
+    var searchInput = document.getElementById('searchInput');
+    var searchBtn = document.getElementById('searchBtn');
+    function performSearch() {
+        var keyword = searchInput.value.trim();
+        if (!keyword) { alert('请输入搜索关键词，例如 "黄金树"、"破碎战争"'); return; }
+        var found = false, matchCount = 0, firstMatch = null;
+        document.querySelectorAll('.search-highlight').forEach(function (el) {
+            el.style.backgroundColor = '';
+            el.style.color = '';
+            el.classList.remove('search-highlight');
+        });
+        var textElements = document.querySelectorAll('.scroll-block h3, .scroll-block h4, .scroll-block p, .ending-card h5');
+        textElements.forEach(function (el) {
+            if (el.textContent.includes(keyword)) {
+                el.style.backgroundColor = '#5c1a1a';
+                el.style.color = '#d4af37';
+                el.classList.add('search-highlight');
+                found = true; matchCount++;
+                if (!firstMatch) firstMatch = el;
+            }
+        });
+        if (found) {
+            firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function () {
+                alert('找到 ' + matchCount + ' 处包含 "' + keyword + '" 的内容。');
+            }, 300);
+        } else {
+            alert('没有找到包含 "' + keyword + '" 的内容。');
+        }
+    }
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); performSearch(); }
+    });
+
+    // ====================== ★ 流星雨生成 ======================
+    (function initMeteors(){
+        var layer = document.getElementById('meteorLayer');
+        if (!layer) return;
+
+        // ---------- 静态星尘点 ----------
+        for (var i = 0; i < 70; i++) {
+            var dot = document.createElement('span');
+            dot.className = 'star-dot';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top  = Math.random() * 100 + '%';
+            var size = 1 + Math.random() * 2;
+            dot.style.width  = size + 'px';
+            dot.style.height = size + 'px';
+            dot.style.animationDuration = (2 + Math.random() * 4) + 's';
+            dot.style.animationDelay = '-' + (Math.random() * 6) + 's';
+            layer.appendChild(dot);
+        }
+
+        // ---------- ★ 批量生成流星（同时存在，错开循环） ----------
+        var METEOR_COUNT = 22;
+
+        for (var k = 0; k < METEOR_COUNT; k++) {
+            createOneMeteor(k, METEOR_COUNT);
+        }
+
+        function createOneMeteor(index, total) {
+            var m = document.createElement('span');
+            m.className = 'meteor';
+
+            // 随机长度
+            var rnd = Math.random();
+            if (rnd < 0.3)      m.classList.add('long');
+            else if (rnd < 0.7) m.classList.add('medium');
+            else                m.classList.add('short');
+
+            // 随机大小/亮度
+            if (Math.random() < 0.3) m.classList.add('tiny');
+            if (Math.random() < 0.25) m.classList.add('bright');
+
+            // 起点：分布在整个屏幕右侧和上方区域
+            var startX = -10 + Math.random() * 120;
+            var startY = -40 + Math.random() * 120;
+            m.style.left = startX + '%';
+            m.style.top  = startY + '%';
+
+            // 飞行时长
+            var dur = 2 + Math.random() * 3.5;
+            m.style.animationDuration = dur + 's';
+
+            // ★ 负延迟 —— 让所有流星一开始就处于不同飞行阶段
+            var initialDelay = -Math.random() * dur;
+            m.style.animationDelay = initialDelay + 's';
+
+            layer.appendChild(m);
+        }
+
+        // ---------- 额外间歇补充流星 ----------
+        function spawnExtra() {
+            var m = document.createElement('span');
+            m.className = 'meteor';
+            var rnd = Math.random();
+            if (rnd < 0.4)      m.classList.add('long');
+            else if (rnd < 0.75) m.classList.add('medium');
+
+            if (Math.random() < 0.3) m.classList.add('bright');
+
+            var startX = -10 + Math.random() * 120;
+            var startY = -40 + Math.random() * 100;
+            m.style.left = startX + '%';
+            m.style.top  = startY + '%';
+
+            var dur = 1.8 + Math.random() * 2.5;
+            m.style.animationDuration = dur + 's';
+
+            layer.appendChild(m);
+            setTimeout(function () { m.remove(); }, dur * 1000 + 400);
+        }
+
+        function loopSpawn() {
+            spawnExtra();
+            if (Math.random() < 0.5) spawnExtra();
+            setTimeout(loopSpawn, 800 + Math.random() * 1200);
+        }
+        setTimeout(loopSpawn, 1500);
+    })();
+
+    // ====================== ★ 王座飘浮碎片 ======================
+    (function initFloatingShards(){
+        var wrap = document.getElementById('floatingShards');
+        if (!wrap) return;
+        // 金色菱形碎片
+        for (var i = 0; i < 26; i++) {
+            var s = document.createElement('span');
+            s.className = 'shard';
+            s.style.left = Math.random() * 100 + '%';
+            var size = 4 + Math.random() * 8;
+            s.style.width  = size + 'px';
+            s.style.height = size + 'px';
+            var dur = 7 + Math.random() * 9;
+            s.style.animationDuration = dur + 's';
+            s.style.animationDelay = '-' + (Math.random() * dur) + 's';
+            wrap.appendChild(s);
+        }
+        // 小余烬
+        for (var j = 0; j < 36; j++) {
+            var e = document.createElement('span');
+            e.className = 'ember-dot';
+            e.style.left = Math.random() * 100 + '%';
+            var dur2 = 6 + Math.random() * 8;
+            e.style.animationDuration = dur2 + 's';
+            e.style.animationDelay = '-' + (Math.random() * dur2) + 's';
+            wrap.appendChild(e);
+        }
+    })();
+
+    // ====================== 加载世界观数据 ======================
+    var fallbackWorldview = [
+        {
+            title: "黄金树的兴衰",
+            img: "img/7.jpg",
+            imgDesc: "黄金树 · 交界地的核心信仰",
+            content: `
+                <p>在无上意志的指引下，黄金树降临交界地，玛莉卡女王建立了黄金律法，带来了繁荣与秩序。</p>
+                <p>然而，黄金律法并非完美。褪色者被剥夺赐福，遭到流放。随着时间流逝，黄金树的根基开始动摇。</p>
+                <p>在“黑刀之夜”中，黄金王子戈德温被刺杀，艾尔登法环被击碎，玛莉卡女王失踪，黄金时代宣告终结。</p>
+            `
+        },
+        {
+            title: "破碎战争",
+            img: "img/20.jpg",
+            imgDesc: "破碎战争 · 半神们的纷争",
+            content: `
+                <p>艾尔登法环破碎后，大卢恩散落交界地。半神们为了争夺碎片，爆发了旷日持久的破碎战争。</p>
+                <p>“接肢”葛瑞克、“满月女王”蕾娜菈、“碎星”拉塔恩、“红发”玛莲妮亚、“血王”蒙格等人各自为战。</p>
+                <p>战争最终陷入僵局，没有一方取得胜利，交界地也因此陷入混乱与衰败。</p>
+            `
+        },
+        {
+            title: "褪色者的使命",
+            img: "",
+            imgDesc: "",
+            content: `
+                <p>被逐出交界地的褪色者，在赐福的指引下重返故土。</p>
+                <p>你的使命是收集大卢恩，修复艾尔登法环，成为新的艾尔登之王。</p>
+                <p>但最终的选择权在你的手中——是延续黄金律法，还是带来群星、癫火、或死亡的新时代？</p>
+            `
+        }
+    ];
+
+    async function loadWorldView(){
+        const token = localStorage.getItem('token');
+        const wrap = document.getElementById("contentWrap");
+        let list = null;
+
+        try{
+            const res = await fetch('/api/worldview',{
+                method:"GET",
+                headers:{
+                    "Authorization":`Bearer ${token}`
+                }
+            });
+            if (res.status === 401 || res.status === 403) {
+                alert("登录已过期，请重新登录");
+                localStorage.removeItem("token");
+                localStorage.removeItem("username");
+                window.location.href = "login.html";
+                return;
+            }
+            const data = await res.json();
+            if (data && data.list) list = data.list;
+        }catch(err){
+            console.warn("后端接口不可用，使用兜底数据", err);
+        }
+
+        if (!list || !list.length) list = fallbackWorldview;
+
+        let html = "";
+        list.forEach(item=>{
+            html += `
+                <div class="scroll-block">
+                    <h3>${item.title}</h3>
+                    ${item.img ? `
+                    <div class="img-box">
+                        <img src="${item.img}" alt="${item.title}">
+                    </div>
+                    <p class="img-caption">${item.imgDesc || ''}</p>
+                    `:""}
+                    ${item.content}
+                </div>
+            `;
+        });
+        wrap.innerHTML = html;
+
+        // 卡片入场动画
+        var blocks = wrap.querySelectorAll('.scroll-block');
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var el = entry.target;
+                        var idx = parseInt(el.getAttribute('data-idx') || 0, 10);
+                        el.style.transitionDelay = (idx * 0.08) + 's';
+                        el.classList.add('in-view');
+                        io.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+            blocks.forEach(function (b, i) {
+                b.setAttribute('data-idx', i);
+                io.observe(b);
+            });
+        } else {
+            blocks.forEach(function (b) { b.classList.add('in-view'); });
+        }
+    }
+    loadWorldView();
+
+    // ====================== 悬浮工具栏 ======================
+    (function initFloatToolbar() {
+        var toolbar = document.getElementById('floatToolbar');
+        var expandBtn = document.getElementById('ftExpand');
+        if (!toolbar || !expandBtn) return;
+
+        document.getElementById('ftTop').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('ftSearch').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            var input = document.getElementById('searchInput');
+            if (input) {
+                setTimeout(function () {
+                    input.focus();
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
+            }
+        });
+
+        document.getElementById('ftHelp').addEventListener('click', function () {
+            alert('使用帮助：\n\n· 顶部按钮 → 回到页面最上方\n· 预约按钮 → 跳转官方预约页\n· 搜索按钮 → 快速聚焦搜索框\n· 官网按钮 → 打开官方网站\n· 退出按钮 → 清除登录信息\n· 收起按钮 → 折叠工具栏\n· 右侧小箭头 → 重新展开工具栏');
+        });
+
+        document.getElementById('ftLogout').addEventListener('click', function () {
+            if (confirm('确定要退出登录吗？')) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('username');
+                window.location.href = 'login.html';
+            }
+        });
+
+        document.getElementById('ftToggle').addEventListener('click', function () {
+            toolbar.classList.add('collapsed');
+            expandBtn.classList.add('show');
+        });
+
+        expandBtn.addEventListener('click', function () {
+            toolbar.classList.remove('collapsed');
+            expandBtn.classList.remove('show');
+            updateToolbarVisibility();
+        });
+
+        function updateToolbarVisibility() {
+            var threshold = 400;
+            if (window.scrollY > threshold) {
+                toolbar.classList.remove('scroll-hidden');
+            } else {
+                toolbar.classList.add('scroll-hidden');
+            }
+        }
+
+        window.addEventListener('scroll', updateToolbarVisibility);
+        window.addEventListener('resize', updateToolbarVisibility);
+        updateToolbarVisibility();
+    })();
+</script>
+</body>
+</html>

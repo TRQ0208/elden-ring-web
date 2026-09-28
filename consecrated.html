@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化圣雪原 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>化圣雪原 Consecrated Snowfield</h2>
+    <p>巨人山顶隐藏区域，暴风雪永不停歇，通往米凯拉圣树的必经之路</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+集齐圣树秘密符节左右两半，在洛德大升降机切换秘密道路，即可进入化圣雪原。这片区域常年笼罩浓密暴风雪，视野极差，白金之子、祖灵民、灵体敌人四处游荡。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+区域内分布多个地下洞窟与墓地，向北抵达仪典镇奥缇娜，破除封印后进入通往米凯拉的圣树的密道。雪原还有勒缇娜支线的终点，大量高等级锻造石、传说武器与魔法可在此获取。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：暴风雪雪原、冰封河道、仪典镇、地下洞窟群</span>
+                <span class="tag">主线：通往米凯拉的圣树</span>
+                <span class="tag">推荐等级：110~140</span>
+                <span class="tag">包含：化圣雪原、仪典镇奥缇娜、安身洞窟、耶罗亚尼斯坑道、化圣雪原地下墓地</span>
+            </div>
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/theodorix.jpg" alt="大土龙 席欧朵利克"></div>
+                    <h4>大土龙 席欧朵利克</h4>
+                    <p>冰封河道尽头的巨型土龙，大范围熔岩吐息，近战横扫。击杀获得3颗龙心脏。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">冰封河道</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/astel_dark_stars.jpg" alt="黑暗繁星艾丝缇"></div>
+                    <h4>黑暗繁星艾丝缇</h4>
+                    <p>耶罗亚尼斯坑道BOSS，重力魔法，召唤陨石与灵体碎片。击杀获得魔法艾丝缇陨石。</p>
+                    <span class="tag">坑道BOSS</span>
+                    <span class="tag">耶罗亚尼斯坑道</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/misbegotten_crusader.jpg" alt="混种圣骑士"></div>
+                    <h4>混种圣骑士</h4>
+                    <p>安身洞窟BOSS，攻防兼备，持大剑与盾牌。击杀获得传说武器黄金律法大剑。</p>
+                    <span class="tag">洞窟BOSS</span>
+                    <span class="tag">安身洞窟</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/night_cavalry_flail.jpg" alt="双黑夜骑兵"></div>
+                    <h4>双黑夜骑兵</h4>
+                    <p>夜晚刷新，两名黑夜骑兵一同作战，重武器连击。击杀获得黑夜骑兵套装与古龙岩锻造石。</p>
+                    <span class="tag">夜晚限定BOSS</span>
+                    <span class="tag">雪原西南</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/consecrated_snowfield_main.jpg" alt="化圣雪原主体"></div>
+                    <h4>化圣雪原主体</h4>
+                    <p>暴风雪笼罩的广阔雪原，白金之子、祖灵民出没，地图碎片藏在河道北岸石碑。</p>
+                    <span class="tag">雪原主体</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/ordinia.jpg" alt="仪典镇奥缇娜"></div>
+                    <h4>仪典镇奥缇娜</h4>
+                    <p>雪原北端的封印城镇，需要点燃四座火焰塔解除封印，开启通往圣树密道。</p>
+                    <span class="tag">封印城镇</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/yelough_anix_tunnel.jpg" alt="耶罗亚尼斯坑道"></div>
+                    <h4>耶罗亚尼斯坑道</h4>
+                    <p>地下矿道，藏有大量高等级锻造石，BOSS黑暗繁星艾丝缇。</p>
+                    <span class="tag">坑道</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/cave_of_forlorn.jpg" alt="安身洞窟"></div>
+                    <h4>安身洞窟</h4>
+                    <p>雪原东侧洞窟，传说武器黄金律法大剑所在，混种圣骑士镇守。</p>
+                    <span class="tag">洞窟</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>化圣雪原可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/golden_order_greatsword.jpg" alt="黄金律法大剑"></div>
+                    <h4>黄金律法大剑</h4>
+                    <p>传说大剑，战技黄金律法之誓，提供攻防增幅。安身洞窟BOSS掉落。</p>
+                    <span class="tag">传说武器</span>
+                    <span class="tag">安身洞窟</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/meteorite_of_astel.jpg" alt="艾丝缇陨石"></div>
+                    <h4>艾丝缇陨石</h4>
+                    <p>强力重力魔法，召唤大范围陨石雨。击败黑暗繁星艾丝缇获得。</p>
+                    <span class="tag">传说魔法</span>
+                    <span class="tag">耶罗亚尼斯坑道</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/nights_cavalry_set.jpg" alt="黑夜骑兵套装"></div>
+                    <h4>黑夜骑兵套装</h4>
+                    <p>重甲套装，高物理抗性，双黑夜骑兵击杀掉落。</p>
+                    <span class="tag">防具套装</span>
+                    <span class="tag">雪原西南</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

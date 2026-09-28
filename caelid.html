@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盖利德 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;          
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        /* 卡片网格，和武器、地理页面保持一致 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>盖利德 Caelid</h2>
+    <p>猩红腐败吞噬的荒原，破碎战争的惨烈坟场，拉塔恩的长眠之地</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+盖利德位于宁姆格福东侧，破碎战争中，女武神玛莲妮亚与碎星拉塔恩在此决战。玛莲妮亚释放猩红腐败，整片大地被腐败瘴气污染，草木枯萎，生灵畸变，到处都是腐败怪物与猩红沼泽。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+这片区域难度极高，不建议早期贸然闯入。核心主线为碎星拉塔恩之战，击败碎星后可以开启地下永恒之城的通道。区域内洞窟、封印监牢、腐败教堂数量众多，拥有大量强力武器、法术与传说骨灰。红土荒原、腐败湖泊、魔法镇瑟莉亚构成盖利德标志性景观。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：红土荒原 / 猩红沼泽 / 魔法小镇 / 墓地</span>
+                <span class="tag">主线：碎星拉塔恩，开启地下区域</span>
+                <span class="tag">推荐等级：60~90</span>
+                <span class="tag">包含：盖利德北部、南部、红土沼泽、瑟莉亚</span>
+            </div>
+            <!-- 返回地理页面按钮 -->
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/starscourge_radahn.jpg" alt="碎星拉塔恩"></div>
+                    <h4>碎星拉塔恩</h4>
+                    <p>盖利德半神，破碎战争英雄，重力魔法使用者。大战场BOSS战，召唤大量NPC协助。击败获得拉塔恩的追忆、大卢恩。</p>
+                    <span class="tag">半神BOSS</span>
+                    <span class="tag">地点：红土大竞技场</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/commander_o_neil.jpg" alt="老将欧尼尔"></div>
+                    <h4>老将欧尼尔</h4>
+                    <p>腐败沼泽中的精英，手持戟与腐败疫病，召唤腐败小兵。击败获得纯净金针，推进米莉森支线。</p>
+                    <span class="tag">野外精英</span>
+                    <span class="tag">腐败沼泽</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/radahn_soldier.jpg" alt="腐烂树灵"></div>
+                    <h4>腐烂树灵</h4>
+                    <p>腐败版本黄金树灵，全身猩红腐败，大范围腐败爆炸，掉落腐败相关法术与材料。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">腐败湖区</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/jiejingren.jpg" alt="结晶人"></div>
+                    <h4>结晶人（盖利德洞窟）</h4>
+                    <p>盖利德洞窟深处，结晶外壳高防御，破防之后十分脆弱。掉落结晶武器。</p>
+                    <span class="tag">洞窟BOSS</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/fallingstar_beast.jpg" alt="坠星成兽"></div>
+                    <h4>坠星成兽</h4>
+                    <p>拉塔恩战斗后坠落的外星生物，重力攻击，击败后开启通往诺克隆恩的入口。</p>
+                    <span class="tag">主线BOSS</span>
+                    <span class="tag">地下入口</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/night_cavalry_caelid.jpg" alt="黑夜骑兵（盖利德）"></div>
+                    <h4>黑夜骑兵（盖利德）</h4>
+                    <p>盖利德大道夜晚刷新，使用重型长矛，附带腐败效果，掉落黑夜骑兵套装与武器。</p>
+                    <span class="tag">夜晚限定</span>
+                    <span class="tag">野外精英</span>
+                </div>
+            </div>
+        </div>
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/redmane_castle.jpg" alt="红狮子城"></div>
+                    <h4>红狮子城</h4>
+                    <p>碎星拉塔恩的城堡，红狮子骑士驻守。开启拉塔恩祭典的地点，城内大量骑士与军队。</p>
+                    <span class="tag">主线城堡</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/selia_town.jpg" alt="魔法镇瑟莉亚"></div>
+                    <h4>魔法镇瑟莉亚</h4>
+                    <p>封印魔法小镇，点燃三座高塔解除封印，解锁大量魔法、宝箱与隐藏通道。</p>
+                    <span class="tag">魔法据点</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/swamp_aeonia.jpg" alt="艾奥尼亚沼泽"></div>
+                    <h4>艾奥尼亚沼泽</h4>
+                    <p>猩红腐败大沼泽，瘴气持续累积腐败值，老将欧尼尔在此，米莉森支线起点。</p>
+                    <span class="tag">腐败区域</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/caelid_catacomb.jpg" alt="盖利德地下墓地"></div>
+                    <h4>盖利德地下墓地</h4>
+                    <p>遍布腐败亡灵的地下墓穴，BOSS掉落腐败骨灰，藏有大量锻造石。</p>
+                    <span class="tag">地下墓地</span>
+                </div>
+            </div>
+        </div>
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>盖利德可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/starscourge_greatsword.jpg" alt="碎星大剑"></div>
+                    <h4>碎星大剑</h4>
+                    <p>拉塔恩追忆兑换，双持重型大剑，战技重力爆发，可以拉扯敌人，力量信仰双补正。</p>
+                    <span class="tag">力量/信仰</span>
+                    <span class="tag">追忆兑换</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/cleanrot_knife.jpg" alt="洁净刀"></div>
+                    <h4>洁净刀</h4>
+                    <p>米莉森支线最终奖励，敏捷武器，附带猩红腐败，出手速度快，出血+腐败双异常。</p>
+                    <span class="tag">敏捷</span>
+                    <span class="tag">支线奖励</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/radagons_scarseal.jpg" alt="拉达冈的糜烂烙印"></div>
+                    <h4>拉达冈的糜烂烙印</h4>
+                    <p>盖利德封印监牢获取，全属性大幅提升，受到伤害增加更多，高风险高回报护符。</p>
+                    <span class="tag">护符</span>
+                    <span class="tag">封印监牢</span>
+                </div>
+                <div class="region-card">
+                    <div class="card-img"><img src="img/redmane_ash.jpg" alt="红狮子骑士奥加骨灰"></div>
+                    <h4>红狮子骑士奥加骨灰</h4>
+                    <p>传说骨灰，红狮子精英骑士，使用强力重力箭，远程压制敌人，对付大型BOSS效果极佳。</p>
+                    <span class="tag">传说骨灰</span>
+                    <span class="tag">瑟莉亚隐藏宝箱</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

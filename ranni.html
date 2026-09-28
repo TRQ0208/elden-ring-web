@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魔女菈妮 - 艾尔登法环交界地档案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #12100f;
+            color: #e2dfd8;
+            line-height: 1.8;
+        }
+        /* 头部导航，和全站保持一致 */
+        header {
+            background: linear-gradient(135deg, #2b2442, #1e1c1c);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav {
+            background-color: #1a1817;
+            padding: 15px 0;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .nav-menu li a {
+            color: #e2dfd8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover {
+            background-color: #3b3058;
+            color: #d4af37;
+        }
+        /* ========== 专题页独有特色样式 ========== */
+        .hero-banner{
+            width:100%;
+            height:420px;
+            background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)), url(img/5.jpg);
+            background-size: cover;
+            background-position: center;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+        }
+        .hero-banner h2{
+            font-size:3rem;
+            color:#c7b2e9;
+            font-family:'SimSun',serif;
+            margin-bottom:12px;
+        }
+        .hero-banner .sub-title{
+            font-size:1.2rem;
+            color:#c5c2bd;
+        }
+        .main-wrap{
+            padding:50px 0;
+        }
+        .two-col{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap:40px;
+            margin-bottom:45px;
+        }
+        .text-block{
+            background-color:#1e1c1b;
+            padding:30px;
+            border-left:4px solid #604896;
+            border-radius:0 10px 10px 0;
+        }
+        .text-block h3{
+            color:#d4af37;
+            margin-bottom:18px;
+            font-size:1.6rem;
+            font-family:'SimSun',serif;
+        }
+        .text-block p{
+            margin-bottom:14px;
+            color:#c5c2bd;
+        }
+        /* 视频容器区域 */
+        .video-box{
+            background-color:#1e1c1b;
+            padding:24px;
+            border-radius:10px;
+            border:1px solid #3b3734;
+        }
+        .video-box h3{
+            color:#d4af37;
+            margin-bottom:16px;
+            font-family:'SimSun',serif;
+        }
+        video{
+            width:100%;
+            border-radius:6px;
+        }
+        .back-home{
+            display:inline-block;
+            margin-top:20px;
+            padding:10px 22px;
+            background:#3b3058;
+            color:#e2dfd8;
+            text-decoration:none;
+            border-radius:6px;
+        }
+        .back-home:hover{
+            background:#52407d;
+            color:#d4af37;
+        }
+        footer {
+            background-color: #1a1817;
+            padding: 40px 0 20px;
+            margin-top:60px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-section h3 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-family: 'SimSun', serif;
+        }
+        .footer-section p {
+            margin-bottom: 10px;
+            color:#b8b4ae;
+        }
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align:center;
+            color:#888;
+        }
+        @media(max-width:768px){
+            .two-col{
+                grid-template-columns:1fr;
+            }
+            .nav-menu{
+                flex-direction:column;
+                gap:12px;
+                text-align:center;
+            }
+            .hero-banner h2{
+                font-size:2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 顶部大横幅专题头图 -->
+<section class="hero-banner">
+    <h2>魔女菈妮</h2>
+    <div class="sub-title">月之公主 · 群星律法的追寻者</div>
+</section>
+
+<main class="main-wrap">
+    <div class="container">
+        <div class="two-col">
+            <!-- 左侧文字介绍区域 -->
+            <div class="text-block">
+                <h3>人物背景</h3>
+                <p>菈妮是卡利亚王室的月之公主，满月女王蕾娜菈与拉达冈的女儿，拉塔恩、拉卡德的妹妹，天生的神人候选人。</p>
+                <p>她不愿成为无上意志与双指操控的傀儡，策划黑刀之夜，亲手杀死自己的肉身，舍弃神祇身份，以人偶躯体继续存活于世。</p>
+                <p>她向往群星的律法，想要打破黄金律法对交界地的束缚，让世界摆脱外来神明的干预，追寻属于众生的自由。</p>
+
+                <h3 style="margin-top:24px;">人物结局</h3>
+                <p>如果完成菈妮支线任务，褪色者将成为她的王，开启群星时代。菈妮会带着月亮，一同离开交界地去往浩瀚星空。</p>
+                <p>若中途背叛，支线将会中断，她会消失，无法达成群星结局。</p>
+                <a href="index.html" class="back-home">← 返回首页</a>
+            </div>
+
+            <!-- 右侧视频位置 -->
+            <div class="video-box">
+                <h3>支线剧情演示</h3>
+                <video controls>
+                    <source src="video/ranni_story.mp4" type="video/mp4">
+                    你的浏览器不支持视频播放
+                </video>
+                <p style="margin-top:12px;color:#999;font-size:0.9rem;">视频：菈妮完整支线剧情</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于本站</h3>
+                <p>艾尔登法环交界地档案，玩家向资料网站，整理交界地人物、地理、装备与剧情设定。</p>
+            </div>
+            <div class="footer-section">
+                <h3>资料来源</h3>
+                <p>游戏文本、物品说明、NPC对话</p>
+                <p>玩家剧情考据整理</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p>地图大全</p>
+                <p>支线任务汇总</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 · 仅供学习演示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

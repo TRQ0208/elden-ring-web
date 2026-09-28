@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巨人山顶 - 交界地地理详情</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', serif;
+            background-color: #110f0c;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #d9c9b4;
+            line-height: 1.9;
+        }
+        header {
+            background: linear-gradient(135deg, #2b251d, #181511);
+            padding: 20px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #5c4f3c;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1 {
+            font-size: 2.5rem; color: #c9a878;
+            text-shadow: 2px 2px 6px #000;
+            font-family: 'SimSun', serif;
+        }
+        nav { background-color: #1c1813; padding: 15px 0; border-bottom: 1px solid #3b3328; }
+        .nav-menu { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        .nav-menu li a {
+            color: #d9c9b4; text-decoration: none; font-size: 1.1rem;
+            padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover { background-color: #443a2c; color: #c9a878; }
+        .scroll-header { padding: 50px 0 20px; text-align: center; }
+        .scroll-header h2 {
+            font-size: 2.8rem; color: #c9a878;
+            font-family: 'SimSun', serif; letter-spacing: 4px;
+            margin-bottom: 10px; text-shadow: 0 0 8px #000;
+        }
+        .scroll-header p { color: #a8967d; font-size: 1.1rem; }
+        .main-content { padding: 0 0 50px; }
+        .scroll-block {
+            background-color: rgba(24,20,16,0.9);
+            border: 1px solid #5c4f3c;
+            border-left: 8px solid #7c694e;
+            border-radius: 4px; padding: 35px; margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.65);
+        }
+        .scroll-block h3 {
+            color: #c9a878; font-family: 'SimSun', serif;
+            font-size: 1.8rem; margin-bottom: 24px;
+            padding-bottom: 10px; border-bottom: 1px solid #443a2c;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 26px;
+        }
+        .region-card {
+            background-color: #221d16;
+            border: 1px solid #5c4f3c;
+            border-radius: 6px; padding: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .card-img {
+            width: 100%; height: 180px;
+            background-color: #1a1612;
+            border: 1px solid #5c4f3c;
+            border-radius: 4px;
+            overflow: hidden; margin-bottom: 14px;
+        }
+        .card-img img {
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
+        }
+        .region-card h4 { color: #d4b384; font-size: 1.3rem; margin-bottom: 10px; }
+        .region-card p { color: #c2b29e; margin-bottom: 12px; font-size: 0.95rem; flex: 1; }
+        .region-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #342c21;
+            border:1px solid #7c694e;
+            color:#ffc970;
+            font-size:0.85rem;
+            margin-right:6px;
+            margin-bottom:6px;
+            border-radius:3px;
+        }
+        .back-link {
+            display: inline-block; padding: 10px 22px;
+            background: #342c21; color: #d9c9b4;
+            text-decoration: none; border-radius: 6px;
+            border: 1px solid #5c4f3c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-top: 20px;
+        }
+        .back-link:hover { background: #4c4030; color: #c9a878; }
+        footer {
+            background-color: #1c1813; padding: 40px 0 20px;
+            margin-top: 60px; border-top: 1px solid #3b3328;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-around; gap: 30px; margin-bottom: 30px;
+        }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #c9a878; margin-bottom: 20px; font-family: 'SimSun', serif; }
+        .footer-section p { margin-bottom: 10px; color: #b8a994; }
+        .footer-bottom {
+            border-top: 1px solid #3b3328; padding-top: 20px;
+            text-align: center; color: #887a68;
+        }
+        @media(max-width:768px){
+            .nav-menu { flex-direction: column; gap: 12px; text-align: center; }
+            .scroll-header h2 { font-size: 2rem; }
+            .scroll-block { padding: 22px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>艾尔登法环 · 交界地档案</h1>
+    </div>
+</header>
+<nav>
+    <div class="container">
+        <ul class="nav-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="geography.html">交界地地理</a></li>
+            <li><a href="demigod.html">半神角色</a></li>
+            <li><a href="weapon.html">武器装备</a></li>
+            <li><a href="dungeon.html">遗迹地下城</a></li>
+            <li><a href="npc.html">NPC故事</a></li>
+            <li><a href="worldview.html">世界观设定</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container scroll-header">
+    <h2>巨人山顶 Mountaintops of the Giants</h2>
+    <p>永冻雪原，巨人遗骸遍地，巨人熔炉，烧尽黄金树之地</p>
+</div>
+<main class="main-content">
+    <div class="container">
+        <!-- 区域总述 -->
+        <div class="scroll-block">
+            <h3>区域概览</h3>
+            <p style="font-size:1.05rem;">
+击败恶兆王蒙葛特之后，可通过洛德大升降机抵达巨人山顶。这片冰封荒原遍布远古巨人的骸骨，寒风刺骨，是巨人战争的古战场。区域分为东西两部分，主线一路向南抵达巨人熔炉，挑战火焰巨人。
+            </p>
+            <p style="margin-top:12px;color:#b8a994;">
+东北部坐落索尔城，击败老将尼奥可拿到圣树秘密符节（左），搭配另一半符节，在洛德大升降机切换密道，进入隐藏区域化圣雪原，通往米凯拉的圣树。主线击杀火焰巨人后，梅琳娜会点燃巨人熔炉，开启通往天空城法姆·亚兹拉的道路。区域充斥雪人、灵体狼、山妖与死亡仪式鸟。
+            </p>
+            <div style="margin-top:16px;">
+                <span class="tag">地形：冰封雪原、巨人遗骸、索尔城、巨人熔炉</span>
+                <span class="tag">主线：火焰巨人，点燃黄金树</span>
+                <span class="tag">推荐等级：100~130</span>
+                <span class="tag">包含：巨人山顶东/西、索尔城、巨人熔炉、化圣雪原</span>
+            </div>
+            <a href="geography.html" class="back-link">← 返回交界地地理总览</a>
+        </div>
+
+        <!-- BOSS 图鉴 -->
+        <div class="scroll-block">
+            <h3>区域BOSS图鉴</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/fire_giant.jpg" alt="火焰巨人"></div>
+                    <h4>火焰巨人</h4>
+                    <p>巨人山顶主线BOSS，守护巨人熔炉。一阶段使用巨链翻滚投掷；二阶段腹部巨眼开启，大范围熔岩喷发。击杀获得火焰巨人的追忆。</p>
+                    <span class="tag">主线BOSS</span>
+                    <span class="tag">巨人熔炉</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/commander_niall.jpg" alt="老将尼奥"></div>
+                    <h4>老将尼奥</h4>
+                    <p>索尔城城主，战斗会召唤两名放逐骑士协助作战，寒气剑技，高额削韧。击杀获得圣树秘密符节（左）与老将追忆。</p>
+                    <span class="tag">传承地牢BOSS</span>
+                    <span class="tag">索尔城</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/borealis.jpg" alt="冻霜雾龙 玻列琉斯"></div>
+                    <h4>冻霜雾龙 玻列琉斯</h4>
+                    <p>结冰湖的巨龙，大范围冰霜吐息，持续积累冻伤。击杀获得龙心脏与祷告玻列琉斯的雾。</p>
+                    <span class="tag">野外BOSS</span>
+                    <span class="tag">结冰湖</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/death_rite_bird_snow.jpg" alt="死亡仪式鸟"></div>
+                    <h4>死亡仪式鸟</h4>
+                    <p>夜间刷新，死亡魔法，远程灵体镰刀。击杀获得古老死亡怨魂。</p>
+                    <span class="tag">夜晚限定BOSS</span>
+                    <span class="tag">弃置大教堂附近</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可探索地点 -->
+        <div class="scroll-block">
+            <h3>可探索地点与遗迹</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/mountaintops_view.jpg" alt="巨人山顶雪原"></div>
+                    <h4>巨人山顶东西雪原</h4>
+                    <p>冰封荒原，巨人骸骨散落，大量雪人、山妖，结冰湖、多处洞窟与封印监牢。</p>
+                    <span class="tag">雪原主体</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/castle_sol.jpg" alt="索尔城"></div>
+                    <h4>索尔城</h4>
+                    <p>雪山北部的废弃要塞，老将尼奥镇守，圣树秘密符节所在地，通往化圣雪原的关键。</p>
+                    <span class="tag">传承地牢</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/forge_of_giants.jpg" alt="巨人熔炉"></div>
+                    <h4>巨人熔炉</h4>
+                    <p>区域最南端，火焰巨人战斗场地，梅琳娜献祭点燃熔炉，开启天空城。</p>
+                    <span class="tag">主线终点</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/consecrated_snowfield.jpg" alt="化圣雪原"></div>
+                    <h4>化圣雪原</h4>
+                    <p>隐藏子区域，双秘密符节解锁，充满圣血敌人，通往米凯拉的圣树。</p>
+                    <span class="tag">隐藏区域</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 区域可收集装备 -->
+        <div class="scroll-block">
+            <h3>巨人山顶可收集装备</h3>
+            <div class="card-grid">
+                <div class="region-card">
+                    <div class="card-img"><img src="img/rivers_of_blood.jpg" alt="尸山血海"></div>
+                    <h4>尸山血海</h4>
+                    <p>传说太刀，战技尸横遍野，出血爆发极强，击败血指老翁获得。</p>
+                    <span class="tag">传说武器</span>
+                    <span class="tag">结冰湖附近</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/burn_o_flame.jpg" alt="烧尽，火焰！"></div>
+                    <h4>烧尽，火焰！</h4>
+                    <p>火焰巨人追忆兑换祷告，召唤多道火焰柱爆发。</p>
+                    <span class="tag">传说祷告</span>
+                    <span class="tag">圆桌追忆兑换</span>
+                </div>
+
+                <div class="region-card">
+                    <div class="card-img"><img src="img/greatsword_graft.jpg" alt="古兰桑克斯的雷电"></div>
+                    <h4>古兰桑克斯的雷电</h4>
+                    <p>传说祷告，召唤古龙雷矛贯穿敌人，索尔城屋顶拾取。</p>
+                    <span class="tag">传说祷告</span>
+                    <span class="tag">索尔城屋顶</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>交界地档案</h3>
+                <p>艾尔登法环区域、BOSS、装备、NPC全收录</p>
+            </div>
+            <div class="footer-section">
+                <h3>导航</h3>
+                <p><a href="geography.html" style="color:#b8a994;text-decoration:none;">返回地理总览</a></p>
+                <p><a href="index.html" style="color:#b8a994;text-decoration:none;">回到首页</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 艾尔登法环交界地档案 | 仅供学习展示</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
