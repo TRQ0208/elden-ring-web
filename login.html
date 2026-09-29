@@ -115,13 +115,19 @@
                 msgDom.innerText = "密码至少6位";
                 return;
             }
-            const res = await fetch(baseUrl + "/api/register",{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify({username,password})
-            })
-            const data = await res.json();
-            msgDom.innerText = data.msg;
+            let data;
+            try {
+                const res = await fetch(baseUrl + "/api/register",{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body:JSON.stringify({username,password})
+                });
+                data = await res.json();
+            } catch(err) {
+                msgDom.innerText = "无法连接服务器，请稍后重试";
+                return;
+            }
+            msgDom.innerText = data.msg || "注册失败";
         }
 
         // 登录（抽成函数，供按钮和回车共用）
@@ -133,18 +139,24 @@
                 msgDom.innerText = "用户名和密码不能为空";
                 return;
             }
-            const res = await fetch(baseUrl + "/api/login",{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify({username,password})
-            })
-            const data = await res.json();
+            let data;
+            try {
+                const res = await fetch(baseUrl + "/api/login",{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body:JSON.stringify({username,password})
+                });
+                data = await res.json();
+            } catch(err) {
+                msgDom.innerText = "无法连接服务器，请稍后重试";
+                return;
+            }
             console.log("后端返回完整数据：", data);
             console.log("msg原始字符串：", JSON.stringify(data.msg));
-            msgDom.innerText = data.msg;
+            msgDom.innerText = data.msg || "登录失败";
 
             // 兜底判断：只要msg里面包含"登录成功"四个字就跳转
-            if(data.msg.includes("登录成功")){
+            if(data.msg && data.msg.includes("登录成功")){
                 localStorage.setItem("token",data.token);
                 localStorage.setItem("username",username);
                 location.href = "/cg.html";

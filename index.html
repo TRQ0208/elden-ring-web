@@ -365,6 +365,31 @@
             text-shadow: 0 0 10px rgba(0,0,0,0.9), 1px 2px 6px #000;
             animation: titleFadeIn 1.6s ease-out 0.3s both;
         }
+        .banner-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+            pointer-events: auto;
+            animation: titleFadeIn 1.6s ease-out 0.6s both;
+        }
+        .banner-actions a {
+            color: #f3d98b;
+            border: 1px solid rgba(212,175,55,0.7);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.35);
+            transition: all 0.3s ease;
+        }
+        .banner-actions a:hover {
+            background: #4b1414;
+            color: #fff;
+            border-color: #d4af37;
+            box-shadow: 0 0 18px rgba(212,175,55,0.45);
+        }
         @keyframes titleFadeIn {
             from { opacity: 0; transform: translateY(24px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -816,7 +841,7 @@
 
                 <a class="reserve-btn" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
                     <span class="reserve-icon">⚔️</span>
-                    <span>立即预约</span>
+                    <span>官网</span>
                 </a>
 
                 <button class="user-avatar-btn" id="userAvatarBtn" aria-label="用户菜单">
@@ -851,6 +876,11 @@
         <div class="banner-content">
             <h2>褪色者，欢迎来到交界地</h2>
             <p>破碎的艾尔登法环，等待修复之王</p>
+            <div class="banner-actions">
+                <a href="demigod.html">半神角色</a>
+                <a href="geography.html">交界地地理</a>
+                <a href="worldview.html">世界观设定</a>
+            </div>
         </div>
     </div>
 
@@ -868,6 +898,7 @@
                             <p>玛莉卡女王击碎艾尔登法环，黄金秩序随之崩塌。大卢恩四散，半神互相厮杀争夺碎片，交界地陷入无尽战乱。</p>
                             <p>被逐出故土的褪色者，受到赐福指引重返这片土地。寻找大卢恩，成为艾尔登之王，或是追寻其他道路，命运掌握在玩家手中。</p>
                             <p>这里交织着黄金、群星、猩红腐败、死亡等无数力量。每一位NPC都背负悲剧，每一处废墟都藏着曾经辉煌的往事。</p>
+                            <a class="learn-more" href="worldview.html">查看世界观设定</a>
                         </div>
                         <div class="featured-image" style="background-image: url(img/7.jpg);"></div>
                     </div>
@@ -890,8 +921,8 @@
                 </div>
                 <div class="footer-section">
                     <h3>导航</h3>
-                    <p>地图大全</p>
-                    <p>支线任务汇总</p>
+                    <a href="geography.html">地图大全</a>
+                    <a href="npc.html">支线任务汇总</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -916,9 +947,9 @@
             <span class="toolbar-icon">⬆</span>
             <span class="toolbar-label">顶部</span>
         </button>
-        <a class="toolbar-btn" data-tip="立即预约" href="https://eldenring.bn-ent.net/en/" target="_blank" rel="noopener">
-            <span class="toolbar-icon">⚔️</span>
-            <span class="toolbar-label">预约</span>
+        <a class="toolbar-btn" data-tip="世界观设定" href="worldview.html">
+            <span class="toolbar-icon">📜</span>
+            <span class="toolbar-label">世界观</span>
         </a>
         <button class="toolbar-btn" data-tip="搜索档案" id="ftSearch">
             <span class="toolbar-icon">🔍</span>
@@ -1190,7 +1221,7 @@
             });
 
             document.getElementById('ftHelp').addEventListener('click', function () {
-                alert('使用帮助：\n\n· 顶部按钮 → 回到页面最上方\n· 预约按钮 → 跳转官方预约页\n· 搜索按钮 → 快速聚焦搜索框\n· 官网按钮 → 打开官方网站\n· 退出按钮 → 清除登录信息\n· 收起按钮 → 折叠工具栏\n· 右侧小箭头 → 重新展开工具栏');
+                alert('使用帮助：\n\n· 顶部按钮 → 回到页面最上方\n· 世界观按钮 → 进入世界观设定\n· 搜索按钮 → 快速聚焦搜索框\n· 官网按钮 → 打开官方网站\n· 退出按钮 → 清除登录信息\n· 收起按钮 → 折叠工具栏\n· 右侧小箭头 → 重新展开工具栏');
             });
 
             document.getElementById('ftLogout').addEventListener('click', function () {

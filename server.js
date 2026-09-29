@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');//引入 JSON Web Token 库。用于生成�
 const cors = require('cors');//引入 CORS 中间件，用于解决前端跨域请求同源策略限制的问题。
 const path = require('path');//Node.js 内置路径模块，用于安全、跨平台地处理文件路径。
 const app = express();//创建一个 Express 应用实例。
-const PORT = process.env.PORT;//从环境变量中读取服务监听端口 JWT 签名密钥。
+const PORT = process.env.PORT || 3000;//从环境变量中读取服务监听端口，未配置时使用 3000。
 const JWT_SECRET = process.env.JWT_SECRET;
 app.use(cors());//全局启用 CORS，允许任何源的跨域请求访问该服务器。
 app.use(express.json());//全局启用 JSON 解析中间件，使得服务器能够解析 Content-Type 为 application/json 的请求体。
@@ -281,9 +281,9 @@ function getLocalIP() {
   return '127.0.0.1';
 }
 
-app.listen(3000, '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log('后端服务启动成功！')
-  console.log('本机访问：http://localhost:3000')
-  console.log('公网访问：http://124.221.25.87:3000')
+  console.log(`本机访问：http://localhost:${PORT}`)
+  console.log(`局域网访问：http://${getLocalIP()}:${PORT}`)
 })
 
