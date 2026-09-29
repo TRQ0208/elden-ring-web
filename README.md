@@ -1,13 +1,28 @@
 # 艾尔登法环主题全栈网站
 ##  项目介绍
 本项目基于Node.js + Express开发全栈网站，以艾尔登法环为主题，实现网页浏览、用户注册登录功能。后端使用MySQL存储用户数据，采用JWT完成登录鉴权，项目部署在腾讯云服务器。
+<img width="1894" height="1042" alt="屏幕截图 2026-09-29 172605" src="https://github.com/user-attachments/assets/652980d8-7c5a-4c86-b244-b9fbdf1491b9" />
 
-##  技术栈
-- 前端：HTML、原生JavaScript
-- 后端：Node.js、Express
-- 数据库：MySQL
-- 工具库：cors、bcryptjs、jsonwebtoken、mysql2
-- 部署：PM2进程守护、腾讯云服务器
+
+
+
+
+
+
+
+
+
+
+
+## 技术栈
+
+- 前端：原生 HTML、CSS、JavaScript
+- 后端：Node.js、Express 5
+- 数据库：MySQL 8、mysql2
+- 鉴权：JSON Web Token
+- 密码加密：bcryptjs
+- 环境配置：dotenv
+- 跨域处理：cors
 
 ##  项目功能
 1. 艾尔登法环主题页面展示
@@ -23,6 +38,13 @@ http://124.221.25.87:3000
 2. 跨域问题：使用cors中间件解决浏览器同源策略限制
 3. 服务器部署：使用PM2托管Node服务，关闭终端网站依旧保持在线，配置开机自启
 4. 远程数据库：使用SSH隧道连接云服务器MySQL进行本地开发调试
+ ## 已知问题
+
+- 页面结构目前以原生 HTML/CSS/JS 单文件为主，公共导航与工具栏逻辑存在重复。
+- 搜索功能目前只扫描当前页面内容，暂未实现全局搜索。
+- 前后端接口返回格式尚未完全统一。
+- 尚未引入自动化测试、Lint 和 CI。
+
 
 ##  资源说明
 音视频素材只存放在云服务器，本仓库仅存放业务代码，不存放大体积媒体文件。
