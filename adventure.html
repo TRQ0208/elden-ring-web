@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171713">
+  <meta name="description" content="十二章交界地互动冒险，从宁姆格福走到黄金树前。翻页探索本体主线与关键支线，用旅途选择开启六种结局。">
+  <title>冒险之书 · 交界地档案</title>
+  <script>if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('is-embedded');</script>
+  <link rel="stylesheet" href="adventure/adventure.css">
+  <script src="adventure/chapters-02-05.js" defer></script>
+  <script src="adventure/chapters-06-09.js" defer></script>
+  <script src="adventure/chapters-10-12.js" defer></script>
+  <script src="adventure/illustrations.js" defer></script>
+  <script src="adventure/story.js" defer></script>
+  <script src="adventure/adventure.js" defer></script>
+</head>
+<body class="adventure-app">
+  <a class="skip-link" href="#adventureMain">跳到冒险之书</a>
+  <header class="site-header">
+    <a class="home-link" href="index.html"><span aria-hidden="true">←</span> 交界地档案</a>
+    <a class="book-brand" href="adventure.html"><span class="brand-ring" aria-hidden="true"></span>冒险之书</a>
+    <span class="site-edition">原创冒险 <span aria-hidden="true">/</span> 十二章全篇</span>
+  </header>
+
+  <main id="adventureMain" class="adventure-main" tabindex="-1">
+    <section id="bookCover" class="cover-layout" aria-labelledby="coverTitle">
+      <div class="cover-intro">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> THE LANDS BETWEEN</p>
+        <h1 id="coverTitle">有些传说，<br>由你<span>翻开。</span></h1>
+        <div class="intro-rule" aria-hidden="true"></div>
+        <p class="cover-description">以褪色者之名，走进交界地。<br>穿过风暴、月湖与灰烬，一路走到黄金树前。<br>十二章旅途，六种世界的答案，由你亲手翻开。</p>
+        <div class="chapter-card">
+          <span class="chapter-seal" aria-hidden="true">壹</span>
+          <div><span class="chapter-label">从第一章出发 · 宁姆格福</span><h2>赐福的指引</h2></div>
+          <span class="chapter-flourish" aria-hidden="true">✧</span>
+        </div>
+        <div class="cover-actions">
+          <button id="startAdventure" class="button button-gold" type="button">翻开第一页 <span aria-hidden="true">→</span></button>
+          <button id="continueAdventure" class="button button-outline" type="button" hidden>继续上次冒险</button>
+        </div>
+        <p class="cover-meta">12 章连续故事 <span aria-hidden="true">·</span> 主线与关键支线 <span aria-hidden="true">·</span> 进度自动保存</p>
+        <details class="volume-preview"><summary>先看看这本书会走到哪里</summary><p>宁姆格福 → 史东薇尔与圆桌 → 利耶尼亚 → 碎星祭典 → 地底与月光 → 亚坛与火山 → 黄金王城 → 巨人山顶 → 圣树与鲜血 → 天空城 → 灰烬中的诸王 → 世界的答案</p><small>后续含本体主线与结局剧透。人物对话、旅人经历与叙事细节为原创同人改编。</small></details>
+      </div>
+
+      <div class="cover-stage" aria-hidden="true">
+        <div class="book-shadow"></div>
+        <div class="closed-book">
+          <div class="cover-spine"><span>交 界 地 纪 行</span></div>
+          <div class="cover-face">
+            <div class="cover-corner corner-tl"></div><div class="cover-corner corner-tr"></div>
+            <div class="cover-corner corner-bl"></div><div class="cover-corner corner-br"></div>
+            <p class="volume-label">THE TARNISHED CHRONICLES</p>
+            <svg class="gold-sigil" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g stroke="currentColor" stroke-width="1.4"><circle cx="100" cy="77" r="45"/><circle cx="73" cy="116" r="45"/><circle cx="127" cy="116" r="45"/><path d="M100 12v177M100 12l-7 16m7-16 7 16M100 189l-8-17m8 17 8-17M46 180c28-10 80-10 108 0M45 184c28-10 82-10 110 0"/><path d="M50 37c-24 21-32 62-18 98M150 37c24 21 32 62 18 98" stroke-width=".7"/></g>
+              <circle cx="100" cy="77" r="4" fill="currentColor"/>
+            </svg>
+            <p class="cover-book-title">冒险之书</p>
+            <p class="cover-book-subtitle">交 界 地 纪 行</p>
+            <div class="cover-art-window"><div class="cover-art"></div><div class="art-window-fade"></div><span>追随那一缕金色的光</span></div>
+            <div class="cover-bottom"><span>十二章全篇</span><span>从赐福到王座</span></div>
+          </div>
+          <span class="book-ribbon"></span>
+        </div>
+        <p class="stage-caption"><span></span> 每一页，都是尚未抵达的远方 <span></span></p>
+      </div>
+    </section>
+
+    <section id="readingView" class="reading-view" aria-label="互动冒险阅读器" hidden>
+      <div class="reader-toolbar">
+        <div class="reader-heading"><span class="reader-emblem" aria-hidden="true">✧</span><div><p class="eyebrow">THE TARNISHED CHRONICLES</p><span id="readerChapter">第 1 章 / 赐福的指引</span></div></div>
+        <div class="reader-tools">
+          <button id="openContents" class="toolbar-button" type="button"><span aria-hidden="true">☷</span> 目录</button>
+          <button id="journalToggle" class="toolbar-button" type="button" aria-controls="journalPanel" aria-expanded="false"><span aria-hidden="true">◇</span> 行囊</button>
+        </div>
+      </div>
+
+      <div class="open-book">
+        <div class="book-binding" aria-hidden="true"></div>
+        <div class="book-spread">
+          <section class="book-page illustration-page" aria-label="故事插画与对话">
+            <div class="page-running-head"><span>交界地纪行</span><span id="chapterRegion">宁姆格福</span></div>
+            <div id="sceneArt" class="scene-art" data-scene="0" role="group" aria-label="交界地的冒险场景与对话">
+              <span id="sceneLabel" class="scene-frame-label" aria-hidden="true">01 — 第一缕光</span>
+              <div class="scene-shading" aria-hidden="true"></div>
+              <div id="dialogue" class="dialogue" aria-live="polite"></div>
+            </div>
+            <div id="sceneTranscript" class="scene-transcript" hidden></div>
+            <div class="illustration-caption"><span aria-hidden="true">✦</span><span>漫漫长路，总有微光指引。</span><span aria-hidden="true">✦</span></div>
+            <div class="page-footnote"><span>THE LANDS BETWEEN</span><span class="page-ornament" aria-hidden="true">— ◇ —</span></div>
+          </section>
+
+          <article class="book-page story-page" aria-labelledby="pageTitle">
+            <div class="page-running-head"><span id="routeLabel">褪色者的旅程</span><span id="pageNumber">01</span></div>
+            <p id="pageKicker" class="story-kicker">第一章 · 宁姆格福</p>
+            <h2 id="pageTitle" tabindex="-1">赐福的指引</h2>
+            <div class="story-title-rule" aria-hidden="true"><span>✦</span></div>
+            <div id="storyText" class="story-text" aria-live="polite"></div>
+            <div id="choices" class="story-choices" aria-label="选择接下来的行动"></div>
+            <div id="endingSummary" class="ending-summary" hidden></div>
+            <p class="story-end-mark" aria-hidden="true">◇</p>
+          </article>
+        </div>
+      </div>
+
+      <nav class="page-navigation" aria-label="翻页导航">
+        <button id="backPage" class="page-turn" type="button"><span aria-hidden="true">←</span> 上一页</button>
+        <div class="reading-progress"><label for="readingProgress" id="pageCounter">第 1 页</label><progress id="readingProgress" max="100" value="0">0%</progress></div>
+        <button id="nextPage" class="page-turn page-turn-next" type="button">下一页 <span aria-hidden="true">→</span></button>
+      </nav>
+      <div class="reader-bottom"><span id="saveStatus" role="status" aria-live="polite">冒险进度会保存在此浏览器</span><span class="keyboard-tip"><kbd>←</kbd><kbd>→</kbd> 翻页</span><button id="restartAdventure" type="button" class="quiet-button">重新开始</button></div>
+
+      <aside id="journalPanel" class="journal-panel" aria-labelledby="journalTitle" hidden>
+        <div class="journal-heading"><span class="eyebrow">TRAVEL JOURNAL</span><h2 id="journalTitle">旅途手记</h2><p>把沿途所得，收进你的故事。</p></div>
+        <section><h3><span aria-hidden="true">◇</span> 随身物品</h3><ul id="journalItems"></ul></section>
+        <section><h3><span aria-hidden="true">✧</span> 发现与线索</h3><ul id="journalClues"></ul></section>
+        <section class="journal-path"><h3><span aria-hidden="true">↗</span> 走过的路</h3><p id="journalPath"></p></section>
+      </aside>
+    </section>
+
+    <p class="fan-note">基于《艾尔登法环》世界观的原创同人冒险 · 非官方剧情与台词</p>
+  </main>
+
+  <dialog id="contentsDialog" class="contents-dialog" aria-labelledby="contentsTitle">
+    <div class="contents-header"><div><p class="eyebrow">CHAPTERS & JOURNEYS</p><h2 id="contentsTitle">冒险目录</h2></div><button id="closeContents" class="dialog-close" type="button" aria-label="关闭目录">×</button></div>
+    <p class="contents-intro">共十二章。抵达新篇章后可重访；返回旧页并作出不同选择，会改写之后的旅程。</p>
+    <ol id="chapterList" class="chapter-list"></ol>
+    <h3 class="contents-route-heading">当前章节 · 已读书页</h3>
+    <ol id="contentsList" class="contents-list"></ol>
+    <p class="contents-footer">交界地纪行 · 主线与关键支线 / 六种终章</p>
+  </dialog>
+  <noscript><p class="noscript-message">请启用 JavaScript，以翻阅冒险之书并选择你的故事路线。</p></noscript>
+</body>
+</html>

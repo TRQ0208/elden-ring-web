@@ -354,6 +354,11 @@
             .page-figure img { max-height: 240px; }
         }
     </style>
+
+    <!-- ARCHIVE FEATURES: search, filters and character picker only -->
+    <link rel="stylesheet" href="archive-features.css">
+    <script src="archive-features.js" defer></script>
+    <!-- /ARCHIVE FEATURES -->
 </head>
 <body>
 
@@ -774,6 +779,15 @@
                 var w = viewport.clientWidth;
                 viewport.scrollTo({ left: current * w, behavior: 'auto' });
             });
+
+            // ARCHIVE PICKER: use the existing page navigation and cancel pending hover scrolling.
+            viewport.addEventListener('archive-select-page', function (event) {
+                edgeState = 0;
+                if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+                clearTimeout(snapTimer);
+                if (Number.isInteger(event.detail) && event.detail >= 0 && event.detail < total) goTo(event.detail);
+            });
+            // /ARCHIVE PICKER
 
             updateUI(0);
 

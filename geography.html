@@ -650,6 +650,11 @@
             .g-card { flex: 0 0 82vw; width: 82vw; height: 460px; }
         }
     </style>
+
+    <!-- ARCHIVE FEATURES: search, filters and character picker only -->
+    <link rel="stylesheet" href="archive-features.css">
+    <script src="archive-features.js" defer></script>
+    <!-- /ARCHIVE FEATURES -->
 </head>
 <body>
 
@@ -1188,6 +1193,21 @@
                             progressBar.style.transform = 'translateX(' + (barLeft / barWidth * 100) + '%)';
                         }
                     }
+
+                    // ARCHIVE REGION PICKER: center the selected card using the existing gallery.
+                    viewport.addEventListener('archive-select-region', function (event) {
+                        var index = event.detail;
+                        if (!Number.isInteger(index) || index < 0 || index >= cards.length) return;
+                        edgeState = 0;
+                        stopEdgeScroll();
+                        var cardRect = cards[index].getBoundingClientRect();
+                        var viewportRect = viewport.getBoundingClientRect();
+                        var left = viewport.scrollLeft + cardRect.left + cardRect.width / 2 - viewportRect.left - viewport.clientWidth / 2;
+                        var maximum = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+                        viewport.scrollTo({ left: Math.max(0, Math.min(maximum, left)), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+                        updateGallery();
+                    });
+                    // /ARCHIVE REGION PICKER
 
                     viewport.addEventListener('scroll', updateGallery);
                     window.addEventListener('resize', updateGallery);
