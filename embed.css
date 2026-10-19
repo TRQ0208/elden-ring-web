@@ -1,0 +1,12 @@
+.adventure-reader-open{overflow:hidden}
+.adventure-portal{width:min(1440px,calc(100vw - 40px));height:min(1040px,calc(100dvh - 40px));max-width:none;max-height:none;margin:auto;padding:0;border:1px solid #806b3f;border-radius:9px;background:#171410;color:#e5d9ba;box-shadow:0 30px 100px #000b;overflow:hidden}
+.adventure-portal::backdrop{background:#050403df;backdrop-filter:blur(6px)}
+.adventure-portal[open]{display:flex;flex-direction:column}
+.adventure-portal-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:57px;padding:8px 16px 8px 22px;border-bottom:1px solid #594a2c;background:#211b13;font:16px/1.4 'SimSun',serif;flex:none}
+.adventure-portal-bar small{margin-left:13px;color:#ac9b77;font:12px/1.5 'Microsoft YaHei',sans-serif}
+.adventure-portal-actions{display:flex;align-items:center;gap:16px}
+.adventure-portal-actions a{color:#c7b382;font:12px/1.5 'Microsoft YaHei',sans-serif;text-decoration:none;white-space:nowrap}
+.adventure-portal-actions button{display:flex;align-items:center;justify-content:center;min-width:40px;height:40px;border:1px solid #75613b;border-radius:4px;background:#292115;color:#e6d6ad;font:26px/1 sans-serif;cursor:pointer}
+.adventure-portal-actions a:focus-visible,.adventure-portal-actions button:focus-visible{outline:2px solid #e8c97e;outline-offset:3px}
+.adventure-portal iframe{display:block;width:100%;flex:1;min-height:0;border:0;background:#171410}
+@media(max-width:700px){.adventure-portal{width:100vw;height:100dvh;border:0;border-radius:0}.adventure-portal-bar{padding:7px 10px 7px 14px}.adventure-portal-bar small{display:none}.adventure-portal-actions{gap:12px}}
